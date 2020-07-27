@@ -1,0 +1,162 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*background-image: linear-gradient(45deg, crimson, skyblue);*/
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* Css for the AudioFile component */
+
+.book-name {
+  font-size: 2em;
+  padding-left: 1em;
+  font-family: cursive;
+  margin: 0.2em;
+}
+.author-name {
+  font-size: 1.5em;
+  padding-left: 2em;
+  margin: 0.2em;
+  font-family: monospace;
+}
+.progress-bar{
+  width: 90vw;
+  margin: 0 5%;
+  height: 0.75em;
+  display: flex;
+  flex-basis: 100%;
+  position: relative;
+  background: rgba(0,0,0,0.5);
+  flex-direction: initial!important;
+  justify-content: initial!important;
+  cursor: ew-resize;
+  margin-top: 1em;
+}
+.player-controls{
+  height: 5em;
+    width: 30em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.progress-filled{
+  background: green;
+  flex-basis: 50%;
+}
+.player-slider{
+  color: white;
+}
+.player-skip{
+  border: none;
+    padding: .5em;
+    font-size: 1.2em;
+    background: none;
+}
+/* .player-skip:focus{
+  font-size: 150%;
+}*/
+.player-skip:hover{
+  border:none;
+  color:blue;
+}
+/* .player-skip:focus-visible{
+  
+} */
+.player {
+  width: 20rem;
+  border: 5px solid rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  /*position: relative;*/
+  display: flex;
+  justify-content: center;
+  margin: 0% 36%;
+  align-items: center;
+  height: 20rem;
+  font-size: 0;
+  overflow: hidden;
+  /* background-image: url("https://i.pinimg.com/originals/f7/3a/5b/f73a5b4b7262440684a2b5c39e684304.jpg") */
+}
+.toggle{
+  border-radius: 50%;
+    font-size: 2.15em;
+    margin: 1em;
+    background: white;
+    padding: 10px;
+    border: 1px solid black;
+}
+.toggle:focus{
+  outline:red;
+  border:2px solid black;
+}
+.range-select{
+  margin:2%;
+}
+.current-duration{
+  position: absolute;
+    top:75%;
+    left: 0%;
+    color: black;
+}
+.total-duration{
+  position: absolute;
+    top:75%;
+    right: 0%;
+    color:black;
+}
+.audio-description{
+  margin: 1.2em;
+    padding: 0.5em;
+    border: 1px solid black;
+    box-shadow: 5px 5px 13px darkslategrey;
+    border-radius: 1.5em;
+}
+.book-recommendation-heading{
+  margin-left: 1em;
+}
+.audio-page-hr{
+  width: 97%;
+  margin-top: 2em;
+}
+.div-for-settings{
+  position:relative;
+}
+.audio-book-genre{
+  margin-left: 2.7em;
+    color: crimson;
+}
+/*Css for the Upload component*/
+
+.upload-heading{
+  color: crimson;
+  margin-left: 1em;
+}
+.upload-label{
+  margin-left: 1.5em;
+  color:black;
+  font-size: 1.2em;
+  display: block;
+}
+.upload-input{
+  margin-left:1.5em;
+  width: 25em;
+}
+.upload-button{
+  display: block;
+    width: 25em;
+    margin: 1.5em;
+    background: crimson;
+    color: white;
+    border-radius: 1em;
+    border: 1px solid white;
+}
+.search-result-ul{
+  list-style:none;
+}
