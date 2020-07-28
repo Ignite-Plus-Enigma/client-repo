@@ -34,6 +34,15 @@ public class BooksController {
     public ResponseEntity<Collection<Books>> findBook(@PathVariable String key) {
         return ResponseEntity.ok().body((bookService.searchBooks(key)));
     }
+
+    @GetMapping("/search/category/{key}")
+    public ResponseEntity<Collection<Books>> findBookByCategory(@PathVariable String key){
+        return ResponseEntity.ok().body((bookService.searchBookByCategory(key)));
+    }
+    @GetMapping("/search/subCategory/{key}")
+    public ResponseEntity<Collection<Books>> findBookBySubCategory(@PathVariable String key){
+        return ResponseEntity.ok().body((bookService.searchBookBySubCategory(key)));
+    }
 }
 
 
