@@ -1,0 +1,46 @@
+
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    padding: 0;
+    margin-right: 0.6rem;
+    margin-left: 0.6rem;
+  }
+  
+  
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    background-color: white;
+    margin-bottom: 20px;
+  }
+  
+  nav ul li {
+    padding: 20px;
+  }
+  
+  nav ul li a {
+    color: #DC143C;
+    text-decoration: none;
+  }
+  
+  .current {
+    border-bottom: 4px solid #DC143C;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  p {
+    margin-bottom: 15px;
+  }
+  
+  
+  .Card-header {
+          width: 20px;
+          height: 20px;
+      }
