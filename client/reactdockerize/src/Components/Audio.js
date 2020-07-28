@@ -1,6 +1,7 @@
 import React from 'react'
 import {Component} from 'react';
 import '../App.css';
+import axios from "axios"
 
 
 export default class AudioFile extends Component{
@@ -74,18 +75,40 @@ export default class AudioFile extends Component{
     /*Life cycle methods*/
     componentDidMount(){
         const uniqueId = this.props.id;
-        let apiSearchEndpoint = 'http://localhost:8080/api/search/';
+        let apiSearchEndpoint = 'http://localhost:8050/books/';
         apiSearchEndpoint+=uniqueId;
-        axios.get(apiSearchEndpoint).then((response) => {
-            this.setState({
-                bookName:response.name,
-                author:response.author,
-                genre:response.genre,
-                bookUri:response.bookUri,
-                imageUri:response.imageUri,
-                description:response.description,
-            });
-        });
+        // axios.get(apiSearchEndpoint).then((response) => {
+        //     this.setState({
+        //         bookName:response.name,
+        //         author:response.author,
+        //         genre:response.genre,
+        //         bookUri:response.bookUrl,
+        //         imageUri:response.bookImage,
+        //         description:response.description,
+               
+        //     });
+        //     console.log(response.name)
+        // });
+        axios.get(apiSearchEndpoint)
+            .then(response =>response.data)
+            .then((data)=>{
+                // console.log(data)
+                this.setState({
+                    bookName:data.name,
+                    author:data.author,
+                    genre:data.genre,
+                    driveImageUri:data.bookImage,
+                    driveBookUri:data.bookUrl,
+                    description:data.description,
+                    book:data
+                    // googleDriveUri:response.cloud_url
+                    
+                    });
+                    
+                    
+            })
+            
+            
         document.addEventListener('DOMContentLoaded',()=>{
             const video = document.querySelector('.viewer');
         video.addEventListener('timeupdate',this.progressUpdate);
@@ -120,15 +143,17 @@ export default class AudioFile extends Component{
     
     
     render(){
+        {console.log(this.state.driveImageUri)}
         return (
+           
             <div>
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
                 <h6 className = "audio-book-genre">{this.state.genre}</h6>
                 {/* {window.location.origin + '/Audio/The Vamps-Wake Up.mp3'}  */}
                 <div className = "player">
-                    <audio className = "audio-player viewer" src = {this.state.bookUri} ></audio>
-                    <img src={this.state.imageUri} alt= "Book image"/>
+                    <audio className = "audio-player viewer" src = {this.state.driveBookUri} ></audio>
+                    <img src={this.state.driveImageUri} alt= "Book image"/>
                 </div>
                 <div className="progress-bar" role="timer">
                     <div className="progress-filled"></div>
