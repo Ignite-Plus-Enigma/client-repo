@@ -1,12 +1,16 @@
 import React from 'react';
+import BooksCategoryAccordion from '../Components/BooksCategoryAccordion'
 
 class Books extends React.Component{
+    
     render(){
         return(
             <div>
-                This is E book page
+                <BooksCategoryAccordion/>
+                
             </div>
         )
     }
 }
 export default Books;
+

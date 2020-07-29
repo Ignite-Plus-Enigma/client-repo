@@ -77,38 +77,20 @@ export default class AudioFile extends Component{
         const uniqueId = this.props.id;
         let apiSearchEndpoint = 'http://localhost:8050/books/';
         apiSearchEndpoint+=uniqueId;
-        // axios.get(apiSearchEndpoint).then((response) => {
-        //     this.setState({
-        //         bookName:response.name,
-        //         author:response.author,
-        //         genre:response.genre,
-        //         bookUri:response.bookUrl,
-        //         imageUri:response.bookImage,
-        //         description:response.description,
-               
-        //     });
-        //     console.log(response.name)
-        // });
         axios.get(apiSearchEndpoint)
             .then(response =>response.data)
             .then((data)=>{
-                // console.log(data)
                 this.setState({
                     bookName:data.name,
                     author:data.author,
                     genre:data.genre,
                     driveImageUri:data.bookImage,
                     driveBookUri:data.bookUrl,
-                    description:data.description,
-                    book:data
-                    // googleDriveUri:response.cloud_url
-                    
+                    description:data.description
                     });
                     
                     
             })
-            
-            
         document.addEventListener('DOMContentLoaded',()=>{
             const video = document.querySelector('.viewer');
         video.addEventListener('timeupdate',this.progressUpdate);
@@ -122,8 +104,6 @@ export default class AudioFile extends Component{
         
     }
 
-    
-    
     componentWillUnmount(){
         const video = document.querySelector('.viewer');
         video.removeEventListener('timeupdate',this.progressUpdate);
@@ -143,7 +123,6 @@ export default class AudioFile extends Component{
     
     
     render(){
-        {console.log(this.state.driveImageUri)}
         return (
            
             <div>

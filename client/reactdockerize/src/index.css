@@ -8,6 +8,10 @@ body {
   /*background-image: linear-gradient(45deg, crimson, skyblue);*/
 }
 
+/* .single-accordion-div {
+  background-color: grey !important;
+} */
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -160,3 +164,11 @@ code {
 .search-result-ul{
   list-style:none;
 }
+
+.accordion-subcategory-list{
+  list-style: none;
+    /* padding: 0; */
+    margin-left: 0;
+}
+
+ 
