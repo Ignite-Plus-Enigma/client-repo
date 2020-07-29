@@ -1,5 +1,6 @@
 package com.trust.samarthanam.DigitalLibrary.Controller;
 
+import com.trust.samarthanam.DigitalLibrary.Model.Category;
 import com.trust.samarthanam.DigitalLibrary.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +15,11 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    @GetMapping("/categories")
+    public List<Category> getAll(){
+        return categoryService.listAll();
+    }
 
     //------------------------------------get all categories------------------------------------------------------------
     @GetMapping("/category")
