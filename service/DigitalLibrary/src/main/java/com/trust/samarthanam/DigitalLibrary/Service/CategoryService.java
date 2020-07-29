@@ -12,24 +12,31 @@ import java.util.List;
 
 @Component
 public class CategoryService {
-    ArrayList<String> categories=new ArrayList<String>();
-    ArrayList<String> subCategories=new ArrayList<String>();
+
+
     @Autowired
     private CategoryRepo categoryRepo;
+//--------------------------------------- list all categories-----------------------------------------------------------
 
     public List<Category> listAll() {
         return categoryRepo.findAll();
     }
 
+
+//----------------------------------------list all categories ----------------------------------------------------------
     public ArrayList<String> listCategory() {
+        ArrayList<String> categories=new ArrayList<String>();
         List<Category> l = categoryRepo.findAll();
-        System.out.println(l);
         for(Category category: l ){
             categories.add(category.getCategory());
         };
         return categories;
     }
+
+
+//---------------------------------------list all subcategories of a main category--------------------------------------
     public List<String> listSubCategory(String key) {
+        ArrayList<String> subCategories=new ArrayList<String>();
         List<Category> l = categoryRepo.findAll();
 
 

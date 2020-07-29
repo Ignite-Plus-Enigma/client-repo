@@ -35,8 +35,6 @@ public class Books {
     private int count;
     @Field("sub_category")
     private String subCategory;
-//    @Field("time-stamp")
-//    private
 
     public Books() {
     }
