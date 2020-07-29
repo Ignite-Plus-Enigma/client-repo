@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 @Document(collection = "Books")
 
 public class Books {
-    @Field("id")
+    @Field("_id")
     private String id;
     @Field("name")
     private String name;
@@ -21,8 +21,6 @@ public class Books {
     private String isbn;
     @Field("author")
     private String author;
-    @Field("genre")
-    private String genre;
     @Field("format")
     private String format;
     @Field("language")
@@ -35,6 +33,8 @@ public class Books {
     private String description;
     @Field("count")
     private int count;
+    @Field("sub_category")
+    private String subCategory;
 //    @Field("time-stamp")
 //    private
 
@@ -73,13 +73,6 @@ public class Books {
         this.isbn = isbn;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
     public String getFormat() {
         return format;
@@ -129,20 +122,28 @@ public class Books {
         this.count = count;
     }
 
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
+
     @Override
     public String toString() {
         return "Books{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", genre='" + genre + '\'' +
+                ", author='" + author + '\'' +
                 ", format='" + format + '\'' +
-                ", description='" + description + '\'' +
                 ", language='" + language + '\'' +
                 ", bookUrl='" + bookUrl + '\'' +
                 ", bookImage='" + bookImage + '\'' +
+                ", description='" + description + '\'' +
                 ", count=" + count +
+                ", subCategory='" + subCategory + '\'' +
                 '}';
     }
 }
