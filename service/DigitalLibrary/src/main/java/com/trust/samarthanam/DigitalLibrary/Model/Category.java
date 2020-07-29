@@ -3,13 +3,14 @@ package com.trust.samarthanam.DigitalLibrary.Model;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
+
 @Document(collection = "Category")
 public class Category {
     @Field("category")
     private String category;
     @Field ("sub_category")
-    private String subCategory;
-
+    private List<String> subCategory;
 
     public String getCategory() {
         return category;
@@ -19,11 +20,11 @@ public class Category {
         this.category = category;
     }
 
-    public String getSubCategory() {
+    public List<String> getSubCategory() {
         return subCategory;
     }
 
-    public void setSubCategory(String subCategory) {
+    public void setSubCategory(List<String> subCategory) {
         this.subCategory = subCategory;
     }
 
@@ -31,7 +32,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "category='" + category + '\'' +
-                ", subCategory='" + subCategory + '\'' +
+                ", subCategory=" + subCategory +
                 '}';
     }
 }
