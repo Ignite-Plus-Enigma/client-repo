@@ -20,30 +20,36 @@ public class BooksController {
     @Autowired
     private BookService bookService;
 
-    //get all books
+    @GetMapping("/")
+    public String welcome(){
+        return "Welcome to Samarthanam";
+    }
+
+    //----------------------------------------------------get all books-------------------------------------------------
     @GetMapping("/books")
     public ResponseEntity<List<Books>> getBooks() {
         return ResponseEntity.ok().body((bookService.listBooks()));
     }
 
 
-    //get book by id
+    //---------------------------------------------------get book by id-------------------------------------------------
     @GetMapping("/books/{id}")
     public ResponseEntity<Optional<Books>> getBookbyid(@PathVariable String id) {
         return ResponseEntity.ok().body((bookService.getById(id)));
     }
 
-    //get book by keywords
+    //------------------------------------------------get book by keywords----------------------------------------------
     @GetMapping("/books/search={key}")
     public ResponseEntity<Collection<Books>> findBook(@PathVariable String key) {
         return ResponseEntity.ok().body((bookService.searchBooks(key)));
     }
 
-    //get books by subcategory
+    //--------------------------------------------get books by subcategory----------------------------------------------
     @GetMapping("/books/subcategory/{key}")
     public Collection<Books> findBooksByTopic(@PathVariable String key){
         return bookService.findBooksByTopics(key);
     }
+
 }
 
 
