@@ -52,23 +52,23 @@ public class BookService {
             return b;
 
     }
-
-    public Collection searchBookByCategory(String text){
-        Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("genre").regex(text, "i"))), Books.class);
-        if(b.isEmpty())
-            throw new BookNotFoundException("");
-        else
-            return b;
-
-    }
-    public Collection searchBookBySubCategory(String text){
+    public Collection findBooksByTopics(String text) {
         Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
                 .orOperator(Criteria.where("subCategory").regex(text, "i"))), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
             return b;
+    }
+
+
+    public Collection<String> findNames(){
+        Collection<Books> l = booksRepo.findAll();
+        Collection<String> books=null;
+        for(Books book : l){
+            books.add(book.getName());
+        }
+        return books;
 
     }
 
