@@ -1,18 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import AudioFile from './Components/Audio'
-import './Components/Footer.css'
-import  Search  from './Components/Search'
-import Upload from './Components/Upload';
-import SearchResult from './Components/SearchResult';
+import React, { Component } from 'react';
+import Navbar from './Components/Navbar';
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+import Home from './Pages/Home';
+import Books from './Pages/Books'
+import AudioBooks from './Pages/AudioBooks'
+import SavedBooks from './Pages/SavedBooks'
+import SignIn from './Pages/SignIn'
+import Donate from './Pages/Donate'
+import './App.css'
+import '../src/Components/Footer.css'
 
-function App() {
-  return (
-    <div>
-      <AudioFile id="1"/>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+      <div className="App">
+        <Navbar/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/PDFBooks" component={Books}/>
+          <Route path="/AudioBooks" component={AudioBooks}/>
+          <Route path="/Saved" component={SavedBooks}/>
+          <Route path="/Donate" component={Donate}/>
+          <Route path="/SignIn" component={SignIn}/>
+        </Switch>
+      </div>
+      </BrowserRouter>
+    );
+  }
 }
-
 export default App;
