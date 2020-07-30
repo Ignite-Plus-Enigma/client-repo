@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SubCategory from './SubCategory'
 
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,27 +32,29 @@ export default function SimpleAccordion() {
   const classes = useStyles();
   const [mainCategories, setMainCategories] = useState([]);
 
-//   const fetchData = () => {
-//       const mainCategoriesApiEndPoint = 'localhost://8050/categories'
-//       axios.get(mainCategoriesApiEndPoint)
-//       .then(response => response.data)
-//       .then((data) => {
-//           setMainCategories(data);
-//       })
-//   }
-//   useEffect(() => {
-//       fetchData()
-//   }, [])
+  const fetchData = () => {
+      const mainCategoriesApiEndPoint = 'localhost://8050/categories'
+      axios.get(mainCategoriesApiEndPoint)
+      .then(response => response.data)
+      .then((data) => {
+          setMainCategories(data);
+      })
+  }
+  useEffect(() => {
+      fetchData()
+  }, [])
 function handleComponent(main,sub){
     return(
-        <SubCategory top={main} lower={sub}/>
+      <div>
+    
+      </div>
     )
 }
   return (
       
     <div className="upper-div">
       
-          {mainCategory.map((singleMain) => (
+          {mainCategories.map((singleMain) => (
               <div>
                 <Accordion classes = {{root:classes.root}}>
                 <AccordionSummary
@@ -66,7 +70,14 @@ function handleComponent(main,sub){
                             <div className = "single-accordion-div">
                                 <li>
                                 <Typography>
-                                    <NavLink exact activeClassName="current" to={`${singleMain.name}/${singleSub}/`} aria-label="Home" onClick = {handleComponent(singleMain,singleSub)}>{singleSub }</NavLink>
+                               
+                                    {/* <NavLink exact activeClassName="current" to={`${singleMain.name}/${singleSub}/`}  onClick = {handleComponent(singleMain,singleSub)}>{singleSub }</NavLink> */}
+                                     <NavLink exact activeClassName="current" to={`${singleMain.name}/${singleSub}/`} >{singleSub }</NavLink> 
+                                    <BrowserRouter>
+      <Switch>
+      <Route exact path={`${singleMain.name}/${singleSub}/`} component={SubCategory}/>
+      </Switch>
+      </BrowserRouter>
                                 </Typography>
                                 </li>
                             </div>
