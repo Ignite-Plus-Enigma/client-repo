@@ -21,7 +21,7 @@ public class BooksController {
     private BookService bookService;
 
     @GetMapping("/")
-    public String welcome(){
+    public String welcome() {
         return "Welcome to Samarthanam";
     }
 
@@ -45,11 +45,10 @@ public class BooksController {
     }
 
     //--------------------------------------------get books by subcategory----------------------------------------------
-    @GetMapping("/books/subcategory/{key}")
-    public Collection<Books> findBooksByTopic(@PathVariable String key){
-        return bookService.findBooksByTopics(key);
+    @GetMapping("/books/format/{text}/subcategory/{key}")
+    public Collection<Books> findBooksByTopic(@PathVariable String text, @PathVariable String key) {
+        return bookService.findBooksByTopic(text, key);
     }
-
 }
 
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import Audio from '../Components/Audio'
 
-class AudioBooks extends React.Component{
+
+class SignIn extends React.Component{
+
     render(){
         return(
             <div>
@@ -10,4 +12,4 @@ class AudioBooks extends React.Component{
         )
     }
 }
-export default AudioBooks;
+export default SignIn;

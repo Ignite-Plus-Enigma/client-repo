@@ -6,27 +6,20 @@ import Row from "./Row.js";
 import './styles.css'
 
 export default function Browse() {
+    
   return (
     
     <div>
       <Row
-         name="Recently Added"
-        // image1={education}
-        // title1="education"
-        // author1="luthor"
-        // image2={fiction}
-        // title2="cazyness over loaded"
-        // author2="roy"
-        // image3={personal}
-        // text3="title"
+         name="Recently Added" forapicall="recentlyadded"
       /> <Row
-        name="Most Viewed"
+        name="Most Viewed" forapicall="most-viewed"
       />
       <Row
-        name="Textbooks "
+        name="Textbooks " forapicall="education"
       />
       <Row
-       name="Kids/Children"
+       name="Kids/Children" forapicall="teen"
       />
     
     </div>

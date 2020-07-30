@@ -49,9 +49,11 @@ public class BookService {
     }
 
 //----------------------------------------get books by subcategory/topic------------------------------------------------
-    public Collection findBooksByTopics(String text) {
+    public Collection findBooksByTopic(String text,String key) {
         Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("subCategory").regex(text, "i"))), Books.class);
+                .andOperator(Criteria.where("subCategory").regex(key, "i"),
+                        Criteria.where("format").regex(text, "i")
+                        )), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else

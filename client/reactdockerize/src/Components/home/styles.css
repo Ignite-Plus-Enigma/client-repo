@@ -39,7 +39,7 @@
   text-align: center;
 }
 .row{
-  padding-bottom: 5em;;
+  padding-bottom: 1em;
   margin-left: 0px;
   margin-right: 0px;
 }
@@ -60,6 +60,7 @@
 }
 
 #browse-heading {
+  padding-top: 2em;;
   font-size: 1.3em;
   padding-left: 1.5em;
   color: #dc143c;
