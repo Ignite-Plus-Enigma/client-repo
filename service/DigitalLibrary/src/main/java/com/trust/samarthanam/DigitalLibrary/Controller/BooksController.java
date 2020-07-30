@@ -45,7 +45,7 @@ public class BooksController {
     }
 
     //--------------------------------------------get books by subcategory----------------------------------------------
-    @GetMapping("/books/format/{text}/subcategory/{key}")
+    @GetMapping("/books/format/{text}/SubCategory/{key}")
     public Collection<Books> findBooksByTopic(@PathVariable String text, @PathVariable String key) {
         return bookService.findBooksByTopic(text, key);
     }

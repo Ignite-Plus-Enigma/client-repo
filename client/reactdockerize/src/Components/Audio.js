@@ -1,13 +1,15 @@
 import React from 'react'
 import {Component} from 'react';
 import '../App.css';
+import Navbar from "./Navbar"
 import axios from "axios"
 
 
 export default class AudioFile extends Component{
     constructor(props) {
         super(props);
-    
+        const apiendpoint = this.props.location.pathname;
+        console.log("Hi")
         this.state = {
             toggleButton:"►",
             currentTime:0,
@@ -75,6 +77,7 @@ export default class AudioFile extends Component{
     /*Life cycle methods*/
     componentDidMount(){
         const uniqueId = this.props.id;
+        console.log(this.props.id)
         let apiSearchEndpoint = 'http://localhost:8050/books/';
         apiSearchEndpoint+=uniqueId;
         axios.get(apiSearchEndpoint)
@@ -124,8 +127,10 @@ export default class AudioFile extends Component{
     
     render(){
         return (
+        
            
             <div>
+           
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
                 <h6 className = "audio-book-genre">{this.state.genre}</h6>

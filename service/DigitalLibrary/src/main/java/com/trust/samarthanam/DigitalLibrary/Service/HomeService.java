@@ -54,7 +54,7 @@ public class HomeService {
 
     public Optional<List<Books>> findRecentlyAddedBooks(){
         Query query = new Query();
-        query.limit(1);
+        query.limit(6);
         query.with(Sort.by(Sort.Direction.DESC,"_id"));
         return Optional.of(mongoTemplate.find(query, Books.class));
     }

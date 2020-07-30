@@ -33,7 +33,7 @@ export default function SimpleAccordion() {
   const [mainCategories, setMainCategories] = useState([]);
 
   const fetchData = () => {
-      const mainCategoriesApiEndPoint = 'localhost://8050/categories'
+      const mainCategoriesApiEndPoint = 'http://localhost:8050/categories'
       axios.get(mainCategoriesApiEndPoint)
       .then(response => response.data)
       .then((data) => {
@@ -52,8 +52,12 @@ function handleComponent(main,sub){
 }
   return (
       
-    <div className="upper-div">
-      
+    <div>
+     <BrowserRouter>
+        <Switch>
+          <Route exact path="SubCategory/" component={SubCategory}/>
+        </Switch>
+      </BrowserRouter>
           {mainCategories.map((singleMain) => (
               <div>
                 <Accordion classes = {{root:classes.root}}>
@@ -62,7 +66,7 @@ function handleComponent(main,sub){
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                    <Typography className={classes.heading}>{singleMain.name}</Typography>
+                    <Typography className={classes.heading}>{singleMain.category}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <ul className = "accordion-subcategory-list">
@@ -70,14 +74,8 @@ function handleComponent(main,sub){
                             <div className = "single-accordion-div">
                                 <li>
                                 <Typography>
-                               
-                                    {/* <NavLink exact activeClassName="current" to={`${singleMain.name}/${singleSub}/`}  onClick = {handleComponent(singleMain,singleSub)}>{singleSub }</NavLink> */}
-                                     <NavLink exact activeClassName="current" to={`${singleMain.name}/${singleSub}/`} >{singleSub }</NavLink> 
-                                    <BrowserRouter>
-      <Switch>
-      <Route exact path={`${singleMain.name}/${singleSub}/`} component={SubCategory}/>
-      </Switch>
-      </BrowserRouter>
+                                     {/* <NavLink exact activeClassName="current" to={`${singleMain.category}/${singleSub}/`} >{singleSub }</NavLink>  */}
+                                     <NavLink exact activeClassName="current" to={`/SubCategory/${singleSub}/`}>{singleSub }</NavLink> 
                                 </Typography>
                                 </li>
                             </div>

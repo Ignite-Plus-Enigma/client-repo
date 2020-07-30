@@ -28,7 +28,7 @@ public class CategoryController {
     }
 
     //--------------------------------get all subcategory of a main category--------------------------------------------
-    @GetMapping("/subcategory/{key}")
+    @GetMapping("/subCategory/{key}")
     public List<String> findAllSubCategory(@PathVariable String key){
         return categoryService.listSubCategory(key);
     }

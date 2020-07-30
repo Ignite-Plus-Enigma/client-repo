@@ -9,6 +9,7 @@ import SignIn from './Pages/SignIn'
 import Donate from './Pages/Donate'
 import './App.css'
 import '../src/Components/Footer.css'
+import SubCategory from "./Components/SubCategory"
 
 class App extends Component {
   render() {
@@ -23,6 +24,8 @@ class App extends Component {
           <Route path="/Saved" component={SavedBooks}/>
           <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
+          <Route path="/SubCategory" component={SubCategory}/>
+          <Route path="/Audio" component={Audio}/>
         </Switch>
       </div>
       </BrowserRouter>

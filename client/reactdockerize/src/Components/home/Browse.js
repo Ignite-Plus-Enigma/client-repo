@@ -10,9 +10,8 @@ export default function Browse() {
   return (
     
     <div>
+      <Row name="Recently Added" forapicall="recentlyadded"   />
       <Row
-         name="Recently Added" forapicall="recentlyadded"
-      /> <Row
         name="Most Viewed" forapicall="most-viewed"
       />
       <Row
@@ -21,7 +20,13 @@ export default function Browse() {
       <Row
        name="Kids/Children" forapicall="teen"
       />
+
+      
+
     
     </div>
   );
 }
+
+
+
