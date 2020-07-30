@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Components/Navbar';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
-import Home from './Pages/Home';
+import Home from './Components/home/Browse';
 import Books from './Pages/Books'
 import AudioBooks from './Pages/AudioBooks'
 import SavedBooks from './Pages/SavedBooks'
