@@ -8,7 +8,7 @@ import axios from "axios"
 export default class AudioFile extends Component{
     constructor(props) {
         super(props);
-        const apiendpoint = this.props.location.pathname;
+        // const apiendpoint = this.props.location.pathname;
         console.log("Hi")
         this.state = {
             toggleButton:"►",
@@ -78,6 +78,7 @@ export default class AudioFile extends Component{
     componentDidMount(){
         const uniqueId = this.props.id;
         console.log(this.props.id)
+        
         let apiSearchEndpoint = 'http://localhost:8050/books/';
         apiSearchEndpoint+=uniqueId;
         axios.get(apiSearchEndpoint)

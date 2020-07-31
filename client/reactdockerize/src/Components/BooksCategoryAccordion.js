@@ -15,7 +15,7 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '60%',
-    backgroundColor: 'lightgrey'
+    backgroundColor: 'white'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -51,8 +51,10 @@ function handleComponent(main,sub){
     )
 }
   return (
+    
       
     <div>
+    <section id="accordion-section">
      <BrowserRouter>
         <Switch>
           <Route exact path="SubCategory/" component={SubCategory}/>
@@ -84,11 +86,12 @@ function handleComponent(main,sub){
                     </ul>
                 </AccordionDetails>
             </Accordion>
+            
           </div>
           ))
           }
 
-    
+          </section>
     </div>
     
   );       

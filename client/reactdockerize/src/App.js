@@ -20,12 +20,12 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/PDFBooks" component={Books}/>
-          <Route path="/AudioBooks" component={AudioBooks}/>
+          <Route path="/AudioBooks" component={Books}/>
           <Route path="/Saved" component={SavedBooks}/>
           <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
           <Route path="/SubCategory" component={SubCategory}/>
-          <Route path="/Audio" component={Audio}/>
+          <Route path="/Audio/:id" component={Audio}/>
         </Switch>
       </div>
       </BrowserRouter>

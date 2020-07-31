@@ -1,13 +1,15 @@
 import React from 'react';
-import Audio from '../Components/Audio'
+import AudioBooksCategoryAccordion from '../Components/AudioBooksCategoryAccordion'
 
-class AudioBooks extends React.Component{
+class Books extends React.Component{
+    
     render(){
         return(
             <div>
-                <h1>I am Audio Books page</h1>
+                <AudioBooksCategoryAccordion/>
+                
             </div>
         )
     }
 }
-export default AudioBooks;
+export default Books;

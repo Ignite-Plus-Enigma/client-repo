@@ -45,10 +45,11 @@ public class HomeService {
     public Collection<Books> findBooksByCategory(String key){
         Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
                 .orOperator(Criteria.where("category").regex(key, "i"))), Books.class);
+
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
-            return b;
+            return b.;
     }
 //----------------------------------------recently added books----------------------------------------------------------
 

@@ -30,10 +30,10 @@ const useStyles = makeStyles({
         />
         <CardContent>
           <Typography gutterBottom variant="body2" color="textSecondary" component="h2">
-        {/* <h6>{props.title}</h6> */}  {props.name}
+        {/* <h6>{props.title}</h6> */} {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-        Author:{props.author}
+         By {props.author}
           </Typography>
           
         </CardContent>

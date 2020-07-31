@@ -11,14 +11,14 @@ export default function Browse() {
     
     <div>
       <Row name="Recently Added" forapicall="recentlyadded"   />
-      <Row
+      {/* <Row
         name="Most Viewed" forapicall="most-viewed"
+      /> */}
+      <Row
+        name="Textbooks " forapicall="textbooks"
       />
       <Row
-        name="Textbooks " forapicall="education"
-      />
-      <Row
-       name="Kids/Children" forapicall="teen"
+       name="Kids/Children" forapicall="children"
       />
 
       

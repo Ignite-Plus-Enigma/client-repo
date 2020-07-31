@@ -29,8 +29,8 @@ const [activeBook, setActiveBook] = useState();
                    
             })
           }
-    else if(props.forapicall === "teen"){
-      const apiendpoint = "http://localhost:8050/books/category/teen"
+    else if(props.forapicall === "textbooks"){
+      const apiendpoint = "http://localhost:8050/books/category/TextBooks"
       axios.get(apiendpoint)
               .then(response =>response.data)
               .then((data)=>{
@@ -38,6 +38,15 @@ const [activeBook, setActiveBook] = useState();
                      
               })
             }
+    else if(props.forapicall === "children"){
+              const apiendpoint = "http://localhost:8050/books/category/Children"
+              axios.get(apiendpoint)
+                      .then(response =>response.data)
+                      .then((data)=>{
+                          setBooks(data);
+                             
+                      })
+                    }
 
     }
     
@@ -48,27 +57,18 @@ const [activeBook, setActiveBook] = useState();
     fetchdata()
   },[])
 
-  function handleClick(book) {
-   console.log(book)
-   setBookId(book.book.id)
-   console.log(book.book.format)
-    if(book.book.format === "PDF"){
-      console.log("RENDER PDF BOOK")
-    }
-    else if(book.book.format ==="Audio"){
-     return (
-       <div>
-          <BrowserRouter>
-        <Switch>
-          <Route exact path="Audio/" component={Audio}/>
-        </Switch>
-      </BrowserRouter>
-       </div>
-     )
+  function handleClick(book){
+    console.log("The book is")
+    console.log(book)
+    const rootElement = document.getElementById("root");
+    ReactDOM.render(
+      <React.StrictMode>
+        <Audio id={book.book.id} />
+      </React.StrictMode>,
+      rootElement
+    );
 
-      
-    }
-  }
+}
 
 
 
@@ -89,7 +89,7 @@ const [activeBook, setActiveBook] = useState();
           <ButtonBase
           onClick={() => handleClick({book})} >
         <MediaCard image={book.bookImage} title={book.name} author={book.author} />
-        <NavLink exact activeClassName="current" to={`/Audio/${book.id}/`} > view</NavLink> 
+        {/* <NavLink exact activeClassName="current" to={`/Audio/${book.id}/`} > view</NavLink>  */}
         </ButtonBase>
       </div>
       ))}
