@@ -12,8 +12,13 @@ section .section-title {
 }
 #footer {
     background: #DC143C !important;
+<<<<<<< HEAD
     height:38em;
     margin:0;
+=======
+    height:50em;
+    margin:0px;
+>>>>>>> 97b8d7bd46acd2cb1140c9b7bed33b7e7fa958af
 }
 #footer h5{
 	padding-left: 10px;

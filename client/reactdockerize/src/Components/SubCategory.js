@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import MediaCard from "./home/Card";
+import ButtonBase from '@material-ui/core/ButtonBase';
+import {NavLink} from 'react-router-dom';
 import axios from "axios"
 import MediaCard from "./home/Card";
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -37,6 +40,27 @@ class SubCategory extends React.Component{
     }
     
 
+    // handleClick = ((book) => {
+    //     console.log(book)
+    //     setBookId(book.book.id)
+    //     console.log(book.book.format)
+    //      if(book.book.format === "PDF"){
+    //        console.log("RENDER PDF BOOK")
+    //      }
+    //      else if(book.book.format ==="Audio"){
+    //       return (
+    //         <div>
+    //            <BrowserRouter>
+    //          <Switch>
+    //            <Route exact path="Audio/" component={Audio}/>
+    //          </Switch>
+    //        </BrowserRouter>
+    //         </div>
+    //       )
+     
+           
+    //      }
+    //    });
     
     render(){
         function handleClick(book){
@@ -64,6 +88,7 @@ class SubCategory extends React.Component{
         {console.log(this.state.books)}
        
         
+<<<<<<< HEAD
        
         return (
             <div>
@@ -79,6 +104,24 @@ class SubCategory extends React.Component{
               ))}
             </div>
             </div>
+=======
+        return(
+            
+          <div>
+              {this.state.books.map((book)=>(
+          
+          <div class="column">
+          <ButtonBase
+          onClick={() => handleClick({book})} >
+        <MediaCard image={book.bookImage} title={book.name} author={book.author} />
+        <NavLink exact activeClassName="current" to={`/Audio/${book.id}/`} > view</NavLink> 
+        </ButtonBase>
+      </div>
+      ))}
+          </div>
+
+            
+>>>>>>> 97b8d7bd46acd2cb1140c9b7bed33b7e7fa958af
         )
 }
 }
