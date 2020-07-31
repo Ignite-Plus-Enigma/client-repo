@@ -77,9 +77,6 @@ class SubCategory extends React.Component{
                 </ButtonBase>
               </div>
               ))}
-
-          
-         
             </div>
             </div>
         )
