@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import Navbar from './Components/Navbar';
+import Navbar from './Components/NavbarComponent/Navbar';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
-import Home from './Components/home/Browse';
-import Books from './Pages/Books'
-import AudioBooks from './Pages/AudioBooks'
-import SavedBooks from './Pages/SavedBooks'
-import SignIn from './Pages/SignIn'
-import Donate from './Pages/Donate'
+import Home from './Components/HomePage/Browse'
+import Books from './Components/PDFBooksPage/Books'
+import AudioBooks from './Components/AudioBooksPage/AudioBooks'
+import SavedBooks from './Components/SavedBooksPage/SavedBooks'
+import SignIn from './Components/SignInPage/SignIn'
+import Donate from './Components/DonatePage/Donate'
 import './App.css'
-import '../src/Components/Footer.css'
-import SubCategory from "./Components/SubCategory"
+import '../src/Components/FooterComponent/Footer.css'
+import SubCategory from "./Components/PDFBooksPage/SubCategory"
 
 class App extends Component {
   render() {
