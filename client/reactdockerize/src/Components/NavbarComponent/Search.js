@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -24,7 +24,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CustomizedInputBase() {
+  const [key,setKey] = useState()
   const classes = useStyles();
+
+  function hanldeChange(event){
+  setKey(event.target.value)
+  }
+
+  function handleSubmit(event){
+    // event.preventDefault();
+    console.log("The kye searched for is")
+    console.log(key)
+  }
 
   return (
     <Paper component="form" className={classes.root}>
@@ -33,8 +44,10 @@ export default function CustomizedInputBase() {
         className={classes.input}
         placeholder="Search "
         inputProps={{ 'aria-label': 'search for Book or Author' }}
+        onChange={hanldeChange}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
+      <IconButton type="submit" className={classes.iconButton} aria-label="search" onSubmit={handleSubmit}>
+      {console.log(key)}
         <SearchIcon />
       </IconButton>
       

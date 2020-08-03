@@ -37,51 +37,8 @@ class SubCategory extends React.Component{
         
     }
     
-
-    // handleClick = ((book) => {
-    //     console.log(book)
-    //     setBookId(book.book.id)
-    //     console.log(book.book.format)
-    //      if(book.book.format === "PDF"){
-    //        console.log("RENDER PDF BOOK")
-    //      }
-    //      else if(book.book.format ==="Audio"){
-    //       return (
-    //         <div>
-    //            <BrowserRouter>
-    //          <Switch>
-    //            <Route exact path="Audio/" component={Audio}/>
-    //          </Switch>
-    //        </BrowserRouter>
-    //         </div>
-    //       )
-     
-           
-    //      }
-    //    });
     
     render(){
-        function handleClick(book){
-            console.log("The book is")
-            console.log(book)
-            const rootElement = document.getElementById("root");
-            ReactDOM.render(
-              <React.StrictMode>
-                <Audio id={book.book.id} />
-              </React.StrictMode>,
-              rootElement
-            );
-            // if(book.book.format ==="PDF"){
-            //     this.props.history.push(`PDFBooks/${book.book.id}`)
-            // }
-            // else if (book.book.format ==="Audio"){
-            //     this.props.history.push(`Audio/${book.book.id}`)
-            // }
-
-        
-        }
-        
-
         {console.log(this.props.location.pathname)}
         {console.log(this.state.books)}
        
@@ -91,17 +48,13 @@ class SubCategory extends React.Component{
           <div>
               {this.state.books.map((book)=>(
           
-          <div class="column">
-          <ButtonBase
-          onClick={() => handleClick({book})} >
-        <MediaCard image={book.bookImage} title={book.name} author={book.author} />
-        <NavLink exact activeClassName="current" to={`/Audio/${book.id}/`} > view</NavLink> 
-        </ButtonBase>
+          <div class="row">
+         
+        <MediaCard image={book.bookImage} title={book.name} author={book.author} id={book.id} />
+        
       </div>
       ))}
           </div>
-
-            
         )
 }
 }

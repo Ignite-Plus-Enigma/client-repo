@@ -18,8 +18,10 @@ class Navbar extends Component {
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/Saved/" aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
-                    <li><NavLink exact activeClassName="current" to="/Donate/" aria-label="Donate Page">Donate </NavLink></li>
+                    {/* <li><NavLink exact activeClassName="current" to="/Donate/" aria-label="Donate Page">Donate </NavLink></li> */}
+                    <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page">Sign In</NavLink></li>
+                    <hr></hr>
                         
                 </ul>
             </nav>

@@ -49,6 +49,10 @@ public class BooksController {
     public Collection<Books> findBooksByTopic(@PathVariable String text, @PathVariable String key) {
         return bookService.findBooksByTopic(text, key);
     }
+    @GetMapping("/books/format/{text}/AudioSubCategory/{key}")
+    public Collection<Books> findAudioBooksByTopics(@PathVariable String text, @PathVariable String key) {
+        return bookService.findBooksByTopic(text, key);
+    }
 }
 
 
