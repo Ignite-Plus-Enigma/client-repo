@@ -1,5 +1,5 @@
 import React from 'react';
-import BooksCategoryAccordion from '../Components/BooksCategoryAccordion'
+import BooksCategoryAccordion from './BooksCategoryAccordion'
 
 class Books extends React.Component{
     
