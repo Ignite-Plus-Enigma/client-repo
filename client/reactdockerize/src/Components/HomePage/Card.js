@@ -9,14 +9,16 @@ import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 import CardActions from '@material-ui/core/CardActions';
 
+
 const useStyles = makeStyles({
   root: {
-    maxWidth: 160
+    maxWidth: 280,
+    height :300,
   },
   media: {
-    height: 120
+    height: 150
   },
-});
+  });
 
  function MediaCard(props) {
    const [book,setBook] =useState(props)
@@ -38,14 +40,14 @@ const useStyles = makeStyles({
         />
         <CardContent>
           <Typography gutterBottom variant="body2" color="textSecondary" component="h2">
-        {/* <h6>{props.title}</h6> */} {props.title}
+      <h6>{props.title}</h6>  {/*props.title*/}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
          By {props.author}
           </Typography>
-          <CardActions>
-                <Button size="small" variant="outlined" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen Now " :"Read Now"}</Button>
-              </CardActions>
+          <CardActions >
+             <Button size="small" variant="text" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen":"Read"}</Button>
+          </CardActions>
         </CardContent>
       </CardActionArea>
     </Card>
