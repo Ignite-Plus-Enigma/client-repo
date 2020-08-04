@@ -23,29 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const mainCategory = [{name:'Arts',
-                        subCategory:['Architecture','Art Instruction','Art History','Dance', 'Design', 'Fashion','Film','Graphic Design','Music','Music Theory','Painting','Photography']},
-                        {name:'Fiction',
-                        subCategory:["Fantasy", "Historical fiction","Horror","Mystery"]},
-                      {name:'Science and Mathematics',
-                        subCategory:['Biology','Chemistry','Math','Physics','Programming']
-                      },
-                    {name:'Business and Finance',
-                  subCategory:['Managemennt','Entrepreneurship','Business Economics','Busin Success','Finance']},
-                {
-                  name:'Children',
-                  subCategory:['Kids','Stories in Rhyme','Baby','Bedtime','Picture']
-                },
-              {
-                name:'History',subCategory:['Ancient Civilization','Archaelogy','Freedom']
-              },
-            {name:'Biography',
-          subCategory:['Autobiographies','History','Politics','World war','Women','Kings & rulrs','Composers','artists']},
-          {name:'Social Sciences',
-          subCategory:['Anthropology','Religion','Political Science','Psychology']},
-        {name:'Text Books',
-      subCategory:['History','Math','Geography','Psychology','Algebra','Education','Business','Science','English','Chemistry','Physics','Computer Science']},
-    {name:'Books by Language',
-  suCategory:['English','French','Spanish','German','Russian','Italian','Chinese','Japanese']}];
+                        subCategory:['History','Paintings']},
+                        {name:'Education',
+                        subCategory:["Science", "Math"]}];
 
 
 export default function SimpleAccordion() {
@@ -59,31 +39,11 @@ export default function SimpleAccordion() {
       .then((data) => {
           setMainCategories(data);
       })
-      .then(() => {
-        const col1 = [];
-  for(var i = 0; i < Math.floor(mainCategories.length/3);i++){
-    col1.push(mainCategories[i]);
- }
- const col2 = [];
- for(var i = Math.floor(mainCategories.length/3); i < 2*(Math.floor)(mainCategories.length/3);i++){
-     col2.push(mainCategories[i]);
- }
- const col3 = [];
- for(var i = 2*(Math.floor)(mainCategories.length/3);i < mainCategories.length;i++){
-    col3.push(mainCategories[i]);
- }
-      })
   }
   useEffect(() => {
       fetchData()
   }, [])
-function handleComponent(main,sub){
-    return(
-      <div>
-    
-      </div>
-    )
-}
+
   return (
     
       

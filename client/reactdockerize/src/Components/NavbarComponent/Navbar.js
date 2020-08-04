@@ -1,6 +1,6 @@
 import React, { Component, useState} from 'react';
 import {NavLink} from 'react-router-dom';
-import logo from '../logo.png'
+import logo from './logo.png'
 import Search from './Search'
 import './Navbar.css'
 class Navbar extends Component {
@@ -20,7 +20,7 @@ class Navbar extends Component {
                     <li><Search/></li>
                     <li><NavLink exact activeClassName="current" to="/Donate/" aria-label="Donate Page">Donate </NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page">Sign In</NavLink></li>
-                    
+                        
                 </ul>
             </nav>
         );

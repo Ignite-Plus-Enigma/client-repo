@@ -2,8 +2,8 @@ import React,{useState, useEffect} from "react";
 import MediaCard from "./Card";
 import axios from "axios";
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Audio from "../Audio"
-import SubCategory from "../SubCategory"
+import Audio from "../AudioBooksPage/Audio"
+import SubCategory from "../PDFBooksPage/SubCategory"
 import {NavLink} from 'react-router-dom';
 
 import {BrowserRouter,Route,Switch,Router} from 'react-router-dom';

@@ -1,6 +1,5 @@
 import React from 'react';
-import BooksCategoryAccordion from '../Components/BooksCategoryAccordion'
-import AllCategories from '../Components/AllCategories'
+import AllCategories from '../PDFBooksPage/AllCategories'
 
 class Books extends React.Component{
     
@@ -14,4 +13,3 @@ class Books extends React.Component{
     }
 }
 export default Books;
-

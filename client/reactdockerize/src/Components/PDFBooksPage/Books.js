@@ -1,15 +1,17 @@
 import React from 'react';
-import AudioBooksCategoryAccordion from '../Components/AudioBooksCategoryAccordion'
+import BooksCategoryAccordion from './BooksCategoryAccordion'
+import AllCategories from './AllCategories'
 
 class Books extends React.Component{
     
     render(){
         return(
             <div>
-                <AudioBooksCategoryAccordion/>
+                <AllCategories/>
                 
             </div>
         )
     }
 }
 export default Books;
+
