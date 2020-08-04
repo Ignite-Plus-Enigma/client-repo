@@ -3,8 +3,6 @@ import MediaCard from "./home/Card";
 import ButtonBase from '@material-ui/core/ButtonBase';
 import {NavLink} from 'react-router-dom';
 import axios from "axios"
-import MediaCard from "./home/Card";
-import ButtonBase from '@material-ui/core/ButtonBase';
 import ReactDOM from "react-dom";
 import Audio from "./Audio"
 import history from "history"
@@ -63,6 +61,7 @@ class SubCategory extends React.Component{
     //    });
     
     render(){
+      console.log(this.props);
         function handleClick(book){
             console.log("The book is")
             console.log(book)
@@ -88,7 +87,6 @@ class SubCategory extends React.Component{
         {console.log(this.state.books)}
        
         
-<<<<<<< HEAD
        
         return (
             <div>
@@ -104,24 +102,6 @@ class SubCategory extends React.Component{
               ))}
             </div>
             </div>
-=======
-        return(
-            
-          <div>
-              {this.state.books.map((book)=>(
-          
-          <div class="column">
-          <ButtonBase
-          onClick={() => handleClick({book})} >
-        <MediaCard image={book.bookImage} title={book.name} author={book.author} />
-        <NavLink exact activeClassName="current" to={`/Audio/${book.id}/`} > view</NavLink> 
-        </ButtonBase>
-      </div>
-      ))}
-          </div>
-
-            
->>>>>>> 97b8d7bd46acd2cb1140c9b7bed33b7e7fa958af
         )
 }
 }
