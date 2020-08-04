@@ -8,10 +8,7 @@ import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.TextScore;
-
-
 @Document(collection = "Books")
-
 public class Books {
     @Field("_id")
     private String id;
@@ -33,11 +30,28 @@ public class Books {
     private String description;
     @Field("count")
     private int count;
-    @Field("sub_category")
+    @Field("Category")
+    private String category;
+    @Field("subCategory")
     private String subCategory;
 
-    public Books() {
+    public Books(){}
+
+    public Books(String id, String name, String isbn, String author, String format, String language, String bookUrl, String bookImage, String description, int count, String category, String subCategory) {
+        this.id = id;
+        this.name = name;
+        this.isbn = isbn;
+        this.author = author;
+        this.format = format;
+        this.language = language;
+        this.bookUrl = bookUrl;
+        this.bookImage = bookImage;
+        this.description = description;
+        this.count = count;
+        this.category = category;
+        this.subCategory = subCategory;
     }
+
 
     public String getId() {
         return id;
@@ -55,14 +69,6 @@ public class Books {
         this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getIsbn() {
         return isbn;
     }
@@ -71,6 +77,13 @@ public class Books {
         this.isbn = isbn;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getFormat() {
         return format;
@@ -78,14 +91,6 @@ public class Books {
 
     public void setFormat(String format) {
         this.format = format;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getLanguage() {
@@ -112,12 +117,28 @@ public class Books {
         this.bookImage = bookImage;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getCount() {
         return count;
     }
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSubCategory() {
@@ -127,6 +148,7 @@ public class Books {
     public void setSubCategory(String subCategory) {
         this.subCategory = subCategory;
     }
+
 
     @Override
     public String toString() {
@@ -141,9 +163,11 @@ public class Books {
                 ", bookImage='" + bookImage + '\'' +
                 ", description='" + description + '\'' +
                 ", count=" + count +
+                ", category='" + category + '\'' +
                 ", subCategory='" + subCategory + '\'' +
                 '}';
     }
 }
+
 
 

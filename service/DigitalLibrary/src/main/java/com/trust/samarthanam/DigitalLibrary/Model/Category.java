@@ -2,7 +2,6 @@ package com.trust.samarthanam.DigitalLibrary.Model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
 import java.util.List;
 
 @Document(collection = "Category")

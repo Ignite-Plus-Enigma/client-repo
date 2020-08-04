@@ -14,18 +14,21 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.data.mongodb.core.query.Query.query;
+
 @Component
 public class HomeService {
     @Autowired
     private BooksRepo booksRepo;
 
     @Autowired
-    MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;
+    private Books books;
 
-//------------------------------------books by language-----------------------------------------------------------------
+    //------------------------------------books by language-----------------------------------------------------------------
     public Collection<Books> findBooksByLanguage(String key){
-        Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("language").regex(key, "i"))), Books.class);
+        Collection<Books> b = mongoTemplate.find(query(new Criteria()
+                .orOperator(Criteria.where("language").regex(key, "i"))).limit(7), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
@@ -34,8 +37,8 @@ public class HomeService {
 //--------------------------------------books by format-----------------------------------------------------------------
 
     public Collection<Books> findBooksByFormat(String key){
-        Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("format").regex(key, "i"))), Books.class);
+        Collection<Books> b = mongoTemplate.find(query(new Criteria()
+                .orOperator(Criteria.where("format").regex(key, "i"))).limit(6), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
@@ -43,8 +46,8 @@ public class HomeService {
     }
 //---------------------------------------books by category--------------------------------------------------------------
     public Collection<Books> findBooksByCategory(String key){
-        Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("category").regex(key, "i"))), Books.class);
+        Criteria c =new Criteria();
+        Collection<Books> b = mongoTemplate.find(query(c.orOperator(c.where("category").regex(key, "i"))).limit(6), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
@@ -54,7 +57,7 @@ public class HomeService {
 
     public Optional<List<Books>> findRecentlyAddedBooks(){
         Query query = new Query();
-        query.limit(1);
+        query.limit(6);
         query.with(Sort.by(Sort.Direction.DESC,"_id"));
         return Optional.of(mongoTemplate.find(query, Books.class));
     }

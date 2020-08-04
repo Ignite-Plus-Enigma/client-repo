@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -17,10 +18,9 @@ public class BookService {
     @Autowired
     private BooksRepo booksRepo;
 
-
 //---------------------------------------list all books-----------------------------------------------------------------
     public List<Books> listBooks() {
-        return (List<Books>) booksRepo.findAll();
+        return booksRepo.findAll();
 
     }
 //---------------------------------------get books by id----------------------------------------------------------------
@@ -41,7 +41,7 @@ public class BookService {
                 .orOperator(Criteria.where("isbn").regex(text, "i"),
                         Criteria.where("name").regex(text, "i"),
                         Criteria.where("author").regex(text, "i"),
-                        Criteria.where("genre").regex(text, "i") )), Books.class);
+                        Criteria.where("category").regex(text, "i") )), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
@@ -57,6 +57,7 @@ public class BookService {
         else
             return b;
     }
+
 }
 
 

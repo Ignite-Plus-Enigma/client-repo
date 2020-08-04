@@ -10,8 +10,6 @@ import java.util.List;
 
 @Component
 public class CategoryService {
-
-
     @Autowired
     private CategoryRepo categoryRepo;
 //--------------------------------------- list all categories-----------------------------------------------------------
