@@ -55,7 +55,7 @@ function SignIn(){
 
     function failedLogin(response){
         console.log("Failed")
-        flag = false;
+        setFlag = false;
     }
 
     if(flag == true){

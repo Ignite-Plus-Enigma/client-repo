@@ -58,7 +58,4 @@ public class HomeService {
         query.with(Sort.by(Sort.Direction.DESC,"_id"));
         return Optional.of(mongoTemplate.find(query, Books.class));
     }
-
-
-
 }
