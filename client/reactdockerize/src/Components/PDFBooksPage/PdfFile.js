@@ -9,10 +9,10 @@ export default class PdfFile extends Component{
         // const apiendpoint = this.props.location.pathname;
         console.log("Hi")
         this.state = {
-            bookName:'',
-            author:'',
-            genre:'',
-            bookUri: '',
+            bookName:'The Fault In Our Stars',
+            author:'John Green',
+            genre:'Romance',
+            bookUri: 'https://drive.google.com/uc?export=view&id=1k39obE9zdCtsVy6gFkm4TPWfJtOApfg1',
             imageUri:'',
             description:'Hazel Grace who has cancer falls in love with another teenage boy Augustus Waters who changes her life for good'
         }

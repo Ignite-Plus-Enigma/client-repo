@@ -127,7 +127,7 @@ useEffect(() => {
                 {console.log(singleMain)} */}
                 <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/SubCategory/${singleMain.name}/`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/SubCategory/${singleMain.name}/${singleSub}/`} >{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/PDF/${singleMain.name}/${singleSub}/`} >{singleSub}</NavLink></li>
                 ))}
                 </div>
             ))}

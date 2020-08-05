@@ -21,7 +21,7 @@ const [activeBook, setActiveBook] = useState();
 
   const fetchdata = () =>{
     if(props.forapicall === "recentlyadded"){
-      const apiendpoint = "http://localhost:8050/books/recentlyadded"
+      const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
     axios.get(apiendpoint)
             .then(response =>response.data)
             .then((data)=>{
@@ -30,7 +30,7 @@ const [activeBook, setActiveBook] = useState();
             })
           }
     else if(props.forapicall === "textbooks"){
-      const apiendpoint = "http://localhost:8050/books/category/TextBooks"
+      const apiendpoint = "http://localhost:8050/api/v1/books/category/TextBooks"
       axios.get(apiendpoint)
               .then(response =>response.data)
               .then((data)=>{
@@ -39,7 +39,7 @@ const [activeBook, setActiveBook] = useState();
               })
             }
     else if(props.forapicall === "children"){
-              const apiendpoint = "http://localhost:8050/books/category/Children"
+              const apiendpoint = "http://localhost:8050/api/v1/books/category/Children"
               axios.get(apiendpoint)
                       .then(response =>response.data)
                       .then((data)=>{
