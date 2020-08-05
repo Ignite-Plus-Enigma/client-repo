@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins="http://localhost:3000")
@@ -17,8 +18,8 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/categories")
-    public List<Category> getAll(){
-        return categoryService.listAll();
+    public Optional<List<Category>> getAll(){
+        return categoryService.sortingCategories();
     }
 
     //------------------------------------get all categories------------------------------------------------------------

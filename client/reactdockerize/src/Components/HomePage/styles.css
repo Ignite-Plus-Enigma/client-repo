@@ -46,8 +46,8 @@
 .column {
   float:left;
   width:12.5%;
-  padding-left:0.05;
-  padding-top:1.5em;
+  padding-left:0.05; 
+   padding-top:1.5em; 
   padding-right: 0.05;
   padding-bottom: 1.5em;
 }
@@ -68,4 +68,8 @@
 
 #horizontal-ruler {
   opacity: .8;
+}
+#card-button{
+  position: absolute;
+  padding-bottom: 0.5em;
 }

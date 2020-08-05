@@ -39,14 +39,14 @@ const useStyles = makeStyles({
           title="Book Image"
         />
         <CardContent>
-          <Typography gutterBottom variant="body2" color="textSecondary" component="h2">
-      <h6>{props.title}</h6>  {/*props.title*/}
+          <Typography gutterBottom variant="h5" component="h2">
+      <h6>{props.title}</h6> 
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
          By {props.author}
           </Typography>
           <CardActions >
-             <Button size="small" variant="text" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen":"Read"}</Button>
+             <Button  id = "card-button" size="small" variant="text" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen":"Read"}</Button>
           </CardActions>
         </CardContent>
       </CardActionArea>
