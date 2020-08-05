@@ -181,3 +181,6 @@ code {
     height: 85vh;
 }
  
+.subcategorylist{
+  list-style:none;
+}
