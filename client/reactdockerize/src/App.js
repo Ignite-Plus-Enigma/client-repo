@@ -11,12 +11,12 @@ import './App.css'
 import '../src/Components/FooterComponent/Footer.css'
 import SubCategory from "./Components/PDFBooksPage/SubCategory"
 import Audio from "./Components/AudioBooksPage/Audio"
+import PdfFile from './Components/PDFBooksPage/PdfFile'
 import AudioSubCategory from './Components/AudioBooksPage/AudioSubCategory';
 
 
 class App extends Component {
   render() {
-    const ankitha = "ankitha";
     return (
       <BrowserRouter>
       <div className="App">
@@ -31,6 +31,7 @@ class App extends Component {
           <Route path="/SubCategory" component={SubCategory}/>
           <Route path="/AudioSubCategory" component={AudioSubCategory}/>
           <Route path="/Audio" component={Audio}/>
+          <Route path="/PDF" component={PdfFile}/>
         </Switch>
       </div>
       </BrowserRouter>
