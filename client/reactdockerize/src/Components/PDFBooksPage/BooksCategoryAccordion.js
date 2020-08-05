@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {NavLink} from 'react-router-dom';
@@ -90,7 +91,5 @@ export default function SimpleAccordion() {
     
   );       
         
-      
-    
-
+     
 }
