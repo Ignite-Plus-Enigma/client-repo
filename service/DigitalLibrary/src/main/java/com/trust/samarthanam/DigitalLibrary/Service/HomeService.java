@@ -44,7 +44,7 @@ public class HomeService {
 //---------------------------------------books by category--------------------------------------------------------------
     public Collection<Books> findBooksByCategory(String key){
         Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("category").regex(key, "i"))), Books.class);
+                .orOperator(Criteria.where("category").regex(key, "i"))).limit(6), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
@@ -58,7 +58,4 @@ public class HomeService {
         query.with(Sort.by(Sort.Direction.DESC,"_id"));
         return Optional.of(mongoTemplate.find(query, Books.class));
     }
-
-
-
 }

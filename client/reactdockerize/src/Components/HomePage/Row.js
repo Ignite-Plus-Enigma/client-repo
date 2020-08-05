@@ -86,11 +86,11 @@ const [activeBook, setActiveBook] = useState();
         {books.map((book)=>(
           
           <div class="column">
-          <ButtonBase
-          onClick={() => handleClick({book})} >
-        <MediaCard image={book.bookImage} title={book.name} author={book.author} />
+          {/* <ButtonBase
+          onClick={() => handleClick({book})} > */}
+        <MediaCard image={book.bookImage} title={book.name} author={book.author} id={book.id} description={book.description} format ={book.format}/>
         {/* <NavLink exact activeClassName="current" to={`/Audio/${book.id}/`} > view</NavLink>  */}
-        </ButtonBase>
+        {/* </ButtonBase> */}
       </div>
       ))}
   

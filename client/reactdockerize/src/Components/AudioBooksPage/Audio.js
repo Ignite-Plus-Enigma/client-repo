@@ -75,7 +75,12 @@ export default class AudioFile extends Component{
     }
     /*Life cycle methods*/
     componentDidMount(){
-        const uniqueId = this.props.id;
+        console.log("INSIDE AUDIO PAGE")
+        console.log(this.props.location.pathname)
+        const path = this.props.location.pathname
+        const uniqueId = path.split("/")[2]
+        // console.log(id)
+        // const uniqueId = this.props.id;
         console.log(this.props.id)
         
         let apiSearchEndpoint = 'http://localhost:8050/books/';

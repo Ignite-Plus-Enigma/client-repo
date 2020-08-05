@@ -1,12 +1,12 @@
 import React from 'react';
-import AudioBooksCategoryAccordion from './AudioBooksCategoryAccordion'
+import AllCategories from '../PDFBooksPage/AllCategories'
 
 class Books extends React.Component{
     
     render(){
         return(
             <div>
-                <AudioBooksCategoryAccordion/>
+                <AllCategories/>
                 
             </div>
         )

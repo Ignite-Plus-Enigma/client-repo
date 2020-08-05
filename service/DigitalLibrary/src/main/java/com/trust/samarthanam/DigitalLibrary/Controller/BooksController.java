@@ -33,10 +33,10 @@ public class BooksController {
 
 
     //---------------------------------------------------get book by id-------------------------------------------------
-    @GetMapping("/books/{id}")
-    public ResponseEntity<Optional<Books>> getBookbyid(@PathVariable String id) {
-        return ResponseEntity.ok().body((bookService.getById(id)));
-    }
+//    @GetMapping("/books/{id}")
+//    public ResponseEntity<Optional<Books>> getBookbyid(@PathVariable String id) {
+//        return ResponseEntity.ok().body((bookService.getById(id)));
+//    }
 
     //------------------------------------------------get book by keywords----------------------------------------------
     @GetMapping("/books/search={key}")
@@ -47,6 +47,10 @@ public class BooksController {
     //--------------------------------------------get books by subcategory----------------------------------------------
     @GetMapping("/books/format/{text}/SubCategory/{key}")
     public Collection<Books> findBooksByTopic(@PathVariable String text, @PathVariable String key) {
+        return bookService.findBooksByTopic(text, key);
+    }
+    @GetMapping("/books/format/{text}/AudioSubCategory/{key}")
+    public Collection<Books> findAudioBooksByTopics(@PathVariable String text, @PathVariable String key) {
         return bookService.findBooksByTopic(text, key);
     }
 }

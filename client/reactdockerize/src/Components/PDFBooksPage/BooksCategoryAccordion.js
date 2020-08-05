@@ -43,13 +43,7 @@ export default function SimpleAccordion() {
   useEffect(() => {
       fetchData()
   }, [])
-function handleComponent(main,sub){
-    return(
-      <div>
-    
-      </div>
-    )
-}
+
   return (
     
       
