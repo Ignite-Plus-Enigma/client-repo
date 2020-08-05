@@ -30,7 +30,7 @@ class SubCategory extends React.Component{
                 this.setState({
                     books:data
                     });
-                    // console.log(this.state.books)
+                    //console.log(this.state.books)
                     
             })
 
@@ -39,6 +39,7 @@ class SubCategory extends React.Component{
     
     
     render(){
+        const path=this.props.location.pathname
         {console.log(this.props.location.pathname)}
         {console.log(this.state.books)}
        

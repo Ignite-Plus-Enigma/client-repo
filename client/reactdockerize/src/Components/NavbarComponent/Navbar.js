@@ -51,7 +51,7 @@ function Navbar() {
             <nav className="app">
                 
                 <ul>
-                    <img src={logo} alt="logo" width="170" height="100"/>
+                    <img src={logo} alt="logo" width="110" height="100"/>
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
