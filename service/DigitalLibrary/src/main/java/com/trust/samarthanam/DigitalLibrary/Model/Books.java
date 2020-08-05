@@ -9,6 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.TextScore;
 
+import java.util.List;
+import java.util.Map;
+
 
 @Document(collection = "Books")
 
@@ -22,21 +25,37 @@ public class Books {
     @Field("author")
     private String author;
     @Field("format")
-    private String format;
+    private Map<String,Object> format;
     @Field("language")
     private String language;
-    @Field("book_url")
-    private String bookUrl;
     @Field("book_image")
     private String bookImage;
     @Field("description")
     private String description;
-    @Field("count")
-    private int count;
+    @Field("views")
+    private int views;
+    @Field("category")
+    private String category;
     @Field("sub_category")
-    private String subCategory;
+    private List<String> subCategory;
+    @Field("rating")
+    private int rating;
 
-    public Books() {
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public List<String> getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(List<String> subCategory) {
+        this.subCategory = subCategory;
     }
 
     public String getId() {
@@ -55,14 +74,6 @@ public class Books {
         this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getIsbn() {
         return isbn;
     }
@@ -71,21 +82,20 @@ public class Books {
         this.isbn = isbn;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
-    public String getFormat() {
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Map<String, Object> getFormat() {
         return format;
     }
 
-    public void setFormat(String format) {
+    public void setFormat(Map<String, Object> format) {
         this.format = format;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getLanguage() {
@@ -96,14 +106,6 @@ public class Books {
         this.language = language;
     }
 
-    public String getBookUrl() {
-        return bookUrl;
-    }
-
-    public void setBookUrl(String bookUrl) {
-        this.bookUrl = bookUrl;
-    }
-
     public String getBookImage() {
         return bookImage;
     }
@@ -112,20 +114,28 @@ public class Books {
         this.bookImage = bookImage;
     }
 
-    public int getCount() {
-        return count;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getSubCategory() {
-        return subCategory;
+    public int getViews() {
+        return views;
     }
 
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     @Override
@@ -135,13 +145,14 @@ public class Books {
                 ", name='" + name + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", author='" + author + '\'' +
-                ", format='" + format + '\'' +
+                ", format=" + format +
                 ", language='" + language + '\'' +
-                ", bookUrl='" + bookUrl + '\'' +
                 ", bookImage='" + bookImage + '\'' +
                 ", description='" + description + '\'' +
-                ", count=" + count +
-                ", subCategory='" + subCategory + '\'' +
+                ", views=" + views +
+                ", category='" + category + '\'' +
+                ", subCategory=" + subCategory +
+                ", rating=" + rating +
                 '}';
     }
 }

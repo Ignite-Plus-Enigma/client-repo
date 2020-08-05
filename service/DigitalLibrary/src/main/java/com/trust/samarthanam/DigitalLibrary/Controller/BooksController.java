@@ -5,17 +5,16 @@ import com.trust.samarthanam.DigitalLibrary.Model.Books;
 import com.trust.samarthanam.DigitalLibrary.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin(origins="http://localhost:3000")
+
 public class BooksController {
     @Autowired
     private BookService bookService;
@@ -31,6 +30,12 @@ public class BooksController {
         return ResponseEntity.ok().body((bookService.listBooks()));
     }
 
+    //----------------------------------------------------get books by format-------------------------------------------
+
+    @GetMapping("/books/format/{key}")
+    public List<Books> getBookByFormat(@PathVariable String key){
+        return bookService.getBookByFormat(key);
+    }
 
     //---------------------------------------------------get book by id-------------------------------------------------
     @GetMapping("/books/{id}")
@@ -38,21 +43,19 @@ public class BooksController {
         return ResponseEntity.ok().body((bookService.getById(id)));
     }
 
-    //------------------------------------------------get book by keywords----------------------------------------------
+   //------------------------------------------------get book by keywords----------------------------------------------
     @GetMapping("/books/search={key}")
     public ResponseEntity<Collection<Books>> findBook(@PathVariable String key) {
         return ResponseEntity.ok().body((bookService.searchBooks(key)));
     }
 
     //--------------------------------------------get books by subcategory----------------------------------------------
-    @GetMapping("/books/format/{text}/SubCategory/{key}")
-    public Collection<Books> findBooksByTopic(@PathVariable String text, @PathVariable String key) {
-        return bookService.findBooksByTopic(text, key);
+    @GetMapping("/books/subcategory/{key}")
+    public Collection<Books> findBooksByTopic( @PathVariable String key) {
+        return bookService.getBooksBySubCategory(key);
     }
-    @GetMapping("/books/format/{text}/AudioSubCategory/{key}")
-    public Collection<Books> findAudioBooksByTopics(@PathVariable String text, @PathVariable String key) {
-        return bookService.findBooksByTopic(text, key);
-    }
+
+
 }
 
 

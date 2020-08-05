@@ -31,16 +31,7 @@ public class HomeService {
         else
             return b;
     }
-//--------------------------------------books by format-----------------------------------------------------------------
 
-    public Collection<Books> findBooksByFormat(String key){
-        Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
-                .orOperator(Criteria.where("format").regex(key, "i"))), Books.class);
-        if(b.isEmpty())
-            throw new BookNotFoundException("");
-        else
-            return b;
-    }
 //---------------------------------------books by category--------------------------------------------------------------
     public Collection<Books> findBooksByCategory(String key){
         Collection<Books> b = mongoTemplate.find(Query.query(new Criteria()
