@@ -45,10 +45,10 @@
 }
 .column {
   float:left;
-  width:15%;
-  padding-left:0.25em;
+  width:12.5%;
+  padding-left:0.05;
   padding-top:1.5em;
-  padding-right: 0.25em;
+  padding-right: 0.05;
   padding-bottom: 1.5em;
 }
 

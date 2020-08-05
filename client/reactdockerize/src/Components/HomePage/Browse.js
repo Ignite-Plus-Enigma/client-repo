@@ -1,6 +1,6 @@
 import React from "react";
 import Row from "./Row.js";
-import './styles.css'
+import './styles.css';
 
 export default function Browse() {
     
