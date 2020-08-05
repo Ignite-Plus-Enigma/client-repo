@@ -14,6 +14,7 @@ function Navbar() {
     
        
         const [open, setOpen] = React.useState(false);
+        const [id,setId] = useState()
         const handleClickOpen = () => {
             if(state == "Sign In"){
                 setOpen(true);
@@ -38,6 +39,7 @@ function Navbar() {
             setState("Sign Out")
             setName(response.profileObj.name)
             setOpen(false)
+            setId(response.profileObj.email)
         }
     
         function failedLogin(response){
@@ -49,15 +51,15 @@ function Navbar() {
             <nav className="app">
                 
                 <ul>
-                    <img src={logo} alt="logo" width="130" height="90"/>
+                    <img src={logo} alt="logo" width="170" height="100"/>
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
-                    <li><NavLink exact activeClassName="current" to="/Saved/" aria-label="Saved Books">Saved </NavLink></li>
+                    <li><NavLink exact activeClassName="current" to={`/Saved/${id}/`} aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li><Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                    <li><Button  color="secondary" onClick={handleClickOpen}>
         {state}
       </Button></li>
       <Dialog

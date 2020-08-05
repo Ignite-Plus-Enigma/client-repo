@@ -24,13 +24,19 @@ public class BookService {
 
     }
 //---------------------------------------get books by id----------------------------------------------------------------
-    public Optional<Books> getById(String id)
+    public Books getById(String id)
     {
-        Optional<Books> optionalBooks = booksRepo.findById(id);
-        if(optionalBooks.isEmpty())
-            throw new BookNotFoundException("Book Not Found!");
-        return optionalBooks;
-
+//        Optional<Books> optionalBooks = booksRepo.findById(id);
+//        if(optionalBooks.isEmpty())
+//            throw new BookNotFoundException("Book Not Found!");
+//        return optionalBooks;
+        Collection<Books> books = booksRepo.findAll();
+        for(Books book : books){
+            if(book.getId().equals(id)){
+                return book;
+            }
+        }
+        return null;
     }
 //-------------------------------------get books by keywords------------------------------------------------------------
     @Autowired

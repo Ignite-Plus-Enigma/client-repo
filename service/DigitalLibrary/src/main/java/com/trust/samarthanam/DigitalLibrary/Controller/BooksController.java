@@ -33,10 +33,10 @@ public class BooksController {
 
 
     //---------------------------------------------------get book by id-------------------------------------------------
-    @GetMapping("/books/{id}")
-    public ResponseEntity<Optional<Books>> getBookbyid(@PathVariable String id) {
-        return ResponseEntity.ok().body((bookService.getById(id)));
-    }
+//    @GetMapping("/books/{id}")
+//    public ResponseEntity<Optional<Books>> getBookbyid(@PathVariable String id) {
+//        return ResponseEntity.ok().body((bookService.getById(id)));
+//    }
 
     //------------------------------------------------get book by keywords----------------------------------------------
     @GetMapping("/books/search={key}")

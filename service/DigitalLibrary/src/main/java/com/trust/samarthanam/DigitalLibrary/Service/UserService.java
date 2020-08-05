@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class UserService {
@@ -22,7 +21,13 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public Optional<User> getUserById(String id){
-        return userRepo.findById(id);
+    public User getUserById(String id){
+        List<User> users = userRepo.findAll();
+        for(User user: users){
+            if(user.getEmailId().equals(id)){
+                return user;
+            }
+        }
+        return null;
     }
 }
