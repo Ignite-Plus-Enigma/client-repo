@@ -21,7 +21,6 @@ import java.util.Optional;
 @Repository
 public interface BooksRepo extends MongoRepository<Books,String>{
 
-    public Collection<Books> findBooksByLanguage(String key);
 
 
 

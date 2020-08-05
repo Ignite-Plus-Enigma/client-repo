@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.TextScore;
 @Document(collection = "Books")
 public class Books {
-    @Field("_id")
+    @Field("id")
     private String id;
     @Field("name")
     private String name;

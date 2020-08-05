@@ -38,13 +38,13 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @RunWith(SpringRunner.class)
 @SpringBootTest
  public class HomeServiceTests{
-    @InjectMocks
-    @Autowired
-    private HomeService homeService;
 
-    @Autowired
-    @Mock
-    private MongoTemplate mongoTemplate;
+//    @Autowired
+//    private HomeService homeService;
+//
+//    @Autowired
+//
+//    private MongoTemplate mongoTemplate;
     //Not understanding how to mock mongotemplate
 
     //Not working throwing exceptions
@@ -58,31 +58,31 @@ import static org.springframework.data.mongodb.core.query.Query.query;
     //   Those methods *cannot* be stubbed/verified.
     //   Mocking methods declared on non-public parent classes is not supported.
     //2. inside when() you don't call method on mock but on some other object.
-    @Test
-    public void FindBooksLanguageTest() {
-        Books book = new Books();
-        book.setId("1");
-        book.setIsbn("4568567");
-        book.setName("abc");
-        book.setLanguage("English");
-        book.setFormat("audio");
-        book.setBookUrl("-");
-        book.setBookImage("-");
-        book.setCount(0);
-        book.setAuthor("xyz");
-        book.setDescription("abc");
-        book.setSubCategory("xyz");
-        Collection<Books> b = new ArrayList<>();
-        b.add(book);
-
-        String key = "English";
-        System.out.println(b);
-
-        when(mongoTemplate.find(query(new Criteria()
-                .orOperator(Criteria.where("language").regex(key, "i"))).limit(6), Books.class)).thenReturn((List<Books>) b);
-        assertThat(homeService.findBooksByLanguage(key)).isEqualTo(book);
-    }
-}
+//    @Test
+//    public void FindBooksLanguageTest() {
+//        Books book = new Books();
+//        book.setId("1");
+//        book.setIsbn("4568567");
+//        book.setName("abc");
+//        book.setLanguage("English");
+//        book.setFormat("audio");
+//        book.setBookUrl("-");
+//        book.setBookImage("-");
+//        book.setCount(0);
+//        book.setAuthor("xyz");
+//        book.setDescription("abc");
+//        book.setSubCategory("xyz");
+//        Collection<Books> b = new ArrayList<>();
+//        b.add(book);
+//
+//        String key = "English";
+//        System.out.println(b);
+//
+//        when(mongoTemplate.find(query(new Criteria()
+//                .orOperator(Criteria.where("language").regex(key, "i"))).limit(6), Books.class)).thenReturn((List<Books>) b);
+//        assertThat(homeService.findBooksByLanguage(key)).isEqualTo(book);
+//    }
+//}
 
 //Other method..this also not working
 //    @Autowired
@@ -153,6 +153,79 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 //        Assert.assertTrue("English", equals(book.get(0).getLanguage()));
 //    }
 //}
+@InjectMocks
+private HomeService service = new HomeService();
+
+    @Autowired
+    public BooksRepo booksRepo;
+
+
+    @Before
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+        saveBooks();
+    }
+
+    public void saveBooks() {
+        String BooksList = "[{\n" +
+                "\t\"id\": \"10\",\n" +
+                "\t\"name\": \"Alice's Adventures in Wonderland\",\n" +
+                "\t\"isbn\":\"935-678-234-23\",\n" +
+                "\t\"author\":\"Lewis Carrol\",\n" +
+                "\t\"format\":\"Audio\",\n" +
+                "\t\"language\":\"English\",\n" +
+                "\t\"bookUrl\":\"https://drive.google.com/uc?export=view&id=1m7SqrxcbAxKyDUfYzcKP9Rbn1EMJl9QH\",\n" +
+                "\t\"bookImage\":\"https://drive.google.com/uc?export=download&id=1Sqc63-nx8nPnBGkOgpqs1uFLr1JcW60R\",\n" +
+                "\t\"description\":\"Alice's Adventures in Wonderland, widely beloved British children's book by Lewis Carroll.The story centres on Alice\",\n" +
+                "\t\"count\": 0,\n" +
+                "\t\"category\":\"Children\",\n" +
+                "\t\"subCategory\":\"Story books\"\n" +
+                "},{\n" +
+                "\t\"id\":\"11\",\n" +
+                "\t\"name\":\"A Child's Garden of Verses\",\n" +
+                "\t\"isbn\":\"789-862-827-87\",\n" +
+                "\t\"author\":\"Robert Louis Stevenson\",\n" +
+                "\t\"format\":\"Audio\",\n" +
+                "\t\"language\":\"Kannada\",\n" +
+                "\t\"bookUrl\":\"https://drive.google.com/uc?export=view&id=1J1LhIsALHlKK9kP3qPcWjl_-yEO1V3MB\",\n" +
+                "\t\"bookImage\":\"https://drive.google.com/uc?export=download&id=1uB585wpdMw7tq950nI6sD4QptPLEapRL\",\n" +
+                "\t\"description\":\"A Child's Garden of Verses is a collection of poetry for children by the Scottish author Robert Louis Stevenson\",\n" +
+                "\t\"count\": 0,\n" +
+                "\t\"category\":\"Children\",\n" +
+                "\t\"subCategory\":\"Poems\"\n" +
+                "}]";
+
+        try {
+
+            Books books[] = new ObjectMapper().readValue(BooksList, Books[].class);
+
+            for (Books book1 : books) {
+                System.out.println(book1);
+
+                ;
+            }
+
+
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @Test
+    public void LanguageSearchTest() {
+        Collection<Books> b = service.findBooksByLanguage("English");
+        List<Books> book = new ArrayList<>(b);
+        Assert.assertTrue("English", equals(book.get(0).getLanguage()));
+    }
+
+
+}
+
 
 
 

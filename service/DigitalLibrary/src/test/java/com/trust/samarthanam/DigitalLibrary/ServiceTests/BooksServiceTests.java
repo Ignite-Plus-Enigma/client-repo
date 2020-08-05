@@ -36,7 +36,6 @@ class BookServiceTest extends DigitalLibraryApplicationTests {
 
     @Autowired
     private BookService service;
-    @Autowired
     @MockBean
     private BooksRepo repository;
     // Both the tests running
