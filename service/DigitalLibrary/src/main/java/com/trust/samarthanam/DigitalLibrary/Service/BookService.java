@@ -24,13 +24,19 @@ public class BookService {
 
     }
 //---------------------------------------get books by id----------------------------------------------------------------
-    public Optional<Books> getById(String id)
+    public Books getById(String id)
     {
-        Optional<Books> optionalBooks = booksRepo.findById(id);
-        if(optionalBooks.isEmpty())
-            throw new BookNotFoundException("Book Not Found!");
-        return optionalBooks;
-
+//        Optional<Books> optionalBooks = booksRepo.findById(id);
+//        if(optionalBooks.isEmpty())
+//            throw new BookNotFoundException("Book Not Found!");
+//        return optionalBooks;
+        Collection<Books> books = booksRepo.findAll();
+        for(Books book : books){
+            if(book.getId().equals(id)){
+                return book;
+            }
+        }
+        return null;
     }
 //-------------------------------------get books by keywords------------------------------------------------------------
     @Autowired
@@ -41,7 +47,11 @@ public class BookService {
                 .orOperator(Criteria.where("isbn").regex(text, "i"),
                         Criteria.where("name").regex(text, "i"),
                         Criteria.where("author").regex(text, "i"),
-                        Criteria.where("genre").regex(text, "i") )), Books.class);
+                        Criteria.where("category").regex(text, "i"),
+                        Criteria.where("subCategory").regex(text, "i"),
+                        Criteria.where("language").regex(text, "i"),
+                        Criteria.where("description").regex(text, "i"),
+                        Criteria.where("format").regex(text, "i"))), Books.class);
         if(b.isEmpty())
             throw new BookNotFoundException("");
         else
