@@ -46,6 +46,7 @@ export default function AudioSubcategoryTrial(props){
 
     const fetchData = () => {
         console.log(props.location.pathname)
+        console.log(props)
         const uniqueId = props.location.pathname.split("/")[3]
         console.log(uniqueId)
         const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
