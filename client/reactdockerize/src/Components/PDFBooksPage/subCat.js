@@ -5,8 +5,8 @@ import ComplexGrid from "../PDFBooksPage/ComplexGrid"
 function subCat(){
     return (
         <div>
-            <Tabs/>
-            <ComplexGrid/>
+           
+            <ComplexGrid />
         </div>
         
     )

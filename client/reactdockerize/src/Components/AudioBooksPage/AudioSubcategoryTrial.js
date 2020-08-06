@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useEffect,useState} from "react"
+import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -8,64 +9,60 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Rating from '@material-ui/lab/Rating';
-// import image from './digital-library-photo.jpg';
-import axios from "axios"
-
-
-
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    fontSize:65,
-    
-    flexDirection: 'column',
-    '& > * + *': {
-      marginTop: theme.spacing(1),
-    },   
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth:1000,
-    height:100,
-  },
-  image: {
-    width: 130,
-    height: 110,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-}));
+    root: {
+      flexGrow: 1,
+      fontSize:65,
+      
+      flexDirection: 'column',
+      '& > * + *': {
+        marginTop: theme.spacing(1),
+      },   
+    },
+    paper: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+      maxWidth:1000,
+      height:100,
+    },
+    image: {
+      width: 130,
+      height: 110,
+    },
+    img: {
+      margin: 'auto',
+      display: 'block',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    },
+  }));
 
-export default function ComplexGrid(props) {
-  const classes = useStyles();
-  const [books,setBooks] = useState([])
+export default function AudioSubcategoryTrial(props){
 
+    const classes = useStyles();
+    const [books,setBooks] = useState([])
 
-  const fetchdata = () =>{
-    {
-        const path=this.props.location.pathname;
-        const subCat=path.split("/")[3]
-        let apiSearchEndpoint = 'http://localhost:8050/api/v1/books/subcategory/'+subCat;
-        axios.get(apiSearchEndpoint)
-            .then(response =>response.data)
-            .then((data)=>{
-                setBooks(data);
-                   
-            })
-          }
-        }
+    const fetchData = () => {
+        console.log(props.location.pathname)
+        const uniqueId = props.location.pathname.split("/")[3]
+        console.log(uniqueId)
+        const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
+        axios.get(mainCategoriesApiEndPoint)
+        .then(response => response.data)
+        .then((data) => {
+            console.log(data);
+            setBooks(data)
+        })
+    }
+    useEffect(() => {
+        fetchData()
+    }, [])
 
-  return (
-   
-    <div className={classes.root}>
-    {console.log(props.id)}
+    return(
+        <div className={classes.root}>
+    {console.log(books)}
        
     <ul classname="subcategorylist">
         {books.map((book)=>(
@@ -75,7 +72,7 @@ export default function ComplexGrid(props) {
         <Grid container spacing={4}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="Bookimage" src={book.book_image} />
+              <img className={classes.img} alt="Bookimage" src={book.bookImage} />
             </ButtonBase>
           </Grid>
           <Grid item xs={8} sm container>
@@ -127,7 +124,7 @@ export default function ComplexGrid(props) {
        
 </ul>
     </div>
-        
-  );
-  
+    )
+
 }
+
