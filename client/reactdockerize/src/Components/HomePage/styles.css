@@ -1,0 +1,75 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+
+.container {
+  position: absolute;
+  
+
+  /* width: 50%; */
+}
+
+.image {
+  display: block;
+  width: 12em;
+  height: 12em;
+  border-radius: 0.8em;
+  opacity: 1;
+  border: 0.1em solid #ddd;
+  padding: 5px;
+}
+.image:hover {
+  box-shadow: 0 0 0.2em 0.2em rgba(0, 140, 186, 0.5);
+}
+
+
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.row{
+  padding-bottom: 1em;
+  /* margin-left: 0px;
+  margin-right: 0px; */
+}
+.column {
+  float:left;
+  width:12.5%;
+  padding-left:0.05; 
+   padding-top:1.5em; 
+  padding-right: 0.05;
+  padding-bottom: 1.5em;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#browse-heading {
+  padding-top: 2em;;
+  font-size: 1.3em;
+  padding-left: 1.5em;
+  color: #dc143c;
+}
+
+#horizontal-ruler {
+  opacity: .8;
+}
+#card-button{
+  position: absolute;
+  padding-bottom: 0.5em;
+}
