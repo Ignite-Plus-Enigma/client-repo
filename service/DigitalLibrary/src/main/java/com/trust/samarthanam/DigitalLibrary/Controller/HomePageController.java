@@ -32,4 +32,10 @@ public class HomePageController {
     public Optional<List<Books>> findRecentlyAddedBooks(){
         return homeService.findRecentlyAddedBooks();
     }
+
+
+    @GetMapping("/books/mostviewed")
+    public Optional<List<Books>> getMostViewedBooks(){
+        return homeService.getMostViewedBooks();
+    }
 }

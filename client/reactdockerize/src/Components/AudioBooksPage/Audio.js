@@ -83,7 +83,7 @@ export default class AudioFile extends Component{
         // const uniqueId = this.props.id;
         console.log(this.props.id)
         
-        let apiSearchEndpoint = 'http://localhost:8050/books/';
+        let apiSearchEndpoint = 'http://localhost:8050/api/v1/books/';
         apiSearchEndpoint+=uniqueId;
         axios.get(apiSearchEndpoint)
             .then(response =>response.data)

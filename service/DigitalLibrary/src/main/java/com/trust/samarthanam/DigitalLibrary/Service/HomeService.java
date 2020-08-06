@@ -50,4 +50,13 @@ public class HomeService {
         return Optional.of(mongoTemplate.find(query, Books.class));
     }
 
+//-----------------------------------most-viewed books------------------------------------------------------------------
+
+    public Optional<List<Books>> getMostViewedBooks(){
+        Query query = new Query();
+        query.limit(7);
+        query.with(Sort.by(Sort.Direction.DESC,"views"));
+        return Optional.of(mongoTemplate.find(query, Books.class));
+    }
+
 }

@@ -46,6 +46,7 @@ const useStyles = makeStyles({
          By {props.author}
           </Typography>
           <CardActions >
+          {console.log(props)}
              <Button  id = "card-button" size="small" variant="text" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen":"Read"}</Button>
           </CardActions>
         </CardContent>

@@ -11,7 +11,7 @@ export default function Browse() {
       <AutoRotatingCarousel/>
       <Row name="Recently Added" forapicall="recentlyadded"   />
       <Row
-        name="Most Viewed" forapicall="most-viewed"
+        name="Most Viewed" forapicall="mostviewed"
       />
       <Row
         name="Textbooks " forapicall="textbooks"

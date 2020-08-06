@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -8,7 +8,10 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Rating from '@material-ui/lab/Rating';
-import image from './digital-library-photo.jpg';
+// import image from './digital-library-photo.jpg';
+import axios from "axios"
+
+
 
 
 
@@ -50,7 +53,7 @@ export default function ComplexGrid(props) {
         const path=this.props.location.pathname;
         const subCat=path.split("/")[3]
         let apiSearchEndpoint = 'http://localhost:8050/api/v1//books/subcategory/'+subCat;
-        axios.get(apiendpoint)
+        axios.get(apiSearchEndpoint)
             .then(response =>response.data)
             .then((data)=>{
                 setBooks(data);

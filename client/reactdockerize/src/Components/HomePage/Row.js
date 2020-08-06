@@ -47,6 +47,15 @@ const [activeBook, setActiveBook] = useState();
                              
                       })
                     }
+                    else if(props.forapicall === "mostviewed"){
+              const apiendpoint = "http://localhost:8050/api/v1/books/mostviewed"
+              axios.get(apiendpoint)
+                      .then(response =>response.data)
+                      .then((data)=>{
+                          setBooks(data);
+                             
+                      })
+                    }
 
     }
     
