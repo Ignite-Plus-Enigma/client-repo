@@ -14,9 +14,10 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 280,
     height :300,
+    alignContent:"left"
   },
   media: {
-    height: 150
+    height: 170
   },
   });
 
@@ -39,16 +40,16 @@ const useStyles = makeStyles({
           title="Book Image"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-      <h6>{props.title}</h6> 
+          <Typography  variant="subTitle1"  component="h6">
+      {props.title} 
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
          By {props.author}
           </Typography>
-          <CardActions >
+          {/* <CardActions >
           {console.log(props)}
              <Button  id = "card-button" size="small" variant="text" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen":"Read"}</Button>
-          </CardActions>
+          </CardActions> */}
         </CardContent>
       </CardActionArea>
     </Card>
