@@ -6,7 +6,7 @@ function SavedBooks(props){
         console.log(props.location.pathname)
         const uniqueId = props.location.pathname.split("/")[2]
         console.log(uniqueId)
-        const mainCategoriesApiEndPoint = 'http://localhost:8050/user/'+uniqueId+'/books'
+        const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/user/'+uniqueId+'/books'
         axios.get(mainCategoriesApiEndPoint)
         .then(response => response.data)
         .then((data) => {

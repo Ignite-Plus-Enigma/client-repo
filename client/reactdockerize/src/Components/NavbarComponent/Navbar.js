@@ -39,7 +39,7 @@ function Navbar() {
             setState("Sign Out")
             setName(response.profileObj.name)
             setOpen(false)
-            setId(response.profileObj.email)
+            setId(response.profileObj.google_id)
         }
     
         function failedLogin(response){
