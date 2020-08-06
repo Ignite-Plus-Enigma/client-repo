@@ -9,7 +9,7 @@ export default function Browse() {
   return (
     
     <div>
-      {/* <AutoRotatingCarousel/> */}
+       <AutoRotatingCarousel/> 
       <Row name="Recently Added" forapicall="recentlyadded"   />
       
       <Row
