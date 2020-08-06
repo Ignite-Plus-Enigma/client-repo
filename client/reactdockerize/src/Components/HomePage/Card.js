@@ -14,10 +14,12 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 280,
     height :300,
+    alignContent:"left"
   },
   media: {
-    height: 150
+    height: 170
   },
+ 
   });
 
  function MediaCard(props) {
@@ -39,15 +41,15 @@ const useStyles = makeStyles({
           title="Book Image"
         />
         <CardContent>
-          <Typography gutterBottom variant="body2" color="textSecondary" component="h2">
-      <h6>{props.title}</h6>  {/*props.title*/}
+          <Typography variant="subtitle1" color="textSecondary" component="h2">
+          {props.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textSecondary" component="h2">
          By {props.author}
           </Typography>
-          <CardActions >
+         { /*<CardActions >
              <Button size="small" variant="text" color="primary" component="p"  onClick={() => handleClick({book})}>{props.format =="Audio" ? "Listen":"Read"}</Button>
-          </CardActions>
+         </CardActions>*/}
         </CardContent>
       </CardActionArea>
     </Card>
