@@ -157,7 +157,7 @@ export default class AudioFile extends Component{
                 {/* {window.location.origin + '/Audio/The Vamps-Wake Up.mp3'}  */}
                 <div className = "player">
                     <audio className = "audio-player viewer" src = {this.state.bookUri} ></audio>
-                    <img src={this.state.driveImageUri} alt= "Book image"/>
+                    <img src={this.state.imageUri} alt= "Book image"/>
                 </div>
                 <div className="progress-bar" role="timer">
                     <div className="progress-filled"></div>
