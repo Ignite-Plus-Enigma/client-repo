@@ -46,10 +46,7 @@ class AutoRotatingCarousel extends React.Component {
             
           </ReactSimpleCarousel>
         </Fragment>
-
-        
-        
-      </Fragment>
+</Fragment>
     );
   }
 }
