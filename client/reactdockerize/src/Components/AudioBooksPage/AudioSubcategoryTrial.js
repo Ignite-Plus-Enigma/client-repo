@@ -9,6 +9,10 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Rating from '@material-ui/lab/Rating';
+import IconButton from '@material-ui/core/IconButton';
+import { useHistory } from "react-router-dom";
+import { withRouter } from 'react-router';
+// import history from "history"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,11 +42,23 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: '100%',
     },
   }));
+  
 
 export default function AudioSubcategoryTrial(props){
 
     const classes = useStyles();
     const [books,setBooks] = useState([])
+    const history = useHistory();
+    function handleAudio(book){
+      console.log(book.book.id)
+      // eslint-disable-next-line no-restricted-globals
+      history.push(`/Audio/${book.book.id}/`)
+    }
+    function handlePdf(book){
+      console.log(book.book.id)
+      // eslint-disable-next-line no-restricted-globals
+      history.push(`/PDF/${book.book.id}/`)
+    }
 
     const fetchData = () => {
         console.log(props.location.pathname)
@@ -97,14 +113,21 @@ export default function AudioSubcategoryTrial(props){
             </Grid>
             <Grid item xs={2}>
                 <div>
-                    <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
-                    <Typography variant="subtitle2">Read</Typography>
+                    {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
+                    <Typography variant="subtitle2">Read</Typography> */}
+                    {book.format.pdf != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+          <PictureAsPdfIcon />
+        </IconButton> : null }
+       
                 </div>
             </Grid>
              <Grid item xs={2}>
                   <div>
-                  <HeadsetIcon fontSize="large"></HeadsetIcon>
-                  <Typography variant="subtitle2">Listen</Typography>
+                  {/* <HeadsetIcon fontSize="large"></HeadsetIcon>
+                  <Typography variant="subtitle2">Listen</Typography> */}
+                  {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          <HeadsetIcon />
+        </IconButton> : null }
                  </div>
              </Grid>
             

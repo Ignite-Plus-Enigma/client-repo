@@ -32,8 +32,8 @@ class AutoRotatingCarousel extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <Fragment>
+    
+      <div id ="carousel">
           <ReactSimpleCarousel isInfinity autoplay className="carousel">
             <div> 
               <img src={first}
@@ -45,11 +45,8 @@ class AutoRotatingCarousel extends React.Component {
             </div>
             
           </ReactSimpleCarousel>
-        </Fragment>
+          </div>
 
-        
-        
-      </Fragment>
     );
   }
 }

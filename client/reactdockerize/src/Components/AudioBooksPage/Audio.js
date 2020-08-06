@@ -16,7 +16,7 @@ export default class AudioFile extends Component{
             bookName:'',
             author:'',
             genre:'',
-            bookUri: '',
+            bookUri: 'https://drive.google.com/uc?export=download&id=1zUGmNx7qK9mos-ok6-Aeplh0sz4HAlwH',
             imageUri:'',
             description:''
         }
@@ -93,9 +93,11 @@ export default class AudioFile extends Component{
                     author:data.author,
                     genre:data.genre,
                     driveImageUri:data.bookImage,
-                    driveBookUri:data.bookUrl,
+                    driveBookUri:data.format.audio.url,
                     description:data.description
                     });
+                    console.log("HERE IS THE DATA")
+                    console.log(this.state.driveBookUri)
                     
                     
             })
@@ -135,6 +137,7 @@ export default class AudioFile extends Component{
         
            
             <div>
+            {/* {console.log(this.state.bookUri)} */}
            
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>

@@ -81,7 +81,7 @@ function Navbar() {
           />
         </DialogActions>
       </Dialog>
-                    <hr></hr>
+                    <hr id= "horizontal-ruler"></hr>
                         
                 </ul>
             </nav>
