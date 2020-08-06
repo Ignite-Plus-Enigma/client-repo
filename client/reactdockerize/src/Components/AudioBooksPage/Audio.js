@@ -16,7 +16,7 @@ export default class AudioFile extends Component{
             bookName:'The fault',
             author:'John',
             genre:'Teenage',
-            bookUri: 'https://docs.google.com/uc?export=view&id=1qbxMkviO6ka-5es6wZIu9Y8wjbGF6eSY',
+            bookUri: 'https://docs.google.com/uc?export=view&id=1m7SqrxcbAxKyDUfYzcKP9Rbn1EMJl9QH',
             imageUri:'https://drive.google.com/uc?export=view&id=',
             description:'Hazel Grace'
         }
@@ -95,8 +95,8 @@ export default class AudioFile extends Component{
                     bookName:data.name,
                     author:data.author,
                     genre:data.genre,
-                    driveImageUri:data.bookImage,
-                    driveBookUri:data.bookUrl,
+                    imageUri:data.bookImage,
+                    bookUri:data.bookUrl,
                     description:data.description
                     });
                     
