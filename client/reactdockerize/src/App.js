@@ -12,7 +12,9 @@ import '../src/Components/FooterComponent/Footer.css'
 import SubCategory from "./Components/PDFBooksPage/SubCategory"
 import Audio from "./Components/AudioBooksPage/Audio"
 import PdfFile from './Components/PDFBooksPage/PdfFile'
+import subCat from "./Components/PDFBooksPage/subCat"
 import AudioSubCategory from './Components/AudioBooksPage/AudioSubCategory';
+
 
 
 class App extends Component {
@@ -28,10 +30,11 @@ class App extends Component {
           <Route path="/Saved" component={SavedBooks}/>
           <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
-          <Route path="/SubCategory" component={SubCategory}/>
+          <Route path="/SubCategory" component={subCat}/>
           <Route path="/AudioSubCategory" component={AudioSubCategory}/>
           <Route path="/Audio" component={Audio}/>
           <Route path="/PDF" component={PdfFile}/>
+
         </Switch>
       </div>
       </BrowserRouter>

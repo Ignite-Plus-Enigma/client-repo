@@ -141,7 +141,7 @@ useEffect(() => {
                 <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/SubCategory/${singleMain.name}/`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
                 <ul>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/SubCategory/${singleSub}/`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/SubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
                 ))}
                 </ul>
                 </div>

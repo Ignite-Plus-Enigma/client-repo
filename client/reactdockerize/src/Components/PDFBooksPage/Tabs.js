@@ -38,9 +38,8 @@ const MenuItem = ({ text, selected }) => {
 };
 
 export const Menu =() =>
-  subCategoryList.map(el => {
+  this.state.subCategoryList.map(el => {
     const { name } = el;
-
     return <MenuItem text={name} key={name} />;
   });
 
