@@ -7,14 +7,13 @@ export default class PdfFile extends Component{
     constructor(props) {
         super(props);
         // const apiendpoint = this.props.location.pathname;
-        console.log("Hi")
         this.state = {
-            bookName:'The Fault In Our Stars',
-            author:'John Green',
-            genre:'Romance',
-            bookUri: 'https://drive.google.com/uc?export=view&id=1k39obE9zdCtsVy6gFkm4TPWfJtOApfg1',
+            bookName:'',
+            author:'',
+            genre:'',
+            bookUri: '',
             imageUri:'',
-            description:'Hazel Grace who has cancer falls in love with another teenage boy Augustus Waters who changes her life for good'
+            description:''
         }
     }
     //https://drive.google.com/uc?export=view&id=1k39obE9zdCtsVy6gFkm4TPWfJtOApfg1
@@ -28,25 +27,30 @@ export default class PdfFile extends Component{
         // const uniqueId = this.props.id;
         console.log(this.props.id)
         
-        let apiSearchEndpoint = 'http://localhost:8050/books/';
+        let apiSearchEndpoint = 'http://localhost:8050/api/v1/books/';
         apiSearchEndpoint+=uniqueId;
         axios.get(apiSearchEndpoint)
             .then(response =>response.data)
             .then((data)=>{
+                console.log("here")
+                console.log(data)    
                 this.setState({
+                    
                     bookName:data.name,
                     author:data.author,
                     genre:data.genre,
                     imageUri:data.bookImage,
-                    bookUri:data.bookUrl,
+                    bookUri:data.format.pdf.url,
                     description:data.description
-                    });       
+                    });  
+                    console.log(data)     
             })
     }
 
     render(){
         return (
             <div>
+        
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
                 <h6 className = "audio-book-genre">{this.state.genre}</h6>

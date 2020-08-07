@@ -39,7 +39,7 @@ function Navbar() {
             setState("Sign Out")
             setName(response.profileObj.name)
             setOpen(false)
-            setId(response.profileObj.email)
+            setId(response.profileObj.google_id)
         }
     
         function failedLogin(response){
@@ -60,6 +60,7 @@ function Navbar() {
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li><Button  color="secondary" onClick={handleClickOpen}>
+
         {state}
       </Button></li>
       <Dialog
@@ -81,9 +82,10 @@ function Navbar() {
           />
         </DialogActions>
       </Dialog>
-                    <hr></hr>
+                    
                         
                 </ul>
+                <hr id= "horizontal-ruler"></hr>
             </nav>
         );
     }

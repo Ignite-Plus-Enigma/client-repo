@@ -9,23 +9,30 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Rating from '@material-ui/lab/Rating';
+import IconButton from '@material-ui/core/IconButton';
+import { useHistory } from "react-router-dom";
+import { withRouter } from 'react-router';
+import Tabs from '../PDFBooksPage/Tabs'
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Link from "@material-ui/core/Link";
+// import history from "history"
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      fontSize:65,
+      fontSize:50,
       
       flexDirection: 'column',
       '& > * + *': {
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(1)
       },   
     },
     paper: {
       padding: theme.spacing(2),
       margin: 'auto',
-      maxWidth:1000,
-      height:100,
+      maxWidth:1100,
+      height:140,
     },
     image: {
       width: 130,
@@ -38,15 +45,31 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: '100%',
     },
   }));
+  
 
-export default function PdfSubcategoryTrial(props){
+export default function AudioSubcategoryTrial(props){
 
     const classes = useStyles();
     const [books,setBooks] = useState([])
+    const history = useHistory();
+    const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
+    function handleAudio(book){
+      console.log(book.book.id)
+      // eslint-disable-next-line no-restricted-globals
+      history.push(`/Audio/${book.book.id}/`)
+    }
+    function handlePdf(book){
+      console.log(book.book.id)
+      // eslint-disable-next-line no-restricted-globals
+      history.push(`/PDF/${book.book.id}/`)
+    }
 
     const fetchData = () => {
         console.log(props.location.pathname)
         console.log(props)
+        const v= props.location.pathname.split("/")[2]
+        setMainCategoryProps(v)
+        console.log(v)
         const uniqueId = props.location.pathname.split("/")[3]
         console.log(uniqueId)
         const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
@@ -62,56 +85,80 @@ export default function PdfSubcategoryTrial(props){
     }, [])
 
     return(
+      <div>
+        <Breadcrumbs aria-label="breadcrumb">
+      
+      <Link
+        color="inherit"
+        href="http://localhost:3000/PDFBooks/"
+        
+      >
+        PDFBooks
+      </Link>
+      <Typography color="textPrimary">Textbooks</Typography>
+    </Breadcrumbs>
+        <h1>{mainCategoryProps}</h1>
+       {console.log(mainCategoryProps) }
+       {console.log("MainCatProps")}
+        <Tabs mainCat={mainCategoryProps}/>
+        <hr id="tabDivider"></hr>
         <div className={classes.root}>
     {console.log(books)}
-    {/* <h3>I'm PdfSubcategoryTrial </h3> */}
+       
     <ul classname="subcategorylist">
         {books.map((book)=>(
             <div>
-                <li>
+                <li style={{listStyleType:"none"}}>
       <Paper className={classes.paper}>
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
               <img className={classes.img} alt="Bookimage" src={book.bookImage} />
             </ButtonBase>
           </Grid>
           <Grid item xs={8} sm container>
-            <Grid item xs container direction="column" spacing={1}>
+            <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                <h2>{book.name}</h2>
+                <Typography gutterBottom variant="subtitle2">
+                <h4>{book.name}</h4>
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  <h3>{book.author}</h3>
+                  <h5>{book.author}</h5>
                 </Typography>
             </Grid>
             </Grid>
-            <Grid item xs={4} sm >
-            
-              <div>
-                
-              <Rating name="size-large" defaultValue={1} size="large" readOnly />
-             { /*<Typography variant="subtitle2" >pages</Typography>*/}
-              </div>
+            <Grid item xs={8} sm container>
+            <Grid item xs container direction="column" spacing={1}>
+              <Grid item xs={2} sm>
+            <Rating name="size-medium" defaultValue={book.rating} size="medium" readOnly />
+             {/* { <Typography variant="subtitle2" >pages</Typography>} */}
+             </Grid>
             </Grid>
-            <Grid item xs={2}>
+            </Grid>
+            <Grid item xs={1}>
                 <div>
-                    <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
-                    <Typography variant="subtitle2">Read</Typography>
+                    {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
+                    <Typography variant="subtitle2">Read</Typography> */}
+                    {book.format.pdf != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+          <PictureAsPdfIcon />
+        </IconButton> : null }
+       
                 </div>
             </Grid>
-             <Grid item xs={2}>
+             <Grid item xs={1}>
                   <div>
-                  <HeadsetIcon fontSize="large"></HeadsetIcon>
-                  <Typography variant="subtitle2">Listen</Typography>
+                  {/* <HeadsetIcon fontSize="large"></HeadsetIcon>
+                  <Typography variant="subtitle2">Listen</Typography> */}
+                  {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          <HeadsetIcon />
+        </IconButton> : null }
                  </div>
              </Grid>
             
-             <Grid item xs={1} >
+             <Grid item xs={1}>
                  <div>
-              <BookmarkBorderIcon fontSize="large" ></BookmarkBorderIcon>
-              <Typography variant="subtitle2">Save</Typography>
+              <BookmarkBorderIcon fontSize="medium" ></BookmarkBorderIcon>
+              {/* <Typography variant="subtitle2">Save</Typography> */}
               </div>
             </Grid>
           </Grid>
@@ -125,7 +172,7 @@ export default function PdfSubcategoryTrial(props){
        
 </ul>
     </div>
+    </div>
     )
 
 }
-

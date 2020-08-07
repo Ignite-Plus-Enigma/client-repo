@@ -9,6 +9,13 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import Rating from '@material-ui/lab/Rating';
+import IconButton from '@material-ui/core/IconButton';
+import { useHistory } from "react-router-dom";
+import { withRouter } from 'react-router';
+import Tabs from '../PDFBooksPage/Tabs'
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Link from "@material-ui/core/Link";
+// import history from "history"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,15 +45,31 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: '100%',
     },
   }));
+  
 
 export default function AudioSubcategoryTrial(props){
 
     const classes = useStyles();
     const [books,setBooks] = useState([])
+    const history = useHistory();
+    const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
+    function handleAudio(book){
+      console.log(book.book.id)
+      // eslint-disable-next-line no-restricted-globals
+      history.push(`/Audio/${book.book.id}/`)
+    }
+    function handlePdf(book){
+      console.log(book.book.id)
+      // eslint-disable-next-line no-restricted-globals
+      history.push(`/PDF/${book.book.id}/`)
+    }
 
     const fetchData = () => {
         console.log(props.location.pathname)
         console.log(props)
+        const v= props.location.pathname.split("/")[2]
+        setMainCategoryProps(v)
+        console.log(v)
         const uniqueId = props.location.pathname.split("/")[3]
         console.log(uniqueId)
         const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
@@ -62,6 +85,23 @@ export default function AudioSubcategoryTrial(props){
     }, [])
 
     return(
+      <div>
+        <Breadcrumbs aria-label="breadcrumb">
+      
+      <Link
+        color="inherit"
+        href="http://localhost:3000/AudioBooks/"
+        
+      >
+        AudioBooks
+      </Link>
+      <Typography color="textPrimary">Textbooks</Typography>
+    </Breadcrumbs>
+        <h1>{mainCategoryProps}</h1>
+       {console.log(mainCategoryProps) }
+       {console.log("MainCatProps")}
+        <Tabs mainCat={mainCategoryProps}/>
+        <hr id="tabDivider"></hr>
         <div className={classes.root}>
     {console.log(books)}
        
@@ -90,28 +130,35 @@ export default function AudioSubcategoryTrial(props){
             <Grid item xs={8} sm container>
             <Grid item xs container direction="column" spacing={1}>
               <Grid item xs={2} sm>
-            <Rating name="size-medium" defaultValue={book.rating} size="medium" readOnly />
+            <Rating name="size-medium" defaultValue={book.rating} className="rating" size="medium" readOnly />
              {/* { <Typography variant="subtitle2" >pages</Typography>} */}
              </Grid>
             </Grid>
             </Grid>
             <Grid item xs={1}>
                 <div>
-                    <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
-                    <Typography variant="subtitle2">Read</Typography>
+                    {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
+                    <Typography variant="subtitle2">Read</Typography> */}
+                    {book.format.pdf != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+          <PictureAsPdfIcon />
+        </IconButton> : null }
+       
                 </div>
             </Grid>
              <Grid item xs={1}>
                   <div>
-                  <HeadsetIcon fontSize="large"></HeadsetIcon>
-                  <Typography variant="subtitle2">Listen</Typography>
+                  {/* <HeadsetIcon fontSize="large"></HeadsetIcon>
+                  <Typography variant="subtitle2">Listen</Typography> */}
+                  {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          <HeadsetIcon />
+        </IconButton> : null }
                  </div>
              </Grid>
             
              <Grid item xs={1}>
                  <div>
-              <BookmarkBorderIcon fontSize="large" ></BookmarkBorderIcon>
-              <Typography variant="subtitle2">Save</Typography>
+              <BookmarkBorderIcon fontSize="medium" ></BookmarkBorderIcon>
+              {/* <Typography variant="subtitle2">Save</Typography> */}
               </div>
             </Grid>
           </Grid>
@@ -124,6 +171,7 @@ export default function AudioSubcategoryTrial(props){
         ))}
        
 </ul>
+    </div>
     </div>
     )
 

@@ -188,3 +188,12 @@ code {
 .carousel{
   height:20em;
 }
+
+.icon{
+  width: 2.5em;
+  padding:1em;
+}
+.ratings{
+  padding:0em;
+  width:0.5em;
+}

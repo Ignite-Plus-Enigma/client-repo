@@ -1,0 +1,343 @@
+﻿db.Books.insertMany([
+{
+_id:"7",
+name:"Astronomy ",
+isbn:" 996-56-045-61",
+author:" Alain J. Brizard",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1sbhabVfpYDthUX-x6_4X1X_hYLl3jEKs"},
+"audio":{url:"https://drive.google.com/uc?export=download&id=1zUGmNx7qK9mos-ok6-Aeplh0sz4HAlwH"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1bwfE2Es-J1AR7bRoQQFttzBPhmh2WgEQ",
+description:" Physics Atronomy textbook",
+views:10,
+category:"Textbooks",
+sub_category:[" Physics"],
+rating:3
+},
+
+{
+_id:"8",
+name:"Physics 150 ",
+isbn:" 78-996-246-12",
+author:"Michel van Veenendaal ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1adBcOUn9N4oVvn6zK-VjIiBNb8mai_V-"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1upDK4EzaqH_4XIO09obz-JPkgGB5an9X ",
+description:" A book by Michel van Veenendaal",
+views:9,
+category:"Textbooks",
+sub_category:[" Physics"],
+rating:4
+}
+]);
+
+db.Books.insertMany([
+{
+_id:"9",
+name:"Statistical Mechanics ",
+isbn:" 97-208-718-94",
+author:"Dr Alfred Huan ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1DBqcIAGf77RYMkXH60H-HCE_JF5iDTo5"},
+"audio":{url:"https://drive.google.com/uc?export=view&id=1ZjuVx09msh_Ygpef29SJrVmNADmc2ivR"}
+},
+language:"English ",
+book_image:" https://drive.google.com/uc?export=view&id=1FBVAsB1zRGLdTT-OxWYGVFyj_sUTPj1j",
+description:" A textbook for statical mechanics",
+views:11,
+category:"Textbooks",
+sub_category:[" Physics"],
+rating:2
+},
+
+{
+_id:"10",
+name:" Thermodynamis",
+isbn:" 94-332-018-49",
+author:" Dr Alfred Huan ",
+format:{
+"audio":{url:"https://drive.google.com/uc?export=view&id=1PTZ3vnnmOzxO-rp3f3cGBSl3fMDSHNwJ"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1r0E1WynV4cltf869V_oYQr5q_bYdpwb9 ",
+description:"A book for thermodynamics by Dr Alfred Huan ",
+views:6,
+category:"Textbooks",
+sub_category:["Physics "],
+rating:3
+}
+]);
+
+db.Books.insertMany([
+{
+_id:"11",
+name:"Inorganic Chemistry ",
+isbn:"95-175-385-41 ",
+author:"J Newton Friend ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1-47Bn952xpZt0z702TjAx3uK8vHeDyhW"}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=1cSH1tchDYrrGLkNnYnO6VjoxmhmMwA-M ",
+description:" A inorganic chemistry textbook",
+views:11,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:4
+},
+
+{
+_id:"12",
+name:"Analysis and Purification Methods ",
+isbn:" 35-715-968-24",
+author:" Bing Yan",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1fMkegFNd3Rv3EXNKngur9jCMPx_x0Wkr"},
+"audio":{url:" https://drive.google.com/uc?export=view&id=197-1kshRZ-mtSorxuUoviNUSpheJFzdZ"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1zQW6szhmlmUiKU9_ISsBt42-ZwHXSEHb ",
+description:" A textbook by Bing Yan on Analysis and Purification Methods ",
+views:20,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:3
+}
+]);
+
+db.Books.insertMany([
+{
+_id:"13",
+name:" Chemistry practical guide",
+isbn:"25-974-681-39 ",
+author:"Rose Marie Gallagher ",
+format:{
+"audio":{url:"https://drive.google.com/uc?export=view&id=1y1eLbMtbFk0ZjDGbEAYrhhQAkftAsdH7"}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=16ZViOQXp9rbQA8IgGhy5sB5g8bSveXmn",
+description:" A chemistry practical guide",
+views:18,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:4
+},
+
+{
+_id:"14",
+name:" Complete Chemistry for Cambridge",
+isbn:"34-976-158-42 ",
+author:"Paul Ingram ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1DlyRnWrnEl8hSKY_xZP67VO-r-1EANLY"},
+"audio":{url:"https://drive.google.com/uc?export=view&id=15yzpaN0gBNjSagkZuHBT8NyMoJlzI5-P "}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=1UTPd_RB0ZWcNSpsU7O22MIeZlOX7MDuP",
+description:" A book by Paul Ingram ",
+views:3,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:2
+}
+]);
+
+db.Books.insertMany([
+{
+_id:"15",
+name:"Organic Chemistry  ",
+isbn:"86-279-134-85 ",
+author:"H C Verma ",
+format:{
+"audio":{url:"https://drive.google.com/uc?export=view&id=1DYxVicpudIl05vKWXBOuR5WkU99Vt4yB"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1UTPd_RB0ZWcNSpsU7O22MIeZlOX7MDuP ",
+description:"A audio file on Organic Chemistry ",
+views:13,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:3
+},
+
+{
+_id:"16",
+name:"Inorganic Chemistry ",
+isbn:" 35-219-816-65",
+author:"Rakesh K ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1fMkegFNd3Rv3EXNKngur9jCMPx_x0Wkr"},
+"audio":{url:"https://drive.google.com/uc?export=view&id=1UcfRtMVvpYDKt0OUFtiJ204rxMpQ12uP "}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=1zQW6szhmlmUiKU9_ISsBt42-ZwHXSEHb ",
+description:"A audible on Inorganic Chemistry ",
+views:6,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:3
+}
+]);
+
+db.Books.insertMany([
+{
+_id:"17",
+name:"Electrochemistry ",
+isbn:" 8-956-682-36",
+author:"V K Ahluwalia ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1DlyRnWrnEl8hSKY_xZP67VO-r-1EANLY"},
+"audio":{url:"https://drive.google.com/uc?export=view&id=15yzpaN0gBNjSagkZuHBT8NyMoJlzI5-P"}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=1_zM-QX60coSb3_q9oiqAJjLLR8cbsWWq ",
+description:"A audible on Electrochemistry ",
+views:10,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:3
+},
+
+{
+_id:"18",
+name:" Chemical Bonding",
+isbn:"5-649-816-92 ",
+author:"Chris Ferri ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1sbhabVfpYDthUX-x6_4X1X_hYLl3jEKs"}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=1cSH1tchDYrrGLkNnYnO6VjoxmhmMwA-M",
+description:" A audible on chemical bonding",
+views:16,
+category:"Textbooks",
+sub_category:["Chemistry "],
+rating:4
+}]);
+
+db.Books.insertMany([
+{
+_id:"19",
+name:"Atomic Structure ",
+isbn:" 556-536-952-23",
+author:" Mateusz Kania",
+format:{
+"audio":{url:" https://drive.google.com/uc?export=view&id=197-1kshRZ-mtSorxuUoviNUSpheJFzdZ"}
+},
+language:"English ",
+book_image:" https://drive.google.com/uc?export=view&id=1_zM-QX60coSb3_q9oiqAJjLLR8cbsWWq",
+description:"A audible on Atomic Structure ",
+views:14,
+category:"Textbooks",
+sub_category:["Chemistry"],
+rating:3
+},
+
+{
+_id:"20",
+name:"Quantum Mechanism ",
+isbn:" 89-764-184-81",
+author:" Brian Greene",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1sbhabVfpYDthUX-x6_4X1X_hYLl3jEKs"},
+"audio":{url:"https://drive.google.com/uc?export=view&id=1yLW4xyPFNDq_7gLHsI383LEbRLDAQyeh"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1x2ncIYBtbQo8uVz50M2oR7IvIMHZp0ak",
+description:" A audible on Quantum Mechanism",
+views:2,
+category:"Textbooks",
+sub_category:["Physics "],
+rating:1
+}
+]);
+
+db.Books.insertMany([
+{
+_id:"21",
+name:" Atomic Physics",
+isbn:" 65-478-219-43",
+author:" Perutz M F",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1adBcOUn9N4oVvn6zK-VjIiBNb8mai_V-"},
+"audio":{url:" https://drive.google.com/uc?export=view&id=1PTZ3vnnmOzxO-rp3f3cGBSl3fMDSHNwJ"}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1upDK4EzaqH_4XIO09obz-JPkgGB5an9X ",
+description:"A audible on Atomic Physics ",
+views:5,
+category:"Textbooks",
+sub_category:["Physics"],
+rating:2
+},
+
+{
+_id:"22",
+name:"Molecular Physics ",
+isbn:"3-623-896-32 ",
+author:" Cantor",
+format:{
+"audio":{url:"https://drive.google.com/uc?export=view&id=1ZjuVx09msh_Ygpef29SJrVmNADmc2ivR"}
+},
+language:"English ",
+book_image:"https://drive.google.com/uc?export=view&id=1r0E1WynV4cltf869V_oYQr5q_bYdpwb9",
+description:"A audible on Molecular Physics ",
+views:9,
+category:"Textbooks",
+sub_category:["Physics "],
+rating:3
+}
+]);
+
+db.Books.insertOne(
+{
+_id:"23",
+name:" Thermodynamics",
+isbn:" 315-126-33-32",
+author:"Glaser ",
+format:{
+"pdf":{
+	url:"https://drive.google.com/uc?export=view&id=1xfYj8Qoa6ut9aXZdrF6JpK--SIXCn5At"
+	}
+},
+language:" English",
+book_image:"https://drive.google.com/uc?export=view&id=1bwfE2Es-J1AR7bRoQQFttzBPhmh2WgEQ ",
+description:" A audible on Thermodynamics",
+views:4,
+category:"Textbooks",
+sub_category:["Physics"],
+rating:2
+});
+
+db.Books.insertOne(
+{
+_id:"24",
+name:"Optics ",
+isbn:"98-654-654-15 ",
+author:"Nelson ",
+format:{
+"pdf":{url:"https://drive.google.com/uc?export=view&id=1adBcOUn9N4oVvn6zK-VjIiBNb8mai_V-"},
+"audio":{url:"https://drive.google.com/uc?export=view&id=1zUGmNx7qK9mos-ok6-Aeplh0sz4HAlwH"}
+},
+language:" English",
+book_image:" https://drive.google.com/uc?export=view&id=1FBVAsB1zRGLdTT-OxWYGVFyj_sUTPj1j",
+description:"A audible on Optics ",
+views:3,
+category:"Textbooks",
+sub_category:["Physics "],
+rating:2
+}
+);
+
+
+
+{
+category:"Textbooks",
+sub_category:["Chemistry","Physics"]
+}
+
+

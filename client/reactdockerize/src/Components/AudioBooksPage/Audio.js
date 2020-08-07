@@ -13,12 +13,12 @@ export default class AudioFile extends Component{
             toggleButton:"►",
             currentTime:0,
             duration: null,
-            bookName:'The fault',
-            author:'John',
-            genre:'Teenage',
-            bookUri: 'https://docs.google.com/uc?export=view&id=1m7SqrxcbAxKyDUfYzcKP9Rbn1EMJl9QH',
-            imageUri:'https://drive.google.com/uc?export=view&id=',
-            description:'Hazel Grace'
+            bookName:'',
+            author:'',
+            genre:'',
+            bookUri: '',
+            imageUri:'',
+            description:''
         }
     }
     
@@ -94,11 +94,13 @@ export default class AudioFile extends Component{
                 this.setState({
                     bookName:data.name,
                     author:data.author,
-                    genre:data.genre,
+                    genre:data.category,
                     imageUri:data.bookImage,
-                    bookUri:data.bookUrl,
+                    bookUri:data.format.audio.url,
                     description:data.description
                     });
+                    console.log("HERE IS THE DATA")
+                    console.log(this.state.bookUri)
                     
                     
             })
@@ -150,6 +152,7 @@ export default class AudioFile extends Component{
         
            
             <div>
+            {/* {console.log(this.state.bookUri)} */}
            
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>

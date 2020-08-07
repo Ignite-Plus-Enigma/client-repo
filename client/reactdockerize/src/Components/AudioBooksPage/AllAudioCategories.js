@@ -75,7 +75,7 @@ export default function CenteredGrid() {
 //     fetchData()
 // }, [])
  const fetchData = ()  => {
-    const mainCategoriesApiEndPoint = 'http://localhost:8050/categories'
+    const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/categories'
     const response =  axios.get(mainCategoriesApiEndPoint)
     .then(response => response.data)
     .then((data) => {
@@ -121,7 +121,7 @@ useEffect(() => {
                 <div xs={4}>
                 {/* {console.log("HERE")}
                 {console.log(singleMain)} */}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`} >{singleSub}</NavLink></li>
                 ))}
@@ -134,7 +134,7 @@ useEffect(() => {
             
             {col2.map((singleMain) => (
                 <div xs={4}>
-                <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
                 <ul>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
@@ -148,9 +148,9 @@ useEffect(() => {
             
             {col3.map((singleMain) => (
                 <div xs={4}>
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
                 </div>
             ))}

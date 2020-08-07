@@ -44,3 +44,9 @@ html {
           width: 20px;
           height: 20px;
       }
+#horizontal-ruler{
+  padding-bottom: 2em;
+  color: grey;
+  height: 5px;
+
+}
