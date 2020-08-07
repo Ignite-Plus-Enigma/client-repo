@@ -75,6 +75,7 @@ export default function FooterComponent() {
     <div className="body">
       
       <Footer
+        
         className='body'
         copyright="Target | Ignite+"
         sections={sections}
