@@ -16,7 +16,7 @@ export default class AudioFile extends Component{
             bookName:'',
             author:'',
             genre:'',
-            bookUri: 'https://drive.google.com/uc?export=download&id=1zUGmNx7qK9mos-ok6-Aeplh0sz4HAlwH',
+            bookUri: '',
             imageUri:'',
             description:''
         }
@@ -24,6 +24,9 @@ export default class AudioFile extends Component{
     
     // ImageURi: header for gogle drive https://drive.google.com/uc?export=view&id=
     // AudioBookUri:header for book https://docs.google.com/uc?export=download&id=
+    //https://docs.google.com/uc?export=download&id=
+    //http://docs.google.com/uc?export=open&id=
+    //All of the stars: https://drive.google.com/file/d/1qbxMkviO6ka-5es6wZIu9Y8wjbGF6eSY/view?usp=sharing
     
     playAudio = () => {
         const audioEl = document.querySelector(".viewer");
@@ -91,17 +94,17 @@ export default class AudioFile extends Component{
                 this.setState({
                     bookName:data.name,
                     author:data.author,
-                    genre:data.genre,
-                    driveImageUri:data.bookImage,
-                    driveBookUri:data.format.audio.url,
+                    genre:data.category,
+                    imageUri:data.bookImage,
+                    bookUri:data.format.audio.url,
                     description:data.description
                     });
                     console.log("HERE IS THE DATA")
-                    console.log(this.state.driveBookUri)
+                    console.log(this.state.bookUri)
                     
                     
             })
-        document.addEventListener('DOMContentLoaded',()=>{
+        //document.addEventListener('DOMContentLoaded',()=>{
             const video = document.querySelector('.viewer');
         video.addEventListener('timeupdate',this.progressUpdate);
         /*Updates the current time every second*/
@@ -110,8 +113,20 @@ export default class AudioFile extends Component{
             this.setState({duration:this.getTime(video.duration)});
           });
         document.addEventListener("keydown", this.handleKeyDown);
-        });
+        // });
         
+    }
+    componentWillReceiveProps(){
+        // document.addEventListener('DOMContentLoaded',()=>{
+        //         const video = document.querySelector('.viewer');
+        //     video.addEventListener('timeupdate',this.progressUpdate);
+        //     /*Updates the current time every second*/
+        //     setInterval(() => this.setState({currentTime:this.getTime(video.currentTime)}),1000);
+        //     video.addEventListener('loadedmetadata', (e) => {
+        //         this.setState({duration:this.getTime(video.duration)});
+        //       });
+        //     document.addEventListener("keydown", this.handleKeyDown);
+        //     });
     }
 
     componentWillUnmount(){
@@ -144,8 +159,8 @@ export default class AudioFile extends Component{
                 <h6 className = "audio-book-genre">{this.state.genre}</h6>
                 {/* {window.location.origin + '/Audio/The Vamps-Wake Up.mp3'}  */}
                 <div className = "player">
-                    <audio className = "audio-player viewer" src = {this.state.driveBookUri} ></audio>
-                    <img src={this.state.driveImageUri} alt= "Book image"/>
+                    <audio className = "audio-player viewer" src = {this.state.bookUri} ></audio>
+                    <img src={this.state.imageUri} alt= "Book image"/>
                 </div>
                 <div className="progress-bar" role="timer">
                     <div className="progress-filled"></div>

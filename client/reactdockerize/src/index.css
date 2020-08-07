@@ -54,6 +54,7 @@ code {
 .progress-filled{
   background: green;
   flex-basis: 50%;
+  margin:0;
 }
 .player-slider{
   color: white;

@@ -15,6 +15,7 @@ import PdfFile from './Components/PDFBooksPage/PdfFile'
 import subCat from "./Components/PDFBooksPage/subCat"
 import AudioSubCategory from './Components/AudioBooksPage/AudioSubCategory';
 import AudioSubcategoryTrial from './Components/AudioBooksPage/AudioSubcategoryTrial';
+import PdfSubcategoryTrial from './Components/PDFBooksPage/PdfSubCategoryTrial';
 
 
 
@@ -31,8 +32,8 @@ class App extends Component {
           <Route path="/Saved" component={SavedBooks}/>
           <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
-          <Route path="/SubCategory" component={AudioSubcategoryTrial}/>
-          <Route path="/AudioSubCategory" component={AudioSubCategory}/>
+          <Route path="/PdfSubCategory" component={PdfSubcategoryTrial}/>
+          <Route path="/AudioSubCategory" component={AudioSubcategoryTrial}/>
           <Route path="/Audio" component={Audio}/>
           <Route path="/PDF" component={PdfFile}/>
 
