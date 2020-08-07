@@ -45,8 +45,12 @@ html {
           height: 20px;
       }
 #horizontal-ruler{
+<<<<<<< HEAD
   padding-bottom: 2em;
   color: grey;
   height: 5px;
+=======
+  padding-bottom: 6em;
+>>>>>>> 62cfa9c8eaa085b36d50f331531bbb7be91c7fc8
 
 }
