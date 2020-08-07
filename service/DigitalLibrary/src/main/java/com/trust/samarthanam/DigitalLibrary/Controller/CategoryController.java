@@ -1,5 +1,6 @@
 package com.trust.samarthanam.DigitalLibrary.Controller;
 
+import com.trust.samarthanam.DigitalLibrary.Model.Books;
 import com.trust.samarthanam.DigitalLibrary.Model.Category;
 import com.trust.samarthanam.DigitalLibrary.Service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,12 @@ public class CategoryController {
     @GetMapping("/category/{key}/subcategory")
     public List<String> findAllSubCategory(@PathVariable String key){
         return categoryService.listSubCategory(key);
+    }
+
+    //-----------------------------get books of a particular format under a subcategory --------------------------------
+
+    @GetMapping("/books/format/{format}/subcategory/{subName}")
+    public List<Books> findBooksbyFormat(@PathVariable String format, @PathVariable String subName){
+        return categoryService.listFormatBooks(format,subName);
     }
 }

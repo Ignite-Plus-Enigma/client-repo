@@ -22,17 +22,18 @@ public class HomePageController {
         return homeService.findBooksByLanguage(key);
     }
 
-////----------------------------------get books by category---------------------------------------------------------------
+//----------------------------------get books by category---------------------------------------------------------------
     @GetMapping("/books/category/{key}")
     public Collection<Books> findBooksByCategory(@PathVariable String key){
         return homeService.findBooksByCategory(key);
     }
-
+//---------------------------------get all recently added books --------------------------------------------------------
     @GetMapping("/books/recentlyadded")
     public Optional<List<Books>> findRecentlyAddedBooks(){
         return homeService.findRecentlyAddedBooks();
     }
 
+//------------------------------------get all most viewed books---------------------------------------------------------
 
     @GetMapping("/books/mostviewed")
     public Optional<List<Books>> getMostViewedBooks(){

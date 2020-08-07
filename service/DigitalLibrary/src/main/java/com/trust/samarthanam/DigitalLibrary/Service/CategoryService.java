@@ -1,6 +1,8 @@
 package com.trust.samarthanam.DigitalLibrary.Service;
 
+import com.trust.samarthanam.DigitalLibrary.Model.Books;
 import com.trust.samarthanam.DigitalLibrary.Model.Category;
+import com.trust.samarthanam.DigitalLibrary.dao.BooksRepo;
 import com.trust.samarthanam.DigitalLibrary.dao.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -8,10 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class CategoryService {
@@ -21,6 +20,8 @@ public class CategoryService {
     private CategoryRepo categoryRepo;
     @Autowired
     MongoTemplate mongoTemplate;
+    @Autowired
+    private BooksRepo booksRepo;
 //--------------------------------------- list all categories-----------------------------------------------------------
 
     public List<Category> listAll() {
@@ -55,6 +56,20 @@ public class CategoryService {
         Query query = new Query();
         query.with(Sort.by(Sort.Direction.ASC,"category"));
         return Optional.of(mongoTemplate.find(query, Category.class));
+    }
+    public List<Books> listFormatBooks(String format, String subName) {
+
+        List<Books> test =booksRepo.findAll();
+        List<Books> formatBook = new ArrayList<>();
+        List<Books> books = new ArrayList<>();
+        for (Books book : test){
+            List<String> subCategory=book.getSubCategory();
+            Map<String, Object> list = book.getFormat();
+            if(list.get(format) != null && subCategory.contains(subName)){
+                formatBook.add(book);
+            }
+        }
+        return formatBook;
     }
 
 }
