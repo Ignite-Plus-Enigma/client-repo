@@ -44,26 +44,7 @@ category:["Children"],
 sub_category:["Poems"],
 rating:3
 });
-db.Books.insertOne(
-{
-_id:"3",
-name:"Moose on the loose",
-isbn:"677-987-567-78",
-author:"Kathy-jo Wargin",
-format:{
-	"pdf":	{
-			url:"https://drive.google.com/uc?export=view&id=1tPHlSL0kK4JQ0ZlLIP0Kczzj_zVIpBw_"
-		}
-	
-	},
-language:" English",
-book_image:"https://drive.google.com/uc?export=view&id=1uB585wpdMw7tq950nI6sD4QptPLEapRL",
-description:"Moose on the loose is a rhyme on a lost moose and a child with it",
-views:6,
-category:["Children"],
-sub_category:["Rhymes","Kindergarten"],
-rating:4
-});
+
 db.Books.insertOne(
 {
 _id:"4",
@@ -85,6 +66,7 @@ category:["Children"],
 sub_category:["Comics"],
 rating:3
 });
+db.Boosk.insertMany([
 {
 _id:"5",
 name:"Ginger the Giraffe",
@@ -144,12 +126,13 @@ format:{
 		}
 	},
 language:" English",
-book_image:https://drive.google.com/uc?export=view&id=18SbDjpJSjQzaxPZIdtcXsHcLN7bAA0Ho",
+book_image:"https://drive.google.com/uc?export=view&id=18SbDjpJSjQzaxPZIdtcXsHcLN7bAA0Ho",
 description:"A story about a dog called Abe who is a service dog at town",
 views:7,
 category:["Children"],
 sub_category:["Story books","Kindergarten"],
 rating:3
 }
+]);
 
 
