@@ -15,6 +15,7 @@ import { withRouter } from 'react-router';
 import Tabs from '../PDFBooksPage/Tabs'
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
+import '../FooterComponent/Footer.css';
 // import history from "history"
 
 
