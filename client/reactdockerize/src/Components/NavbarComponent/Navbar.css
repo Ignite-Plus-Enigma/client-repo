@@ -16,15 +16,20 @@ html {
     display: flex;
     background-color: white;
     margin-bottom: 20px;
+    position:relative;
   }
   
   nav ul li {
-    padding: 20px;
+    padding: 0.5em;
+    padding-top: 2em;
+    margin: 0;
+    color: #DC143C;
   }
   
   nav ul li a {
     color: #DC143C;
     text-decoration: none;
+    
   }
   
   .current {
@@ -45,12 +50,12 @@ html {
           height: 20px;
       }
 #horizontal-ruler{
-<<<<<<< HEAD
-  padding-bottom: 2em;
-  color: grey;
-  height: 5px;
-=======
-  padding-bottom: 6em;
->>>>>>> 62cfa9c8eaa085b36d50f331531bbb7be91c7fc8
+  /* padding-bottom: 2em; */
 
+}
+.button-mat-ui{
+  padding: 0;
+    right: 0;
+    position: absolute;
+    border: 1px solid crimson;
 }
