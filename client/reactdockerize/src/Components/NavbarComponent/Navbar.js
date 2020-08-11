@@ -2,6 +2,7 @@ import React, { Component, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import logo from './logo.png'
 import Search from './Search'
+import { makeStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -10,8 +11,22 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import GoogleLogin from "react-google-login";
 import './Navbar.css'
+
+const useStyles = makeStyles({
+  root: {
+    // maxWidth: 280,
+    // height :350,
+    // alignContent:"left"
+  },
+  signinbutton: {
+    padding: 0,
+    right: 0,
+    position: "absolute",
+    border: "1px solid crimson"
+  }
+  });
 function Navbar() {
-    
+  const classes = useStyles();
        
         const [open, setOpen] = React.useState(false);
         const [id,setId] = useState()
@@ -58,8 +73,9 @@ function Navbar() {
                     <li><NavLink exact activeClassName="current" to={`/Saved/${id}/`} aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
+                    {name ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li><Button  color="secondary" onClick={handleClickOpen}>
+                    <li><Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
 
         {state}
       </Button></li>
