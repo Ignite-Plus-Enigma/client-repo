@@ -21,7 +21,9 @@ import Link from "@material-ui/core/Link";
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      fontSize:50,
+      fontSize:35,
+      overflow: 'hidden',
+      padding: theme.spacing(0, 3),
       
       flexDirection: 'column',
       '& > * + *': {
@@ -29,14 +31,14 @@ const useStyles = makeStyles((theme) => ({
       },   
     },
     paper: {
+      margin: `${theme.spacing(1)}px auto`,
       padding: theme.spacing(2),
-      margin: 'auto',
       maxWidth:1100,
-      height:140,
+      height:160,
     },
     image: {
-      width: 130,
-      height: 110,
+      width: 140,
+      height: 140,
     },
     img: {
       margin: 'auto',
@@ -127,41 +129,46 @@ export default function AudioSubcategoryTrial(props){
                 </Typography>
             </Grid>
             </Grid>
-            <Grid item xs={8} sm container>
-            <Grid item xs container direction="column" spacing={1}>
-              <Grid item xs={2} sm>
-            <Rating name="size-medium" defaultValue={book.rating} className="rating" size="medium" readOnly />
-             {/* { <Typography variant="subtitle2" >pages</Typography>} */}
-             </Grid>
             </Grid>
-            </Grid>
-            <Grid item xs={1}>
+            <Grid container wrap="nowrap" spacing={2} xs={8} sm  >
+          <Grid item xs>
+            <Typography  gutterBottom variant="body1">{book.description}</Typography>
+          </Grid>
+        </Grid>
+        <Grid item xs={8} sm container>
+            <Grid item xs container direction="row" spacing={2}>
+
+            <Grid item xs={4}>
                 <div>
                     {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
                     <Typography variant="subtitle2">Read</Typography> */}
-                    {book.format.pdf != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
-          <PictureAsPdfIcon />
+                    {book.format.pdf != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+          <PictureAsPdfIcon fontSize="large"/>
         </IconButton> : null }
        
                 </div>
             </Grid>
-             <Grid item xs={1}>
+             <Grid item xs={4}>
                   <div>
-                  {/* <HeadsetIcon fontSize="large"></HeadsetIcon>
-                  <Typography variant="subtitle2">Listen</Typography> */}
-                  {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
-          <HeadsetIcon />
+          {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          <HeadsetIcon fontSize="large"/>
         </IconButton> : null }
                  </div>
              </Grid>
-            
-             <Grid item xs={1}>
+             <Grid item xs={4}>
                  <div>
-              <BookmarkBorderIcon fontSize="medium" ></BookmarkBorderIcon>
-              {/* <Typography variant="subtitle2">Save</Typography> */}
-              </div>
+                   <IconButton aria-label="save the book">
+              <BookmarkBorderIcon fontSize="large" />
+              </IconButton>
+             </div>
             </Grid>
+            <Grid item xs={2} sm >
+             <div>
+             <Rating name="size-large" defaultValue={book.rating} size="large" readOnly />
+            </div>
           </Grid>
+            </Grid>
+            </Grid>
         </Grid>
         
       </Paper>
