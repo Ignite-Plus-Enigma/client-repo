@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {BrowserRouter,Route,Switch,NavLink} from 'react-router-dom';
 import Box from '@material-ui/core/Box';
+import '../FooterComponent/Footer.css';
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {

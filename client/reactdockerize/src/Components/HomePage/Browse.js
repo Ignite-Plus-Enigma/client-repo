@@ -3,6 +3,7 @@ import Row from "./Row.js";
 import './styles.css';
 import AutoRotatingCarousel from './AutoRotatingCarousel'
 // import FooterComponent from '../FooterComponent/Footer'
+import '../FooterComponent/Footer.css'
 
 export default function Browse() {
     
