@@ -9,7 +9,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import GoogleLogin from "react-google-login";
 import '../FooterComponent/Footer.css'
+import {userContext} from "../../UserContext"
 function SavedBooks(props){
+      const msg = useContext(userContext)
+  alert(msg)
     const [open, setOpen] = React.useState(false);
     const [id,setId] = useState(" ")
     const handleClickOpen = () => {
