@@ -8,7 +8,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-import Rating from '@material-ui/lab/Rating';
+// import Rating from '@material-ui/lab/Rating';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
 import { withRouter } from 'react-router';
@@ -165,7 +165,7 @@ export default function AudioSubcategoryTrial(props){
             </Grid>
             <Grid item xs={2} sm >
              <div>
-             <Rating name="size-large" defaultValue={book.rating} size="large" readOnly />
+             {/* <Rating name="size-large" defaultValue={book.rating} size="large" readOnly /> */}
             </div>
           </Grid>
             </Grid>
