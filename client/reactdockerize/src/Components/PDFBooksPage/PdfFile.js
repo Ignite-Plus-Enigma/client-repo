@@ -11,7 +11,7 @@ export default class PdfFile extends Component{
             bookName:'',
             author:'',
             genre:'',
-            bookUri: '',
+            bookUri: 'https://drive.google.com/uc?export=view&id=1k39obE9zdCtsVy6gFkm4TPWfJtOApfg1',
             imageUri:'',
             description:''
         }

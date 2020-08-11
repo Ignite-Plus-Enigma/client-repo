@@ -4,6 +4,7 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Home from './Components/HomePage/Browse'
 import Books from './Components/PDFBooksPage/Books'
 import AudioBooks from './Components/AudioBooksPage/AudioBooks'
+import PdfFile from './Components/PDFBooksPage/PdfFile'
 import SavedBooks from './Components/SavedBooksPage/SavedBooks'
 import SignIn from './Components/SignInPage/SignIn'
 import Donate from './Components/DonatePage/Donate'
@@ -133,6 +134,7 @@ function App() {
           <Route path="/SubCategory" component={SubCategory}/>
           <Route path="/AudioSubCategory" component={AudioSubCategory}/>
           <Route path="/Audio" component={Audio}/>
+          <Route path="/PDF" component={PdfFile}/>
           </userContext.Provider>
         </Switch>
       </div>
