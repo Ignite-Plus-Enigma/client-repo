@@ -21,6 +21,7 @@ const [activeBook, setActiveBook] = useState();
 
   const fetchdata = () =>{
     if(props.forapicall === "recentlyadded"){
+      // const apiendpoint = "static/recentlyAddedHome.json"
       const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
     axios.get(apiendpoint)
             .then(response =>response.data)
