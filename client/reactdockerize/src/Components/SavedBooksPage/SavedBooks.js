@@ -87,7 +87,10 @@ function SavedBooks(props){
     }, [])
 
         if(id === null){ return(
+          <div>
            <LoginDialog/>
+           <h6>Please login to view your saved books.</h6>
+           </div>
          ); 
         }
         return(
