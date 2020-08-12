@@ -21,6 +21,7 @@ import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
+import FlagIcon from '@material-ui/icons/Flag';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,10 +54,11 @@ const useStyles = makeStyles((theme) => ({
 function SavedBooks(props){
       const msg = useContext(userContext)
       // alert("Google id "+msg);
-    
+    const [user,setUser] = useState(null)
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const history = useHistory();
+    var i = 0
 
     function handleAudio(book){
       console.log(book.book.id)
@@ -65,20 +67,43 @@ function SavedBooks(props){
     function handlePdf(book){
       history.push(`/PDF/${book.book.id}/`)
     }
+    function handleFinished(book){
+      const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+msg+'/savedbook/'+book.book.id+'/markfinished'
+      // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
+      axios.put(markFinishedEndPoint);
+      // window.location.reload(); 
+      console.log("MARKED FINISHED")
+  }
+
+  function handleUnfinished(book){
+    const markUnfinished = 'http://localhost:8050/api/v1/user/'+msg+'/savedbook/'+book.book.id+'/markUnfinished'
+    // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
+    axios.put(markUnfinished);
+    // window.location.reload(); 
+    console.log("MARKED UNFINISHED")
+  }
+      
+    
 
     const fetchData = () => {
-        // console.log(props.location.pathname)
-        // console.log(props)
-        // const v= props.location.pathname.split("/")[2]
-        // const uniqueId = props.location.pathname.split("/")[3]
-        // console.log(uniqueId)
-        const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1//user/104189239213398936383/savedbooks'
+
+        const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1//user/'+msg+'/savedbooks'
+        const userEndPoint = "http://localhost:8050/api/v1/users/"+msg
+
         // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
         axios.get(userSavedBooksApiEndPoint)
         .then(response => response.data)
         .then((data) => {
             console.log(data);
             setBooks(data)
+        })
+
+        axios.get(userEndPoint)
+        .then(response => response.data)
+        .then((data) => {
+          console.log("USER DATA")
+            console.log(data)
+            setUser(data)
         })
     }
     useEffect(() => {
@@ -96,6 +121,7 @@ function SavedBooks(props){
       <ul classname="subcategorylist">
           {books.map((book)=>(
               <div>
+
                   <li style={{listStyleType:"none"}}>
         <Paper className={classes.paper}>
           <Grid container spacing={2}>
@@ -125,34 +151,36 @@ function SavedBooks(props){
               </Grid>
               <Grid item xs={1}>
                   <div>
-                      {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
-                      <Typography variant="subtitle2">Read</Typography> */}
+                     
                       {book.format.pdf != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
-            <PictureAsPdfIcon />
+            <PictureAsPdfIcon fontSize="large" />
           </IconButton> : null }
          
                   </div>
               </Grid>
                <Grid item xs={1}>
                     <div>
-                    {/* <HeadsetIcon fontSize="large"></HeadsetIcon>
-                    <Typography variant="subtitle2">Listen</Typography> */}
+              
                     {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
-            <HeadsetIcon />
+            <HeadsetIcon fontSize="large"/>
           </IconButton> : null }
                    </div>
                </Grid>
                
                <Grid item xs={1}>
                    <div>
-                <CheckCircleIcon fontSize="medium"  onClick={() => handleAudio({book})}></CheckCircleIcon>
-                {/* <Typography variant="subtitle2">Save</Typography> */}
+                   {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+            <HeadsetIcon fontSize="large"/>
+          </IconButton> : null } */}
+          {user.savedBooks[i].isFinished == "True" ? <CheckCircleIcon fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large"  onClick={() => handleFinished({book})} ></FlagIcon> }
+                
+             
                 </div>
               </Grid>
               
                <Grid item xs={1}>
                    <div>
-                <BookmarkIcon fontSize="medium"  onClick={() => handleAudio({book})} ></BookmarkIcon>
+                <BookmarkIcon fontSize="large"  onClick={() => handleAudio({book})} ></BookmarkIcon>
                 {/* <Typography variant="subtitle2">Save</Typography> */}
                 </div>
               </Grid>
@@ -161,7 +189,7 @@ function SavedBooks(props){
           
         </Paper>
         </li>
-        
+        {i+=1}
         </div>
           ))}
          
