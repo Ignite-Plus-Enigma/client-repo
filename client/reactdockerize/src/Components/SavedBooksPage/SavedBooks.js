@@ -21,6 +21,7 @@ import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
+import LoginDialog from "../SignInPage/LoginDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SavedBooks(props){
-      const msg = useContext(userContext)
+      const {id,setId} = useContext(userContext);
       // alert("Google id "+msg);
     
     const classes = useStyles();
@@ -85,6 +86,10 @@ function SavedBooks(props){
         fetchData()
     }, [])
 
+        if(id === null){ return(
+           <LoginDialog/>
+         ); 
+        }
         return(
           <div>
         
