@@ -44,9 +44,9 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
-       
+
   const [open, setOpen] = React.useState(false);
-  const [id,setId] = useState()
+  const [id,setId] = useState(null)
   const handleClickOpen = () => {
       if(state == "Sign In"){
           setOpen(true);
@@ -61,7 +61,6 @@ function App() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [flag,setFlag] = useState(false)
   const [name,setName] = useState("")
   const [state, setState] = useState("Sign In")
 
@@ -71,7 +70,8 @@ function App() {
       setState("Sign Out")
       setName(response.profileObj.name)
       setOpen(false)
-      setId(response.profileObj.google_id)
+      const x = response.profileObj.googleId;
+      setId(x)
   }
 
   function failedLogin(response){
@@ -86,11 +86,11 @@ function App() {
         <nav className="app">
                 
                 <ul>
-                    <img src={logo} alt="logo" width="110" height="80"/>
+                    <img src={logo} alt="logo" width="170" height="100"/>
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
-                    <li><NavLink exact activeClassName="current" to={`/Saved/${id}/`} aria-label="Saved Books">Saved </NavLink></li>
+                    <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {name ?<li>Hello, {name}</li>: null}
