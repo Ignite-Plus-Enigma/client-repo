@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react';
+import React, { Component,useState,useMemo } from 'react';
 import Navbar from './Components/NavbarComponent/Navbar';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Home from './Components/HomePage/Browse'
@@ -47,6 +47,7 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [id,setId] = useState(null)
+  const provideValue = useMemo(() => ({id,setId}),[id,setId]);
   const handleClickOpen = () => {
       if(state == "Sign In"){
           setOpen(true);
@@ -81,6 +82,7 @@ function App() {
  
     return (
       <BrowserRouter>
+     {/* {alert(id)} */}
       <div className="App">
         {/* <Navbar/> */}
         <nav className="app">
@@ -95,10 +97,7 @@ function App() {
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {name ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li><Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
-
-        {state}
-      </Button></li>
+                    <li>{id ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign Out</Button> : <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign In</Button>  } </li>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -124,7 +123,7 @@ function App() {
                 <hr id= "horizontal-ruler"></hr>
             </nav>
         <Switch>
-        <userContext.Provider value = {id}>
+        <userContext.Provider value = {provideValue}>
           <Route exact path="/" component={Home}/>
           <Route path="/PDFBooks" component={Books}/>
           <Route path="/AudioBooks" component={AudioBooks}/>

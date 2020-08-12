@@ -52,9 +52,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SavedBooks(props){
-      const msg = useContext(userContext)
+    const {id,setId} = useContext(userContext);
       // alert("Google id "+msg);
-    const [user,setUser] = useState(null)
+      // const msg = JSON.stringify(id);
+      // alert(id)
+      const [user,setUser] = useState(null)
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const history = useHistory();
@@ -68,7 +70,7 @@ function SavedBooks(props){
       history.push(`/PDF/${book.book.id}/`)
     }
     function handleFinished(book){
-      const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+msg+'/savedbook/'+book.book.id+'/markfinished'
+      const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markfinished'
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.put(markFinishedEndPoint);
       // window.location.reload(); 
@@ -76,7 +78,7 @@ function SavedBooks(props){
   }
 
   function handleUnfinished(book){
-    const markUnfinished = 'http://localhost:8050/api/v1/user/'+msg+'/savedbook/'+book.book.id+'/markUnfinished'
+    const markUnfinished = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markUnfinished'
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
     axios.put(markUnfinished);
     // window.location.reload(); 
@@ -87,8 +89,8 @@ function SavedBooks(props){
 
     const fetchData = () => {
 
-        const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1//user/'+msg+'/savedbooks'
-        const userEndPoint = "http://localhost:8050/api/v1/users/"+msg
+        const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1//user/'+id+'/savedbooks'
+        const userEndPoint = "http://localhost:8050/api/v1/users/"+id
 
         // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
         axios.get(userSavedBooksApiEndPoint)
