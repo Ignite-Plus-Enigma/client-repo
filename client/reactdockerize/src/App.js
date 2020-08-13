@@ -50,11 +50,13 @@ function App() {
   const [open, setOpen] = React.useState(false);
   const [id,setId] = useState(null)
   const handleClickOpen = () => {
-      if(state == "Sign In"){
+      if(id === null){
           setOpen(true);
+          setState("Sign In");
       }
-      else if(state == "Sign Out"){
-          setState("Sign In")
+      else {
+        setOpen(false);
+          setState("Sign Out");
       }
     
   };
@@ -80,7 +82,9 @@ function App() {
       setState("Sign In")
   }
   
- 
+//  if(id !== null){
+//    setState("Sign Out");
+//  }
     return (
       <BrowserRouter>
       <div className="App">
@@ -95,7 +99,7 @@ function App() {
                     <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
-                    {name ?<li>Hello, {name}</li>: null}
+                    {id !== null ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li><Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
 
@@ -126,7 +130,7 @@ function App() {
                 <hr id= "horizontal-ruler"></hr>
             </nav>
         <Switch>
-        <userContext.Provider value = {id}>
+        <userContext.Provider value = {{id, setId}}>
           <Route exact path="/" component={Home}/>
           <Route path="/PDFBooks" component={Books}/>
           <Route path="/AudioBooks" component={AudioBooks}/>
