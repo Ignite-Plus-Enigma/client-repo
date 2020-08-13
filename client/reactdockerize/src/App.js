@@ -1,4 +1,4 @@
-import React, { Component,useState,useMemo } from 'react';
+import React, { Component,useState,useMemo, useEffect } from 'react';
 import Navbar from './Components/NavbarComponent/Navbar';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Home from './Components/HomePage/Browse'
@@ -57,6 +57,18 @@ function App() {
       }
     
   };
+
+  useEffect(()=>{
+    const data = localStorage.getItem('my-id')
+    if(data){
+      setId(JSON.parse(data));
+    }
+
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem('my-id',JSON.stringify(id));
+  })
   
 
   const handleClose = () => {
@@ -64,6 +76,11 @@ function App() {
   };
   const [name,setName] = useState("")
   const [state, setState] = useState("Sign In")
+
+
+  function handleLogOut(){
+    setId(null)
+  }
 
 
   function responseGoogle(response){
@@ -97,7 +114,8 @@ function App() {
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {name ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li>{id ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign Out</Button> : <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign In</Button>  } </li>
+                    <li>{id ? <Button  color="secondary" onClick={handleLogOut} className={classes.signinbutton}> Sign Out</Button> : 
+                    <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign In</Button>  } </li>
       <Dialog
         open={open}
         onClose={handleClose}

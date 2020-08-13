@@ -22,6 +22,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
 import FlagIcon from '@material-ui/icons/Flag';
+import LoginDialog from "../SignInPage/LoginDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SavedBooks(props){
     const {id,setId} = useContext(userContext);
+      // const {id,setId} = useContext(userContext);
       // alert("Google id "+msg);
       // const msg = JSON.stringify(id);
       // alert(id)
@@ -73,8 +75,10 @@ function SavedBooks(props){
       const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markfinished'
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.put(markFinishedEndPoint);
+      fetchData();
       // window.location.reload(); 
       console.log("MARKED FINISHED")
+      
   }
 
   function handleUnfinished(book){
@@ -82,6 +86,7 @@ function SavedBooks(props){
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
     axios.put(markUnfinished);
     // window.location.reload(); 
+    fetchData();
     console.log("MARKED UNFINISHED")
   }
       
@@ -112,6 +117,13 @@ function SavedBooks(props){
         fetchData()
     }, [])
 
+        if(id === null){ return(
+          <div>
+           <LoginDialog/>
+           <h6>Please login to view your saved books.</h6>
+           </div>
+         ); 
+        }
         return(
           <div>
         
@@ -174,7 +186,7 @@ function SavedBooks(props){
                    {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null } */}
-          {user.savedBooks[i].isFinished == "True" ? <CheckCircleIcon fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large"  onClick={() => handleFinished({book})} ></FlagIcon> }
+          {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large"  onClick={() => handleFinished({book})} ></FlagIcon> }
                 
              
                 </div>
@@ -191,7 +203,7 @@ function SavedBooks(props){
           
         </Paper>
         </li>
-        {i+=1}
+        
         </div>
           ))}
          
