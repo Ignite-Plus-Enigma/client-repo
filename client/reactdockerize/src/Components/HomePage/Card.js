@@ -37,6 +37,8 @@ const useStyles = makeStyles({
   const classes = useStyles();
   const history = useHistory();
 
+  const [saved, setSaved] = useState(false)
+
   function handleAudio(){
     console.log(book)
     history.push(`/Audio/${book.id}/`)
@@ -45,13 +47,11 @@ const useStyles = makeStyles({
     console.log(book)
     history.push(`/PDF/${book.id}/`)
   }
-  function handleSave(){
-    console.log(book)
-    history.push(`/${book.id}/`)
-  }
   function handleUnsave(){
-    console.log(book)
-    history.push(`/${book.id}/`)
+  setSaved(false)
+  }
+  function handleSave(){
+  setSaved(true)
   }
 
   return (
@@ -78,7 +78,10 @@ const useStyles = makeStyles({
         {book.format.audio != null ? <IconButton aria-label="listen to audio book" className="icon" onClick={() => handleAudio({book})}>
           <HeadsetIcon />
         </IconButton> : null }
-        <BookmarkBorderOutlinedIcon fontSize="medium" ></BookmarkBorderOutlinedIcon>
+        <IconButton className='icon' aria-label="save the book">
+              {saved?  <BookmarkOutlinedIcon onClick={handleUnsave} fontSize="medium" /> :  <BookmarkBorderOutlinedIcon  onClick={handleSave} fontSize="medium" />}
+               </IconButton>
+        {/* <BookmarkBorderOutlinedIcon fontSize="medium" ></BookmarkBorderOutlinedIcon> */}
           {/* {user.savedBooks == "True" ? <BookmarkBorderOutlinedIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkBorderOutlinedIcon> : <BookmarkOutlinedIcon fontSize="large"  onClick={() => handleSave({book})} ></BookmarkOutlinedIcon>  } */}
         
       

@@ -24,6 +24,7 @@ import { useHistory } from "react-router-dom";
 import FlagIcon from '@material-ui/icons/Flag';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
+import LoginDialog from "../SignInPage/LoginDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -129,6 +130,13 @@ function SavedBooks(props){
     useEffect(() => {
         fetchData()
     }, [])
+    if(id === null){ return(
+      <div>
+       <LoginDialog/>
+       <h6>Please login to view your saved books.</h6>
+       </div>
+     ); 
+    }
 
         return(
           <div>
