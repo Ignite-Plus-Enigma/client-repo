@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react';
+import React, { Component,useState,useMemo, useEffect } from 'react';
 import Navbar from './Components/NavbarComponent/Navbar';
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Home from './Components/HomePage/Browse'
@@ -24,6 +24,8 @@ import {NavLink} from 'react-router-dom';
 import logo from './Components/NavbarComponent/logo.png'
 import Search from './Components/NavbarComponent/Search'
 import "./Components/NavbarComponent/Navbar.css"
+import AudioSubcategoryTrial from "./Components/AudioBooksPage/AudioSubcategoryTrial"
+import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,15 +49,29 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [id,setId] = useState(null)
+  const provideValue = useMemo(() => ({id,setId}),[id,setId]);
   const handleClickOpen = () => {
-      if(state == "Sign In"){
+      if(id == null){
           setOpen(true);
       }
-      else if(state == "Sign Out"){
-          setState("Sign In")
+      else {
+        setOpen(false);
+          setId(null);
       }
     
   };
+
+  useEffect(()=>{
+    const data = localStorage.getItem('my-id')
+    if(data){
+      setId(JSON.parse(data));
+    }
+
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem('my-id',JSON.stringify(id));
+  })
   
 
   const handleClose = () => {
@@ -63,6 +79,11 @@ function App() {
   };
   const [name,setName] = useState("")
   const [state, setState] = useState("Sign In")
+
+
+  function handleLogOut(){
+    setId(null)
+  }
 
 
   function responseGoogle(response){
@@ -81,6 +102,7 @@ function App() {
  
     return (
       <BrowserRouter>
+     {/* {alert(id)} */}
       <div className="App">
         {/* <Navbar/> */}
         <nav className="app">
@@ -95,10 +117,12 @@ function App() {
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {name ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li><Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
-
-        {state}
-      </Button></li>
+                    <li>{id === null ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
+                      Sign In 
+      </Button> : 
+      <Button  color="secondary" onClick={handleLogOut} className={classes.signinbutton}>
+      Sign Out 
+</Button> }</li>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -124,16 +148,19 @@ function App() {
                 <hr id= "horizontal-ruler"></hr>
             </nav>
         <Switch>
-        <userContext.Provider value = {id}>
-          <Route exact path="/" component={Home}/>
+        <userContext.Provider value = {provideValue}>
+        <Route exact path="/" component={Home}/>
           <Route path="/PDFBooks" component={Books}/>
           <Route path="/AudioBooks" component={AudioBooks}/>
           <Route path="/Saved" component={SavedBooks}/>
           <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
           <Route path="/SubCategory" component={SubCategory}/>
-          <Route path="/AudioSubCategory" component={AudioSubCategory}/>
-          <Route path="/Audio" component={Audio}/>
+          <Route path="/PdfSubCategory" component={PdfSubcategoryTrial}/>
+          <Route path="/AudioSubCategory" component={AudioSubcategoryTrial}/>
+          {/* <Route path="/Audio" component={Audio}/> */}
+          {/* <Route path="/AudioSubCategory" component={AudioSubCategory}/> */}
+          <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           </userContext.Provider>
         </Switch>

@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
+
 import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,6 +70,7 @@ export default function Tabs(props) {
   function handleClick(singleSub){
     history.push(`/AudioSubCategory/Text%20Books/${singleSub.singleSub}/`)
       console.log(singleSub)
+      window.location.reload()
       console.log("inside handleclick")
   }
 

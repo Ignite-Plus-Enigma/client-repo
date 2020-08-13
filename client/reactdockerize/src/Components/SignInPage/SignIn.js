@@ -11,6 +11,7 @@ import Home from "../HomePage/Browse"
 import history from "history"
 import "./signin.css"
 import { useHistory } from "react-router-dom";
+import { userContext } from '../../UserContext';
 
 
 const useStyles = makeStyles({
@@ -38,6 +39,7 @@ function SignIn(){
     const [name,setName] = useState("")
     const classes = useStyles();
     let history = useHistory();
+    const {id,setId} = useContext(userContext);
     
 
     function handleClick(){
