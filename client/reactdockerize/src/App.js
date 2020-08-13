@@ -114,7 +114,8 @@ function App() {
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {name ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li>{id ? <Button  color="secondary" onClick={handleLogOut} className={classes.signinbutton}> Sign Out</Button> : <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign In</Button>  } </li>
+                    <li>{id ? <Button  color="secondary" onClick={handleLogOut} className={classes.signinbutton}> Sign Out</Button> : 
+                    <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}> Sign In</Button>  } </li>
       <Dialog
         open={open}
         onClose={handleClose}

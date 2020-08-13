@@ -60,6 +60,32 @@ function SavedBooks(props){
     const [books,setBooks] = useState([])
     const history = useHistory();
     var i = 0
+    var j =0 
+
+    const fetchData = () => {
+
+      const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbooks'
+      const userEndPoint = "http://localhost:8050/api/v1/users/"+id
+
+      // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
+      axios.get(userSavedBooksApiEndPoint)
+      .then(response => response.data)
+      .then((data) => {
+          console.log(data);
+          setBooks(data)
+      })
+
+      axios.get(userEndPoint)
+      .then(response => response.data)
+      .then((data) => {
+        console.log("USER DATA")
+          console.log(data)
+          setUser(data)
+      })
+  }
+  useEffect(() => {
+    fetchData()
+},[])
 
     function handleAudio(book){
       console.log(book.book.id)
@@ -69,48 +95,40 @@ function SavedBooks(props){
       history.push(`/PDF/${book.book.id}/`)
     }
     function handleFinished(book){
+     
       const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markfinished'
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.put(markFinishedEndPoint);
-      window.location.reload(); 
+      // window.location.reload(); 
       console.log("MARKED FINISHED")
+      fetchData();
   }
 
   function handleUnfinished(book){
+    i=0
+    j=0
+   
     const markUnfinished = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markUnfinished'
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
     axios.put(markUnfinished);
-    window.location.reload(); 
+
     console.log("MARKED UNFINISHED")
+    fetchData();
+  }
+
+  function handleUnsave(book){
+    const unsaveBookEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/unsavebook/'+book.book.id
+    // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
+    axios.delete(unsaveBookEndPoint);
+    // window.location.reload(); 
+    console.log("book unsaved")
+    fetchData();
   }
 
       
     
 
-    const fetchData = () => {
 
-        const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1//user/'+id+'/savedbooks'
-        const userEndPoint = "http://localhost:8050/api/v1/users/"+id
-
-        // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
-        axios.get(userSavedBooksApiEndPoint)
-        .then(response => response.data)
-        .then((data) => {
-            console.log(data);
-            setBooks(data)
-        })
-
-        axios.get(userEndPoint)
-        .then(response => response.data)
-        .then((data) => {
-          console.log("USER DATA")
-            console.log(data)
-            setUser(data)
-        })
-    }
-    useEffect(() => {
-      fetchData()
-  },[])
 
 
         return(
@@ -185,7 +203,9 @@ function SavedBooks(props){
               
                <Grid item xs={1}>
                    <div>
-                <BookmarkIcon fontSize="large"  onClick={() => handleAudio({book})} ></BookmarkIcon>
+                   {console.log(user.savedBooks[j++].bookId)}
+                <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
+                
                 {/* <Typography variant="subtitle2">Save</Typography> */}
                 </div>
               </Grid>
