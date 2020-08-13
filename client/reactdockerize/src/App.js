@@ -46,7 +46,8 @@ function App() {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
-  const [id,setId] = useState(null)
+  const [id,setId] = useState(null);
+  
   const handleClickOpen = () => {
       if(id === null){
           setOpen(true);
@@ -54,7 +55,7 @@ function App() {
       }
       else {
         setOpen(false);
-          setState("Sign Out");
+          setId(null);
       }
     
   };
@@ -99,10 +100,12 @@ function App() {
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
                     {id !== null ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
-                    <li><Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
-
-        {state}
-      </Button></li>
+                    <li>{id === null ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
+                      Sign In 
+      </Button> : 
+      <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
+      Sign Out 
+</Button> }</li>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -137,7 +140,7 @@ function App() {
           <Route path="/SignIn" component={SignIn}/>
           <Route path="/SubCategory" component={SubCategory}/>
           <Route path="/AudioSubCategory" component={AudioSubCategory}/>
-          <Route path="/Audio" component={Audio}/>
+          <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           </userContext.Provider>
         </Switch>

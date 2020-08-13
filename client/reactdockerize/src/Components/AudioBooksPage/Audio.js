@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Component} from 'react';
 import Navbar from "../NavbarComponent/Navbar"
 import axios from "axios"
-
+import {userContext} from "../../UserContext"
 
 export default class AudioFile extends Component{
     constructor(props) {
@@ -25,6 +25,7 @@ export default class AudioFile extends Component{
     // ImageURi: header for gogle drive https://drive.google.com/uc?export=view&id=
     // AudioBookUri:header for book https://docs.google.com/uc?export=download&id=
     //https://docs.google.com/uc?export=download&id=
+    //https://docs.google.com/uc?export=download&id=1qbxMkviO6ka-5es6wZIu9Y8wjbGF6eSY
     //http://docs.google.com/uc?export=open&id=
     //All of the stars: https://drive.google.com/file/d/1qbxMkviO6ka-5es6wZIu9Y8wjbGF6eSY/view?usp=sharing
     
@@ -131,8 +132,18 @@ export default class AudioFile extends Component{
 
     componentWillUnmount(){
         const video = document.querySelector('.viewer');
+        const length = Math.floor(video.currentTime);
+        console.log("Length stopped is:"+length);
+        const percent = Math.floor(video.currentTime/video.duration)*100;
+        console.log("Percentage finished is:"+percent);
+        const id = this.props.googleId;
+        if(id !== null){
+            axios.post();
+            
+        }
         video.removeEventListener('timeupdate',this.progressUpdate);
         document.removeEventListener("keydown", this.handleKeyDown);
+         
     }
 
     handleRangeUpdate = (e) => {
