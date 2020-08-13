@@ -47,6 +47,20 @@ export default class PdfFile extends Component{
             })
     }
 
+    
+    componentWillUnmount(){
+        const iframe = document.getElementsByTagName('iframe');
+        console.log(iframe);
+       
+        console.log("The pageNumber element is:")
+        
+        var innerDoc = iframe.contentDocument;
+        console.log("Inside Iframe");
+        
+        console.log("The page is:");
+        
+    }
+
     render(){
         return (
             <div>
@@ -54,7 +68,7 @@ export default class PdfFile extends Component{
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
                 <h6 className = "audio-book-genre">{this.state.genre}</h6>
-                <iframe  id = "iframe" src={this.state.bookUri} class="pdf-book-view"></iframe>
+                <iframe id = "iframe" src={this.state.bookUri} class="pdf-book-view"></iframe>
                 <div>
                     <h5 className="book-recommendation-heading">Description</h5>
                     <p className = "audio-description">
