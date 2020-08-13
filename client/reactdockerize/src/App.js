@@ -25,6 +25,8 @@ import logo from './Components/NavbarComponent/logo.png'
 import Search from './Components/NavbarComponent/Search'
 import "./Components/NavbarComponent/Navbar.css"
 import {userContext} from "./UserContext"
+import AudioSubcategoryTrial from './Components/AudioBooksPage/AudioSubcategoryTrial';
+import PdfSubcategoryTrial from './Components/PDFBooksPage/PdfSubCategoryTrial';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -132,7 +134,8 @@ function App() {
           <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
           <Route path="/SubCategory" component={SubCategory}/>
-          <Route path="/AudioSubCategory" component={AudioSubCategory}/>
+          <Route path="/PdfSubCategory" component={PdfSubcategoryTrial}/>
+          <Route path="/AudioSubCategory" component={AudioSubcategoryTrial}/>
           <Route path="/Audio" component={Audio}/>
           <Route path="/PDF" component={PdfFile}/>
           </userContext.Provider>

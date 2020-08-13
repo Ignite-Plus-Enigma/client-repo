@@ -13,6 +13,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import HeadsetIcon from '@material-ui/icons/Headset';
+import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
+import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 
 
 const useStyles = makeStyles({
@@ -43,6 +45,14 @@ const useStyles = makeStyles({
     console.log(book)
     history.push(`/PDF/${book.id}/`)
   }
+  function handleSave(){
+    console.log(book)
+    history.push(`/${book.id}/`)
+  }
+  function handleUnsave(){
+    console.log(book)
+    history.push(`/${book.id}/`)
+  }
 
   return (
     <Card className={classes.root}>
@@ -68,6 +78,9 @@ const useStyles = makeStyles({
         {book.format.audio != null ? <IconButton aria-label="listen to audio book" className="icon" onClick={() => handleAudio({book})}>
           <HeadsetIcon />
         </IconButton> : null }
+        <BookmarkBorderOutlinedIcon fontSize="medium" ></BookmarkBorderOutlinedIcon>
+          {/* {user.savedBooks == "True" ? <BookmarkBorderOutlinedIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkBorderOutlinedIcon> : <BookmarkOutlinedIcon fontSize="large"  onClick={() => handleSave({book})} ></BookmarkOutlinedIcon>  } */}
+        
       
         </CardActions>
       </CardActionArea>
