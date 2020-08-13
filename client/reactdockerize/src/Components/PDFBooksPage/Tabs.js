@@ -79,7 +79,7 @@ export default function Tabs(props) {
         {mainCategories.map(singleSub=>(
     //  <Grid item xs={3}>
             // 
-            <Button color="primary" onClick={() => handleClick({singleSub})} activeClassName="current">{singleSub}</Button>
+            <Button variant="outlined" color="secondary"   onClick={() => handleClick({singleSub})}  >{singleSub}</Button>
         // </Grid>
         // <li>{singleSub}</li>
         ))}
