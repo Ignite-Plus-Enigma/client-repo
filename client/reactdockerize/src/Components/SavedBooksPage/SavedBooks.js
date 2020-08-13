@@ -22,6 +22,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
 import FlagIcon from '@material-ui/icons/Flag';
+import LoginDialog from "../SignInPage/LoginDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,6 +57,10 @@ function SavedBooks(props){
     console.log("HERE IS THE ID")
     console.log(id)
     const [user,setUser] = useState(null)
+      // const {id,setId} = useContext(userContext);
+      // alert("Google id "+msg);
+      // const msg = JSON.stringify(id);
+      // alert(id)
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const history = useHistory();
@@ -99,9 +104,10 @@ function SavedBooks(props){
       const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markfinished'
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.put(markFinishedEndPoint);
+      fetchData();
       // window.location.reload(); 
       console.log("MARKED FINISHED")
-      fetchData();
+      
   }
 
   function handleUnfinished(book){
@@ -112,8 +118,9 @@ function SavedBooks(props){
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
     axios.put(markUnfinished);
 
-    console.log("MARKED UNFINISHED")
+    // window.location.reload(); 
     fetchData();
+    console.log("MARKED UNFINISHED")
   }
 
   function handleUnsave(book){
@@ -131,6 +138,13 @@ function SavedBooks(props){
 
 
 
+        if(id === null){ return(
+          <div>
+           <LoginDialog/>
+           <h6>Please login to view your saved books.</h6>
+           </div>
+         ); 
+        }
         return(
           <div>
         
@@ -214,7 +228,7 @@ function SavedBooks(props){
           
         </Paper>
         </li>
-       
+        
         </div>
           ))}
          
