@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 export default function LoginDialog(){
     const [open, setOpen] = React.useState(true);
     const {id,setId} = useContext(userContext);
+    // const id = props.id
     const handleClose = () => {
         setOpen(false);
     };
