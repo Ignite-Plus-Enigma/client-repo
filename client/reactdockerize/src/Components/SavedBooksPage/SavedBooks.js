@@ -23,6 +23,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
 import FlagIcon from '@material-ui/icons/Flag';
 import LoginDialog from "../SignInPage/LoginDialog";
+import green from '@material-ui/core/colors/green';
+import red from '@material-ui/core/colors/red';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -148,7 +151,7 @@ function SavedBooks(props){
         return(
           <div>
         
-          <h2>Saved Books</h2>
+          {/* <h2>Saved Books</h2> */}
   
           <div className={classes.root}>
       {console.log(books)}
@@ -209,7 +212,7 @@ function SavedBooks(props){
                    {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null } */}
-          {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large"  onClick={() => handleFinished({book})} ></FlagIcon> }
+          {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> }
                 
              
                 </div>

@@ -1,10 +1,11 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect,useContext} from "react";
 import MediaCard from "./Card";
 import axios from "axios";
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Audio from "../AudioBooksPage/Audio"
 import SubCategory from "../PDFBooksPage/SubCategory"
 import {NavLink} from 'react-router-dom';
+import {userContext} from "../../UserContext"
 
 import {BrowserRouter,Route,Switch,Router} from 'react-router-dom';
 import ReactDOM from "react-dom";
@@ -18,6 +19,7 @@ const [flag, setFlag] = useState(false)
 const [books,setBooks] = useState([])
 const [bookId,setBookId] =useState(0)
 const [activeBook, setActiveBook] = useState();
+const {id,setId} = useContext(userContext);
 
   const fetchdata = () =>{
     if(props.forapicall === "recentlyadded"){
@@ -56,6 +58,17 @@ const [activeBook, setActiveBook] = useState();
                           setBooks(data);
                              
                       })
+                    }
+
+                    else if(props.forapicall ==="continuereading"){
+                      const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
+                      axios.get(apiendpoint)
+                              .then(response =>response.data)
+                              .then((data)=>{
+                                  setBooks(data);
+                                     
+                              })
+                             
                     }
 
     }

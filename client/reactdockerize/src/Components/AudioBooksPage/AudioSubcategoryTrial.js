@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react"
+import React,{useEffect,useState,useContext} from "react"
 import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -15,6 +15,9 @@ import { withRouter } from 'react-router';
 import Tabs from '../PDFBooksPage/Tabs'
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
+import {userContext} from "../../UserContext"
+import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
+import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 // import history from "history"
 
 
@@ -54,6 +57,8 @@ export default function AudioSubcategoryTrial(props){
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const history = useHistory();
+    const {id,setId} = useContext(userContext);
+    const[saved,setSaved] = useState(false)
     const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
     function handleAudio(book){
       console.log(book.book.id)
@@ -65,6 +70,18 @@ export default function AudioSubcategoryTrial(props){
       // eslint-disable-next-line no-restricted-globals
       history.push(`/PDF/${book.book.id}/`)
     }
+    function handleSave(book){
+      if(id!=null){
+        const saveBookEndPoint = 'http://localhost:8050/api/v1/user/' + id+ '/savebook'
+        axios.post(saveBookEndPoint,{"bookId" : book.book.id, "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],"isFinished":"False"})
+        fetchData();
+      }
+      setSaved(true)
+
+    }
+    function handleUnsave(){
+      setSaved(false)
+      }
 
     const fetchData = () => {
         console.log(props.location.pathname)
@@ -158,7 +175,7 @@ export default function AudioSubcategoryTrial(props){
              <Grid item xs={4}>
                  <div>
                    <IconButton aria-label="save the book">
-              <BookmarkBorderIcon fontSize="large" />
+                   {saved?  <BookmarkOutlinedIcon  onClick={() => handleUnsave({book})} fontSize="medium" /> :  <BookmarkBorderOutlinedIcon  onClick={() => handleSave({book})} fontSize="medium" />}
               </IconButton>
              </div>
             </Grid>
