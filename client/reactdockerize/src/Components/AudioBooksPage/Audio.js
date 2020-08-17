@@ -8,7 +8,7 @@ export default class AudioFile extends Component{
     constructor(props) {
         super(props);
         // const apiendpoint = this.props.location.pathname;
-        console.log("Hi")
+      
         this.state = {
             toggleButton:"►",
             currentTime:0,
@@ -33,7 +33,7 @@ export default class AudioFile extends Component{
     
     playAudio = () => {
         const audioEl = document.querySelector(".viewer");
-        console.log("Button prssed");
+        console.log("Button pressed");
         if(audioEl.paused){
             if(this.state.progress !== null ){
                 audioEl.currentTime=this.state.progress;
@@ -103,7 +103,7 @@ export default class AudioFile extends Component{
                     author:data.author,
                     genre:data.category,
                     imageUri:data.bookImage,
-                    bookUri:data.format[1].url,
+                    bookUri:data.format[0].url,
                     description:data.description
                     });
                     console.log("HERE IS THE DATA")
@@ -130,12 +130,12 @@ export default class AudioFile extends Component{
                 console.log(this.state.savedBooks)
 
                 this.state.savedBooks.map((book) =>{
-                    if(book.bookId === uniqueId){
-                        this.setState({progress: book.progress[0].percentage})
+                    if(book.bookId == uniqueId){
+                        this.setState({progress: book.progress[0].length})
+                        
                     }
                 })
-                console.log("THE PROGRES IS ")
-                console.log(this.state.progress)
+             
 
             }
              
@@ -182,7 +182,7 @@ export default class AudioFile extends Component{
         const id = this.props.googleId;
         if(id !== null){
             const savedBookProgressEndPoint = "http://localhost:8050/api/v1/user/"+ id +"/savedbook/" +uniqueId+"/progress"
-            axios.put(savedBookProgressEndPoint,{"format" : "Audio", "percentage":length})
+            axios.put(savedBookProgressEndPoint,{"format" : "Audio", "length":length,"remaining":0})
             
         }
         video.removeEventListener('timeupdate',this.progressUpdate);

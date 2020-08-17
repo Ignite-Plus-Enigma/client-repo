@@ -23,7 +23,7 @@ function Pdf(props){
             setGenre(data.category);
             setAuthor(data.author)
             setImageUri(data.bookImage)
-            setBookUri(data.format.pdf.url)
+            setBookUri(data.format[1].url)
             setDescription(data.description)
         })
 

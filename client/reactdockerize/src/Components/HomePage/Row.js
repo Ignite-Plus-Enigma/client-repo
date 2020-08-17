@@ -61,16 +61,16 @@ const {id,setId} = useContext(userContext);
                       })
                     }
 
-                    // else if(props.forapicall ==="continuereading"){
-                    //   const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
-                    //   axios.get(apiendpoint)
-                    //           .then(response =>response.data)
-                    //           .then((data)=>{
-                    //               setBooks(data);
+                    else if(props.forapicall ==="continuereading"){
+                      const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
+                      axios.get(apiendpoint)
+                              .then(response =>response.data)
+                              .then((data)=>{
+                                  setBooks(data);
                                      
-                    //           })
+                              })
                              
-                    // }
+                    }
 
     }
     
