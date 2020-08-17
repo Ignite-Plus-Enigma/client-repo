@@ -27,6 +27,7 @@ import "./Components/NavbarComponent/Navbar.css"
 import AudioSubcategoryTrial from "./Components/AudioBooksPage/AudioSubcategoryTrial"
 import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
+import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -108,6 +109,8 @@ function App() {
   
  
     return (
+      <div>
+      <PDFTrail/>
       <BrowserRouter>
      {/* {alert(id)} */}
       <div className="App">
@@ -173,6 +176,7 @@ function App() {
         </Switch>
       </div>
       </BrowserRouter>
+      </div>
     );
   
 }
