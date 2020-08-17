@@ -175,7 +175,7 @@ export default function AudioSubcategoryTrial(props){
              <Grid item xs={4}>
                  <div>
                    <IconButton aria-label="save the book">
-                   {saved?  <BookmarkOutlinedIcon  onClick={() => handleUnsave({book})} fontSize="medium" /> :  <BookmarkBorderOutlinedIcon  onClick={() => handleSave({book})} fontSize="medium" />}
+                   {saved?  <BookmarkOutlinedIcon  onClick={() => handleUnsave({book})} fontSize="large" /> :  <BookmarkBorderOutlinedIcon  onClick={() => handleSave({book})} fontSize="large" />}
               </IconButton>
              </div>
             </Grid>
