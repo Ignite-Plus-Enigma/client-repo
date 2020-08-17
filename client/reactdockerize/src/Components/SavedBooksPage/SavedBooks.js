@@ -129,7 +129,7 @@ function SavedBooks(props){
   function handleUnsave(book){
     const unsaveBookEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/unsavebook/'+book.book.id
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
-    axios.delete(unsaveBookEndPoint);
+    axios.put(unsaveBookEndPoint);
     // window.location.reload(); 
     console.log("book unsaved")
     fetchData();

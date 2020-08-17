@@ -63,14 +63,20 @@ function App() {
 
   useEffect(()=>{
     const data = localStorage.getItem('my-id')
+    const data_name = localStorage.getItem('my-name')
     if(data){
       setId(JSON.parse(data));
+    }
+    if(data_name){
+      setName(JSON.parse(data_name));
+      
     }
 
   },[])
 
   useEffect(()=>{
     localStorage.setItem('my-id',JSON.stringify(id));
+    localStorage.setItem('my-name',JSON.stringify(name));
   })
   
 
