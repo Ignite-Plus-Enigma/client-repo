@@ -103,7 +103,7 @@ const useStyles = makeStyles({
           <Typography  variant="subTitle1"  component="h6"   noWrap >
       {props.title} 
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" >
+          <Typography variant="body2" color="textSecondary" component="p" noWrap >
          {props.author}
           </Typography>
           </CardContent>
