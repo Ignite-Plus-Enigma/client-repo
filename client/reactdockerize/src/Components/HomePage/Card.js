@@ -66,13 +66,6 @@ const useStyles = makeStyles({
        <h6>Please login to view your saved books.</h6>
        </div>
      );
-    // ReactDOM.render(
-    //   <React.StrictMode>
-    
-    //     <LoginDialog id = {id}/>
-    //   </React.StrictMode>,
-    //   document.getElementById('root')
-    // );
     } 
      else{
        setSaved(true)
@@ -86,7 +79,7 @@ const useStyles = makeStyles({
 
     const saveBookEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savebook/'
     axios.post(saveBookEndPoint,{ "bookId" : book.book.id,
-    "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],
+    "progress":[{"format":"Audio","length":0,"remaining" : 0},{"format":"PDF","length":0,"remaining" : 0}],
     "isFinished":"False"})
     .then(res => {
       console.log(res);
@@ -113,10 +106,10 @@ const useStyles = makeStyles({
           </CardContent>
           <CardActions disableSpacing>
           {console.log(book.format.pdf)}
-          {book.format.pdf != null ? <IconButton aria-label="read pdf book" className="icon"   onClick={() => handlePdf({book})}>
+          {book.format[1].url != null ? <IconButton aria-label="read pdf book" className="icon"   onClick={() => handlePdf({book})}>
           <PictureAsPdfIcon />
         </IconButton> : null }
-        {book.format.audio != null ? <IconButton aria-label="listen to audio book" className="icon" onClick={() => handleAudio({book})}>
+        {book.format[0].url!=null ? <IconButton aria-label="listen to audio book" className="icon" onClick={() => handleAudio({book})}>
           <HeadsetIcon />
         </IconButton> : null }
         <IconButton className='icon' aria-label="save the book">

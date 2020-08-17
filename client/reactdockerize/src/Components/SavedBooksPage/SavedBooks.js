@@ -73,7 +73,7 @@ function SavedBooks(props){
     const fetchData = () => {
 
       const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbooks'
-      const userEndPoint = "http://localhost:8050/api/v1/users/"+id
+      const userEndPoint = "http://localhost:8050/api/v1/user/"+id
 
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.get(userSavedBooksApiEndPoint)
@@ -192,7 +192,7 @@ function SavedBooks(props){
               <Grid item xs={1}>
                   <div>
                      
-                      {book.format.pdf != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+                      {book.format[1] != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
             <PictureAsPdfIcon fontSize="large" />
           </IconButton> : null }
          
@@ -201,7 +201,7 @@ function SavedBooks(props){
                <Grid item xs={1}>
                     <div>
               
-                    {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+                    {book.format[0] != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null }
                    </div>

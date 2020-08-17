@@ -83,6 +83,7 @@ function App() {
 
   function handleLogOut(){
     setId(null)
+    localStorage.setItem('my-id',JSON.stringify(id));
   }
 
 
@@ -115,7 +116,7 @@ function App() {
                     <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
-                    {name ?<li>Hello, {name}</li>: null}
+                    {id ?<li>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li>{id === null ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
                       Sign In 
