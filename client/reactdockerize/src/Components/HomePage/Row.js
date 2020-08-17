@@ -33,10 +33,11 @@ const {id,setId} = useContext(userContext);
             })
           }
     else if(props.forapicall === "textbooks"){
-      const apiendpoint = "http://localhost:8050/api/v1/books/category/TextBooks"
+      const apiendpoint = "http://localhost:8050/api/v1/books/category/Textbooks"
       axios.get(apiendpoint)
               .then(response =>response.data)
               .then((data)=>{
+                console.log(data)
                   setBooks(data);
                      
               })
@@ -60,16 +61,16 @@ const {id,setId} = useContext(userContext);
                       })
                     }
 
-                    else if(props.forapicall ==="continuereading"){
-                      const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
-                      axios.get(apiendpoint)
-                              .then(response =>response.data)
-                              .then((data)=>{
-                                  setBooks(data);
+                    // else if(props.forapicall ==="continuereading"){
+                    //   const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
+                    //   axios.get(apiendpoint)
+                    //           .then(response =>response.data)
+                    //           .then((data)=>{
+                    //               setBooks(data);
                                      
-                              })
+                    //           })
                              
-                    }
+                    // }
 
     }
     
@@ -80,33 +81,17 @@ const {id,setId} = useContext(userContext);
     fetchdata()
   },[])
 
-  function handleClick(book){
-    console.log("The book is")
-    console.log(book)
-    const rootElement = document.getElementById("root");
-    ReactDOM.render(
-      <React.StrictMode>
-        <Audio id={book.book.id} />
-      </React.StrictMode>,
-      rootElement
-    );
-
-}
 
 
 
 
   return (
     <div>
-    <BrowserRouter>
-        <Switch>
-          <Route exact path="Audio/" component={Audio}/>
-        </Switch>
-      </BrowserRouter>
     
     <div><h2 id="browse-heading">{props.name} </h2>
         <div class="row">
-        {books.map((book)=>(
+    
+    {      books.map((book)=>(
           
           <div class="column">
           {/* <ButtonBase

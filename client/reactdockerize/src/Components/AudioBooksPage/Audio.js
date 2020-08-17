@@ -103,7 +103,7 @@ export default class AudioFile extends Component{
                     author:data.author,
                     genre:data.category,
                     imageUri:data.bookImage,
-                    bookUri:data.format.audio.url,
+                    bookUri:data.format[1].url,
                     description:data.description
                     });
                     console.log("HERE IS THE DATA")
@@ -113,7 +113,7 @@ export default class AudioFile extends Component{
             })
 
         if(id !== null){
-            const userEndPoint = "http://localhost:8050/api/v1/users/"+id
+            const userEndPoint = "http://localhost:8050/api/v1/user/"+id
             axios.get(userEndPoint)
             .then(response =>response.data)
             .then((data)=>{
