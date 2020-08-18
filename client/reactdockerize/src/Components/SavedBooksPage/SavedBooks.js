@@ -192,7 +192,7 @@ function SavedBooks(props){
               <Grid item xs={1}>
                   <div>
                      
-                      {book.format[1] != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+                      {book.format[1].url != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
             <PictureAsPdfIcon fontSize="large" />
           </IconButton> : null }
          
@@ -201,7 +201,7 @@ function SavedBooks(props){
                <Grid item xs={1}>
                     <div>
               
-                    {book.format[0] != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+                    {book.format[0].url != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null }
                    </div>

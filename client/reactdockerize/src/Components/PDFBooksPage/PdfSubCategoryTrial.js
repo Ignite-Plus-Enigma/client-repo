@@ -143,7 +143,7 @@ export default function AudioSubcategoryTrial(props){
                 <div>
                     {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
                     <Typography variant="subtitle2">Read</Typography> */}
-                    {book.format.pdf != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+                    {book.format[1].url != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
           <PictureAsPdfIcon fontSize="large"/>
         </IconButton> : null }
        
@@ -151,7 +151,7 @@ export default function AudioSubcategoryTrial(props){
             </Grid>
              <Grid item xs={4}>
                   <div>
-          {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          {book.format[0].url != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
           <HeadsetIcon fontSize="large"/>
         </IconButton> : null }
                  </div>
