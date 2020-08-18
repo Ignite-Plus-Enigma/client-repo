@@ -180,9 +180,10 @@ export default class AudioFile extends Component{
         const percent = Math.floor(video.currentTime/video.duration)*100;
         console.log("Percentage finished is:"+percent);
         const id = this.props.googleId;
+        const remaining = Math.floor(video.duration - video.currentTime);
         if(id !== null){
             const savedBookProgressEndPoint = "http://localhost:8050/api/v1/user/"+ id +"/savedbook/" +uniqueId+"/progress"
-            axios.put(savedBookProgressEndPoint,{"format" : "Audio", "length":length,"remaining":0})
+            axios.put(savedBookProgressEndPoint,{"format" : "Audio", "length":length,"remaining":remaining})
             
         }
         video.removeEventListener('timeupdate',this.progressUpdate);
