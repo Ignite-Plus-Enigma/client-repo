@@ -1,162 +1,191 @@
 [
-    {
-        "id": "9 ",
-        "name": "Statistical Mechanics ",
-        "isbn": " 97-208-718-94",
-        "author": "Dr Alfred Huan ",
-        "format": [
-            {   "type":"Audio",
-                "url": "https://drive.google.com/uc?export=view&id=1DBqcIAGf77RYMkXH60H-HCE_JF5iDTo5"
-            },
-            {   "type":"pdf",
-                "url": "https://drive.google.com/uc?export=view&id=1ZjuVx09msh_Ygpef29SJrVmNADmc2ivR"
-            }
-        ],
-        "language": "English ",
-        "bookImage": " https://drive.google.com/uc?export=view&id=1FBVAsB1zRGLdTT-OxWYGVFyj_sUTPj1j",
-        "description": " A textbook for statical mechanics",
-        "views": 11,
-        "category": "Textbooks",
-        "subCategory": [
-            " Physics"
-        ],
-        "rating": 2
-    },
-    {
-        "id": "7",
-        "name": "Abe the service dog",
-        "isbn": "456-098-948-97",
-        "author": "T.Albert",
-        "format": {
-            "pdf": {
-                "url": "https://drive.google.com/uc?export=view&id=1liGWXNRlO0srUC6AQQtcKhepDzHJuVW3"
-            },
-            "audio": {
-                "url": "https://drive.google.com/uc?export=view&id=1m7SqrxcbAxKyDUfYzcKP9Rbn1EMJl9QH"
-            }
-        },
-        "language": " English",
-        "bookImage": "https://drive.google.com/uc?export=view&id=18SbDjpJSjQzaxPZIdtcXsHcLN7bAA0Ho",
-        "description": "A story about a dog called Abe who is a service dog at town",
-        "views": 7,
-        "category": "Children",
-        "subCategory": [
-            "Story books",
-            "Kindergarten"
-        ],
-        "rating": 3
-    },
-    {
-        "id": "6",
-        "name": "Doing my chores",
-        "isbn": "456-098-948-97",
-        "author": "T.Albert",
-        "format": {
-            "pdf": {
-                "url": "https://drive.google.com/uc?export=view&id=1liGWXNRlO0srUC6AQQtcKhepDzHJuVW3"
-            },
-            "audio": {
-                "url": "https://drive.google.com/uc?export=view&id=1m7SqrxcbAxKyDUfYzcKP9Rbn1EMJl9QH"
-            }
-        },
-        "language": " English",
-        "bookImage": "https://drive.google.com/uc?export=view&id=1gbEgSZ8bTO9JiioNB4qTtuph317w2Wn_",
-        "description": "A story about a girl who does her own chores",
-        "views": 4,
-        "category": "Children",
-        "subCategory": [
-            "Story books",
-            "Kindergarten"
-        ],
-        "rating": 5
-    },
-    {
-        "id": "5",
-        "name": "Ginger the Giraffe",
-        "isbn": "567-877-876-98",
-        "author": "T.Albert",
-        "format": {
-            "pdf": {
-                "url": "https://drive.google.com/uc?export=view&id=1liGWXNRlO0srUC6AQQtcKhepDzHJuVW3"
-            },
-            "audio": {
-                "url": "https://drive.google.com/uc?export=view&id=1m7SqrxcbAxKyDUfYzcKP9Rbn1EMJl9QH"
-            }
-        },
-        "language": " English",
-        "bookImage": "https://drive.google.com/uc?export=view&id=1X6ne4_YM2L7fylTWXMJALwNljWoZIfAB",
-        "description": "A story of a Giraffe called Ginger who lives in Africa",
-        "views": 8,
-        "category": "Children",
-        "subCategory": [
-            "Story books"
-        ],
-        "rating": 2
-    },
-    {
-        "id": "4",
-        "name": "Hilda",
-        "isbn": "567-897-973-49",
-        "author": "Luke Pearson",
-        "format": {
-            "audio": {
-                "url": "https://drive.google.com/uc?export=view&id=1HZQ7Wb0-Kapv2d804x87rtLCaPbc9lVh"
-            }
-        },
-        "language": " English",
-        "bookImage": "https://drive.google.com/uc?export=view&id=1Y_Qmxa4Q_RF_VkxW-VcoVdZZjinyGDxw",
-        "description": "The main character Hilda is a small girl, who in the first two lives with her mother in a cottage on a plain surrounded by mountains and forests, but later moves to the city Trolberg. Hilda's world is inhabited by regular people and fantastical creatures like trolls, giants, elves and spirits",
-        "views": 6,
-        "category": "Children",
-        "subCategory": [
-            "Comics"
-        ],
-        "rating": 3
-    },
-    {
-        "id": "24",
-        "name": "Optics ",
-        "isbn": "98-654-654-15 ",
-        "author": "Nelson ",
-        "format": {
-            "pdf": {
-                "url": "https://drive.google.com/uc?export=view&id=1adBcOUn9N4oVvn6zK-VjIiBNb8mai_V-"
-            },
-            "audio": {
-                "url": "https://drive.google.com/uc?export=view&id=1zUGmNx7qK9mos-ok6-Aeplh0sz4HAlwH"
-            }
-        },
-        "language": " English",
-        "bookImage": " https://drive.google.com/uc?export=view&id=1FBVAsB1zRGLdTT-OxWYGVFyj_sUTPj1j",
-        "description": "A audible on Optics ",
-        "views": 3,
-        "category": "Textbooks",
-        "subCategory": [
-            "Physics "
-        ],
-        "rating": 2
-    },
-    {
-        "id": "20",
-        "name": "Quantum Mechanism ",
-        "isbn": " 89-764-184-81",
-        "author": " Brian Greene",
-        "format": {
-            "pdf": {
-                "url": "https://drive.google.com/uc?export=view&id=1sbhabVfpYDthUX-x6_4X1X_hYLl3jEKs"
-            },
-            "audio": {
-                "url": "https://drive.google.com/uc?export=view&id=1yLW4xyPFNDq_7gLHsI383LEbRLDAQyeh"
-            }
-        },
-        "language": " English",
-        "bookImage": "https://drive.google.com/uc?export=view&id=1x2ncIYBtbQo8uVz50M2oR7IvIMHZp0ak",
-        "description": " A audible on Quantum Mechanism",
-        "views": 2,
-        "category": "Textbooks",
-        "subCategory": [
-            "Physics "
-        ],
-        "rating": 1
-    }
+  {
+    "id": 8,
+    "name": "Astronomy",
+    "isbn": "996-56-045-61",
+    "author": "Alain J. Brizard",
+    "format": [
+      {
+        "type": "Audio",
+        "url": "https://drive.google.com/uc?export=view&id=1zUGmNx7qK9mos-ok6-Aeplh0sz4HAlwH"
+      },
+      {
+        "type": "PDF",
+        "url": "https://drive.google.com/uc?export=view&id=1sbhabVfpYDthUX-x6_4X1X_hYLl3jEKs"
+      }
+    ],
+    "language": " English",
+    "bookImage": "https://drive.google.com/uc?export=view&id=1bwfE2Es-J1AR7bRoQQFttzBPhmh2WgEQ",
+    "description": " Physics Atronomy textbook",
+    "views": 10,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      " Physics"
+    ],
+    "rating": 3
+  },
+  {
+    "id": 9,
+    "name": "Physics 150 ",
+    "isbn": "78-996-246-12",
+    "author": "Michel van Veenendaal",
+    "format": [
+      {
+        "type": "Audio",
+        "url": null
+      },
+      {
+        "type": "PDF",
+        "url": "https://drive.google.com/uc?export=view&id=1adBcOUn9N4oVvn6zK-VjIiBNb8mai_V-"
+      }
+    ],
+    "language": " English",
+    "bookImage": "https://drive.google.com/uc?export=view&id=1upDK4EzaqH_4XIO09obz-JPkgGB5an9X ",
+    "description": " A book by Michel van Veenendaal",
+    "views": 9,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      " Physics"
+    ],
+    "rating": 4
+  },
+  {
+    "id": 10,
+    "name": "Statistical Mechanics",
+    "isbn": "97-208-718-94",
+    "author": "Dr Alfred Huan ",
+    "format": [
+      {
+        "type": "Audio",
+        "url": "https://drive.google.com/uc?export=view&id=1ZjuVx09msh_Ygpef29SJrVmNADmc2ivR"
+      },
+      {
+        "type": "PDF",
+        "url": "https://drive.google.com/uc?export=view&id=1DBqcIAGf77RYMkXH60H-HCE_JF5iDTo5"
+      }
+    ],
+    "language": "English ",
+    "bookImage": " https://drive.google.com/uc?export=view&id=1FBVAsB1zRGLdTT-OxWYGVFyj_sUTPj1j",
+    "description": " A textbook for statical mechanics",
+    "views": 11,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      " Physics"
+    ],
+    "rating": 2
+  },
+  {
+    "id": 11,
+    "name": " Thermodynamis",
+    "isbn": " 94-332-018-49",
+    "author": " Dr Alfred Huan ",
+    "format": [
+      {
+        "type": "Audio",
+        "url": "https://drive.google.com/uc?export=view&id=1PTZ3vnnmOzxO-rp3f3cGBSl3fMDSHNwJ"
+      },
+      {
+        "type": "PDF",
+        "url": null
+      }
+    ],
+    "language": " English",
+    "bookImage": "https://drive.google.com/uc?export=view&id=1r0E1WynV4cltf869V_oYQr5q_bYdpwb9 ",
+    "description": "A book for thermodynamics by Dr Alfred Huan ",
+    "views": 6,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      "Physics "
+    ],
+    "rating": 3
+  },
+  {
+    "id": 21,
+    "name": "Quantum Mechanism ",
+    "isbn": " 89-764-184-81",
+    "author": " Brian Greene",
+    "format": [
+      {
+        "type": "Audio",
+        "url": " https://drive.google.com/uc?export=view&id=1PTZ3vnnmOzxO-rp3f3cGBSl3fMDSHNwJ"
+      },
+      {
+        "type": "PDF",
+        "url": "https://drive.google.com/uc?export=view&id=1sbhabVfpYDthUX-x6_4X1X_hYLl3jEKs"
+      }
+    ],
+    "language": " English",
+    "bookImage": "https://drive.google.com/uc?export=view&id=1x2ncIYBtbQo8uVz50M2oR7IvIMHZp0ak",
+    "description": " A audible on Quantum Mechanism",
+    "views": 2,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      "Physics "
+    ],
+    "rating": 1
+  },
+  {
+    "id": 22,
+    "name": " Atomic Physics",
+    "isbn": " 65-478-219-43",
+    "author": " Perutz M F",
+    "format": [
+      {
+        "type": "Audio",
+        "url": " https://drive.google.com/uc?export=view&id=1PTZ3vnnmOzxO-rp3f3cGBSl3fMDSHNwJ"
+      },
+      {
+        "type": "PDF",
+        "url": "https://drive.google.com/uc?export=view&id=1adBcOUn9N4oVvn6zK-VjIiBNb8mai_V-"
+      }
+    ],
+    "language": " English",
+    "bookImage": "https://drive.google.com/uc?export=view&id=1upDK4EzaqH_4XIO09obz-JPkgGB5an9X ",
+    "description": "A audible on Atomic Physics ",
+    "views": 5,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      "Physics"
+    ],
+    "rating": 2
+  },
+  {
+    "id": 23,
+    "name": "Molecular Physics ",
+    "isbn": "3-623-896-32 ",
+    "author": " Cantor",
+    "format": [
+      {
+        "type": "Audio",
+        "url": "https://drive.google.com/uc?export=view&id=1ZjuVx09msh_Ygpef29SJrVmNADmc2ivR"
+      },
+      {
+        "type": "PDF",
+        "url": null
+      }
+    ],
+    "language": "English ",
+    "bookImage": "https://drive.google.com/uc?export=view&id=1r0E1WynV4cltf869V_oYQr5q_bYdpwb9",
+    "description": "A audible on Molecular Physics ",
+    "views": 9,
+    "category": [
+      "Textbooks"
+    ],
+    "subCategory": [
+      "Physics "
+    ],
+    "rating": 3
+  }
 ]

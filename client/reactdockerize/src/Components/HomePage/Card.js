@@ -1,6 +1,7 @@
 import React,{useState,useContext,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import GoogleLogin from "react-google-login";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -17,6 +18,9 @@ import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 import {userContext} from "../../UserContext"
 import LoginDialog from "../SignInPage/LoginDialog";
 import axios from "axios"
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import ReactDOM from 'react-dom';
 
 
@@ -45,8 +49,28 @@ const useStyles = makeStyles({
   const history = useHistory();
   const {id,setId} = useContext(userContext);
   const[saved,setSaved] = useState(false)
-
+  const [open, setOpen] = useState(false);
   const [savedbook, setSavedBook] = useState(null)
+
+  function responseGoogle(response){
+
+      console.log(response.profileObj)
+      //setName(response.profileObj.name)
+      setOpen(false)
+      const x = response.profileObj.googleId;
+      setId(x)
+      const saveUserEndPoint = "http://localhost:8050/api/v1/user/save"
+  
+      axios.post(saveUserEndPoint,{
+        "googleId":response.profileObj.googleId,
+         "savedBooks":[],
+         "role":"User"
+      })
+  }
+
+  function failedLogin(response){
+      console.log("Login failed!")
+  }
 
   function handleAudio(){
     console.log(book)
@@ -60,19 +84,18 @@ const useStyles = makeStyles({
   setSaved(false)
   }
 
+const handleCloseDialog = () => {
+    setOpen(false);
+  }; 
+
   function handleSave(book){
     if(id === null){ 
-      console.log("Entered")
-      return(
-      <div>
-       <LoginDialog/>
-       <h6>Please login to view your saved books.</h6>
-       </div>
-     );
+      setOpen(true);
     } 
      else{
        setSaved(true)
        fetchData(book);
+       setOpen(false);
      }
   
   }
@@ -92,6 +115,7 @@ const useStyles = makeStyles({
 }
 
   return (
+    <div>
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -125,6 +149,27 @@ const useStyles = makeStyles({
                </CardActions>
        
     </Card>
+
+    <Dialog
+        open={open}
+        onClose={handleCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Have a Google Account?"}
+        </DialogTitle>
+        <DialogActions>
+          <GoogleLogin
+            clientId="992798065124-l39cdadgtpb6l4ikt8nf4m909vspjnr0.apps.googleusercontent.com"
+            buttonText="Sign In With Google"
+            onSuccess={responseGoogle}
+            onFailure={failedLogin}
+            cookiePolicy={"single_host_origin"}
+          />
+        </DialogActions>
+      </Dialog>
+      </div>
   );
 }
  
