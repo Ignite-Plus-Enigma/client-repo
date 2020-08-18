@@ -28,6 +28,7 @@ import AudioSubcategoryTrial from "./Components/AudioBooksPage/AudioSubcategoryT
 import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
+import SearchGrid from "./Components/SearchResultPage/SearchGrid"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
@@ -181,6 +182,7 @@ function App() {
           {/* <Route path="/AudioSubCategory" component={AudioSubCategory}/> */}
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
+          <Route path="/Search" component={SearchGrid}/>
           </userContext.Provider>
         </Switch>
       </div>

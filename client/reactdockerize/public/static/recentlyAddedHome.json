@@ -4,14 +4,14 @@
         "name": "Statistical Mechanics ",
         "isbn": " 97-208-718-94",
         "author": "Dr Alfred Huan ",
-        "format": {
-            "pdf": {
+        "format": [
+            {   "type":"Audio",
                 "url": "https://drive.google.com/uc?export=view&id=1DBqcIAGf77RYMkXH60H-HCE_JF5iDTo5"
             },
-            "audio": {
+            {   "type":"pdf",
                 "url": "https://drive.google.com/uc?export=view&id=1ZjuVx09msh_Ygpef29SJrVmNADmc2ivR"
             }
-        },
+        ],
         "language": "English ",
         "bookImage": " https://drive.google.com/uc?export=view&id=1FBVAsB1zRGLdTT-OxWYGVFyj_sUTPj1j",
         "description": " A textbook for statical mechanics",

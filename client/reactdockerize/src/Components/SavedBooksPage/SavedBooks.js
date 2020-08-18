@@ -27,6 +27,7 @@ import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -53,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+  browse: {
+    border: '1px solid blue',
+    borderRadius: '1em',
+    color:'blue'
+  }
 }));
 
 function SavedBooks(props){
@@ -135,7 +141,9 @@ function SavedBooks(props){
     fetchData();
   }
 
-      
+    const handleBrowse=()=>{
+        history.push('/PDFBooks')
+    }
     
 
 
@@ -152,7 +160,10 @@ function SavedBooks(props){
           <div>
         
           {/* <h2>Saved Books</h2> */}
-  
+          {books.length === 0 ? <div className="not-found-div"> 
+          <img src="https://mednear.com/assets/web/images/icons/empty-product.png" className="not-found-img" style={{width:`29%`}}/> 
+          <p>You do not have any saved books!</p>
+          <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>: null}
           <div className={classes.root}>
       {console.log(books)}
          
