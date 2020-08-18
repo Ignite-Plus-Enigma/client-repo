@@ -18,23 +18,26 @@ import '../FooterComponent/Footer.css';
 //     color: theme.palette.text.secondary,
 //   },
 // }));
-const mainCategory = [{name:'Arts',
+const mainCategory = [{name:'Text Books',
+                subCategory:['History','Math','Geography','Psychology','Algebra','Education','Business','Science','English','Chemistry','Physics','Computer Science']},
+                {name:'Fiction',
+                        subCategory:["Fantasy", "Historical fiction","Horror","Mystery","Sci-fi","Thriller","Romance"]},
+                {name:'Arts',
                         subCategory:['Architecture','Art Instruction','Art History','Dance', 'Design', 'Fashion','Film','Graphic Design','Music','Music Theory','Painting','Photography']},
-                        {name:'Fiction',
-                        subCategory:["Fantasy", "Historical fiction","Horror","Mystery"]},
+                        
                       {name:'Science and Mathematics',
                         subCategory:['Biology','Chemistry','Math','Physics','Programming']
                       },
+                      {name:'Biography',
+          subCategory:['Autobiographies','History','Politics','World war','Women','Kings & rulrs','Composers','artists']},
                     {name:'Business and Finance',
-                  subCategory:['Managemennt','Entrepreneurship','Business Economics','Busin Success','Finance']},
+                  subCategory:['Managemennt','Entrepreneurship','Business Economics','Busin Success','Finance','Money Management','Stocks','Business Self Help', 'Analysis of Finance','Strategy for business','Industries']},
                 {
                   name:'Children',
                   subCategory:['Kids','Stories in Rhyme','Baby','Bedtime','Picture']
                 },
-                {name:'Text Books',
-                subCategory:['History','Math','Geography','Psychology','Algebra','Education','Business','Science','English','Chemistry','Physics','Computer Science']},
-            {name:'Biography',
-          subCategory:['Autobiographies','History','Politics','World war','Women','Kings & rulrs','Composers','artists']},
+                
+          
           {name:'Social Sciences',
           subCategory:['Anthropology','Religion','Political Science','Psychology']},
           {
@@ -43,23 +46,27 @@ const mainCategory = [{name:'Arts',
           },
         
     {name:'Books by Language',
-  subCategory:['English','French','Spanish','German','Russian','Italian','Chinese']}];
+  subCategory:['English','Hindi','Kannada']}];
 
 export default function CenteredGrid() {
 //   const classes = useStyles();
   var col1 = [];
   var col2 = [];
   var col3 = [];
+  var col4 = [];
   let i = 0;
-  for(i = 0; i < Math.floor(mainCategory.length/3);i++){
+  for(i = 0; i < Math.floor(mainCategory.length/4);i++){
     col1.push(mainCategory[i]);
  }
 
- for( i = Math.floor(mainCategory.length/3); i < 2*(Math.floor)(mainCategory.length/3);i++){
+ for( i = Math.floor(mainCategory.length/4); i < 2*(Math.floor)(mainCategory.length/4);i++){
      col2.push(mainCategory[i]);
  }
- for(i = 2*(Math.floor)(mainCategory.length/3);i < mainCategory.length;i++){
+ for(i = 2*(Math.floor)(mainCategory.length/4);i < 3*(Math.floor)(mainCategory.length/4);i++){
     col3.push(mainCategory[i]);
+ }
+ for(i = 3*(Math.floor)(mainCategory.length/4);i < mainCategory.length;i++){
+    col4.push(mainCategory[i]);
  }
 
  const [mainCategories, setMainCategories] = useState([]);
@@ -115,7 +122,7 @@ useEffect(() => {
     <section>
     <div>
          <Grid container>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
             <div>
            
             {/* {console.log(col3)} */}
@@ -135,7 +142,7 @@ useEffect(() => {
             </div>
             </Grid>
             
-            <Grid item xs={4}>
+            <Grid item xs={3}>
             
             {col2.map((singleMain) => (
                 <div xs={4}>
@@ -149,7 +156,7 @@ useEffect(() => {
             ))}
             
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
             
             {col3.map((singleMain) => (
                 <div xs={4}>
@@ -161,6 +168,20 @@ useEffect(() => {
             ))}
             {console.log("COLUMN 3 ")}
             {console.log(col3)}
+            
+            </Grid>
+            <Grid item xs={3}>
+            
+            {col4.map((singleMain) => (
+                <div xs={4}>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PdfSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                {singleMain.subCategory.map((singleSub) => (
+                        <li><NavLink exact activeClassName="current" to={`/PdfSubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
+                ))}
+                </div>
+            ))}
+            {console.log("COLUMN 4 ")}
+            {console.log(col4)}
             
             </Grid>
 
