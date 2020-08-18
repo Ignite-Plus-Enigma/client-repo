@@ -51,10 +51,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  export default function complexGrid(props){
+  export default function audiComplexGrid(props){
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const history = useHistory();
+    const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
     const {id,setId} = useContext(userContext);
     const[saved,setSaved] = useState(false)
     function handleAudio(book){
@@ -79,10 +80,28 @@ const useStyles = makeStyles((theme) => ({
       function handleUnsave(){
         setSaved(false)
         }
+
+        const fetchData = () => {
+          console.log(props.location.pathname)
+          console.log(props)
+          const v= props.location.pathname.split("/")[2]
+          setMainCategoryProps(v)
+          console.log(v)
+          const uniqueId = props.location.pathname.split("/")[3]
+          console.log(uniqueId)
+          const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
+          axios.get(mainCategoriesApiEndPoint)
+          .then(response => response.data)
+          .then((data) => {
+              console.log(data);
+              setBooks(data)
+          })
+      }
+      useEffect(() => {
+          fetchData()
+      }, [])
         return(
-            <ul classname="subcategorylist">
-        {books.map((book)=>(
-            <div>
+          
                 <li style={{listStyleType:"none"}}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
@@ -147,9 +166,6 @@ const useStyles = makeStyles((theme) => ({
       </Paper>
       </li>
       
-      </div>
-        ))}
-       
-</ul>
+      
  )
  }
