@@ -110,7 +110,7 @@ function App() {
  
     return (
       <div>
-      <PDFTrail/>
+      {/* <PDFTrail/> */}
       <BrowserRouter>
      {/* {alert(id)} */}
       <div className="App">
