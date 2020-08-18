@@ -51,80 +51,36 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-
-export default function AudioSubcategoryTrial(props){
-
+  export default function complexGrid(props){
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const history = useHistory();
     const {id,setId} = useContext(userContext);
     const[saved,setSaved] = useState(false)
-    const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
     function handleAudio(book){
-      console.log(book.book.id)
-      // eslint-disable-next-line no-restricted-globals
-      history.push(`/Audio/${book.book.id}/`)
-    }
-    function handlePdf(book){
-      console.log(book.book.id)
-      // eslint-disable-next-line no-restricted-globals
-      history.push(`/PDF/${book.book.id}/`)
-    }
-    function handleSave(book){
-      if(id!=null){
-        const saveBookEndPoint = 'http://localhost:8050/api/v1/user/' + id+ '/savebook'
-        axios.post(saveBookEndPoint,{"bookId" : book.book.id, "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],"isFinished":"False"})
-        fetchData();
+        console.log(book.book.id)
+        // eslint-disable-next-line no-restricted-globals
+        history.push(`/Audio/${book.book.id}/`)
       }
-      setSaved(true)
-
-    }
-    function handleUnsave(){
-      setSaved(false)
+      function handlePdf(book){
+        console.log(book.book.id)
+        // eslint-disable-next-line no-restricted-globals
+        history.push(`/PDF/${book.book.id}/`)
       }
-
-    const fetchData = () => {
-        console.log(props.location.pathname)
-        console.log(props)
-        const v= props.location.pathname.split("/")[2]
-        setMainCategoryProps(v)
-        console.log(v)
-        const uniqueId = props.location.pathname.split("/")[3]
-        console.log(uniqueId)
-        const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
-        axios.get(mainCategoriesApiEndPoint)
-        .then(response => response.data)
-        .then((data) => {
-            console.log(data);
-            setBooks(data)
-        })
-    }
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-    return(
-      <div>
-        <Breadcrumbs aria-label="breadcrumb">
-      
-      <Link
-        color="inherit"
-        href="http://localhost:3000/AudioBooks/"
-        
-      >
-        AudioBooks
-      </Link>
-      <Typography color="textPrimary">Textbooks</Typography>
-    </Breadcrumbs>
-        <h1>{mainCategoryProps}</h1>
-       {console.log(mainCategoryProps) }
-       {console.log("MainCatProps")}
-        <Tabs mainCat={mainCategoryProps}/>
-        <hr id="tabDivider"></hr>
-        <div className={classes.root}>
-    {console.log(books)}
-       
-    <ul classname="subcategorylist">
+      function handleSave(book){
+        if(id!=null){
+          const saveBookEndPoint = 'http://localhost:8050/api/v1/user/' + id+ '/savebook'
+          axios.post(saveBookEndPoint,{"bookId" : book.book.id, "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],"isFinished":"False"})
+          fetchData();
+        }
+        setSaved(true)
+  
+      }
+      function handleUnsave(){
+        setSaved(false)
+        }
+        return(
+            <ul classname="subcategorylist">
         {books.map((book)=>(
             <div>
                 <li style={{listStyleType:"none"}}>
@@ -159,7 +115,7 @@ export default function AudioSubcategoryTrial(props){
                 <div>
                     {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
                     <Typography variant="subtitle2">Read</Typography> */}
-                    {book.format[1].url != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+                    {book.format.pdf != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
           <PictureAsPdfIcon fontSize="large"/>
         </IconButton> : null }
        
@@ -167,7 +123,7 @@ export default function AudioSubcategoryTrial(props){
             </Grid>
              <Grid item xs={4}>
                   <div>
-          {book.format[0].url != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
           <HeadsetIcon fontSize="large"/>
         </IconButton> : null }
                  </div>
@@ -195,8 +151,5 @@ export default function AudioSubcategoryTrial(props){
         ))}
        
 </ul>
-    </div>
-    </div>
-    )
-
-}
+ )
+ }
