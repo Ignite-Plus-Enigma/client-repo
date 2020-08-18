@@ -30,6 +30,7 @@ import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 
 import { makeStyles } from '@material-ui/core/styles';
+import Axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -95,12 +96,20 @@ function App() {
 
 
   function responseGoogle(response){
+
       console.log(response.profileObj)
       setState("Sign Out")
       setName(response.profileObj.name)
       setOpen(false)
       const x = response.profileObj.googleId;
       setId(x)
+      const saveUserEndPoint = "http://localhost:8050/api/v1/user/save"
+  
+      Axios.post(saveUserEndPoint,{
+        "googleId":response.profileObj.googleId,
+         "savedBooks":[],
+         "role":"User"
+      })
   }
 
   function failedLogin(response){
