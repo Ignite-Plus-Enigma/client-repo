@@ -33,6 +33,7 @@ export default function CustomizedInputBase() {
 
   function handleSubmit(event){
     // event.preventDefault();
+  
     console.log("The kye searched for is")
     console.log(key)
   }
@@ -46,7 +47,7 @@ export default function CustomizedInputBase() {
         inputProps={{ 'aria-label': 'search for Book or Author' }}
         onChange={hanldeChange}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search" onSubmit={handleSubmit}>
+      <IconButton  className={classes.iconButton} aria-label="search" onClick={handleSubmit}>
       {console.log(key)}
         <SearchIcon />
       </IconButton>

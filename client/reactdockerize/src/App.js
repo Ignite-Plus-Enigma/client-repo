@@ -119,12 +119,12 @@ function App() {
  
     return (
       <div>
-      {/* <PDFTrail/> */}
+      <PDFTrail/>
       <BrowserRouter>
      {/* {alert(id)} */}
       <div className="App">
         {/* <Navbar/> */}
-        <nav className="app">
+        <nav className="app sticky">
                 
                 <ul>
                     <img src={logo} alt="logo" width="170" height="100"/>
