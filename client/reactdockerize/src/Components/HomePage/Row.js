@@ -91,11 +91,11 @@ const {id,setId} = useContext(userContext);
 
   return (
     <div>
-    
+    { books.length == 0? null :
     <div><h2 id="browse-heading">{props.name} </h2>
         <div class="row">
     
-    {      books.map((book)=>(
+    {    books.map((book)=>(
           
           <div class="column">
           {/* <ButtonBase
@@ -108,6 +108,8 @@ const {id,setId} = useContext(userContext);
   
     </div>
     </div>
+    }
     </div>
+    
   );
 }

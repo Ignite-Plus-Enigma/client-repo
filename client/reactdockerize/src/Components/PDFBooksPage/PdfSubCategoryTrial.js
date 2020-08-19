@@ -100,7 +100,7 @@ export default function AudioSubcategoryTrial(props){
       </Link>
       <Typography color="textPrimary">Textbooks</Typography>
     </Breadcrumbs>
-        <h1>{mainCategoryProps}</h1>
+        <p className = "main-category-heading">{mainCategoryProps}</p>
        {console.log(mainCategoryProps) }
        {console.log("MainCatProps")}
         <Tabs mainCat={mainCategoryProps}/>

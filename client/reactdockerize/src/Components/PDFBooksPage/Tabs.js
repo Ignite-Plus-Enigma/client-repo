@@ -11,6 +11,11 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
     },
+    subcategoryTab:{
+      margin:0,
+      padding:0,
+      color:"black"
+    }
   },
 }));
 
@@ -68,7 +73,7 @@ export default function Tabs(props) {
   //   );
   // }
   function handleClick(singleSub){
-    history.push(`/AudioSubCategory/Text%20Books/${singleSub.singleSub}/`)
+    history.push(`/PDFSubCategory/Text%20Books/${singleSub.singleSub}/`)
       console.log(singleSub)
       window.location.reload()
       // fetchData();
@@ -82,7 +87,7 @@ export default function Tabs(props) {
         {mainCategories.map(singleSub=>(
     //  <Grid item xs={3}>
             // 
-            <Button color="primary" onClick={() => handleClick({singleSub})} activeClassName="current">{singleSub}</Button>
+            <Button color="primary" onClick={() => handleClick({singleSub})} className={classes.subcategoryTab} activeClassName="current">{singleSub}</Button>
         // </Grid>
         // <li>{singleSub}</li>
         ))}

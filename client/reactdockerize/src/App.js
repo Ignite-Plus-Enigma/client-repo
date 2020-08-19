@@ -44,6 +44,12 @@ const useStyles = makeStyles({
     right: 0,
     position: "absolute",
     border: "1px solid crimson"
+  },
+  name:{
+    padding:0,
+    right: "9em",
+    top:"2em",
+    position:"absolute"
   }
   });
 
@@ -134,8 +140,8 @@ function App() {
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
-                    <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
-                    {id ?<li>Hello, {name}</li>: null}
+                    {/* <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li> */}
+                    {id ?<li className ={classes.name}>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li>{id === null ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
                       Sign In 
