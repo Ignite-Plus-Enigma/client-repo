@@ -50,16 +50,16 @@ export default function CenteredGrid() {
   var col2 = [];
   var col3 = [];
   let i = 0;
-  for(i = 0; i < Math.floor(mainCategory.length/3);i++){
-    col1.push(mainCategory[i]);
- }
+//   for(i = 0; i < Math.floor(mainCategory.length/3);i++){
+//     col1.push(mainCategory[i]);
+//  }
 
- for( i = Math.floor(mainCategory.length/3); i < 2*(Math.floor)(mainCategory.length/3);i++){
-     col2.push(mainCategory[i]);
- }
- for(i = 2*(Math.floor)(mainCategory.length/3);i < mainCategory.length;i++){
-    col3.push(mainCategory[i]);
- }
+//  for( i = Math.floor(mainCategory.length/3); i < 2*(Math.floor)(mainCategory.length/3);i++){
+//      col2.push(mainCategory[i]);
+//  }
+//  for(i = 2*(Math.floor)(mainCategory.length/3);i < mainCategory.length;i++){
+//     col3.push(mainCategory[i]);
+//  }
 
  const [mainCategories, setMainCategories] = useState([]);
 
@@ -79,39 +79,57 @@ export default function CenteredGrid() {
     const response =  axios.get(mainCategoriesApiEndPoint)
     .then(response => response.data)
     .then((data) => {
-        setMainCategories(data);
+        setMainCategories(data)
+        
     })
-    console.log(mainCategories)
+    .then ( fetchCategories()) 
+
+    
     // console.log(response.data)
     // const received = response.data
     // setMainCategories(received)
     // console.log(mainCategories[0])
     // .then(() => {
-        for(var i = 0; i < Math.floor(mainCategories.length/3);i++){
-            // console.log(mainCategories[i].category)
-            // col1.push(mainCategories[i]);
-        }
-        // console.log(col1)
-        
-        for(var i = Math.floor(mainCategories.length/3); i < 2*(Math.floor)(mainCategories.length/3);i++){
-            col2.push(mainCategories[i]);
-            // console.log(mainCategories[i].category)
-        }
-        // console.log(col2)
-        
-        for(var i = 2*(Math.floor)(mainCategories.length/3);i < mainCategories.length;i++){
-            col3.push(mainCategories[i]);
-            // console.log(mainCategories[i].category)
-        }
+
  //})
 }
 useEffect(() => {
     fetchData()
+
+    
 },[])
+
+
+const fetchCategories = ()  => {
+  console.log("Inside fetch categories")
+  console.log(mainCategories)
+  for(var i = 0; i < Math.floor(mainCategories.length/3);i++){
+    console.log(mainCategories[i].category)
+    console.log("check for col 1")
+  
+    col1.push(mainCategories[i]);
+}
+// console.log(col1)
+
+for(var i = Math.floor(mainCategories.length/3); i < 2*(Math.floor)(mainCategories.length/3);i++){
+    col2.push(mainCategories[i]);
+    console.log("check for col2")
+    console.log(mainCategories[i].category)
+}
+// console.log(col2)
+
+for(var i = 2*(Math.floor)(mainCategories.length/3);i < mainCategories.length;i++){
+    col3.push(mainCategories[i]);
+    console.log("Check for col 3")
+    console.log(mainCategories[i].category)
+}
+}
 
   return (
     <section>
     <div>
+     {console.log("CHECK FOR MAIN CATEGORIES")}
+     {console.log(mainCategories)}
          <Grid container>
             <Grid item xs={4}>
             <div>
@@ -154,9 +172,9 @@ useEffect(() => {
                 ))}
                 </div>
             ))}
-            {console.log("COLUMN 3 ")}
+            {/* {console.log("COLUMN 3 ")}
             {console.log(col3)}
-            
+             */}
             </Grid>
 
         </Grid>

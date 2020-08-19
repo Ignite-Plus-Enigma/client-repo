@@ -23,8 +23,8 @@ const {id,setId} = useContext(userContext);
 
   const fetchdata = () =>{
     if(props.forapicall === "recentlyadded"){
-      //  const apiendpoint = "static/recentlyAddedHome.json"
-        const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
+       //const apiendpoint = "static/recentlyAddedHome.json"
+         const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
     axios.get(apiendpoint)
             .then(response =>response.data)
             .then((data)=>{
@@ -33,6 +33,7 @@ const {id,setId} = useContext(userContext);
             })
           }
     else if(props.forapicall === "textbooks"){
+      //const apiendpoint = "static/recentlyAddedHome.json"
       const apiendpoint = "http://localhost:8050/api/v1/books/category/Textbooks"
       axios.get(apiendpoint)
               .then(response =>response.data)
@@ -43,6 +44,7 @@ const {id,setId} = useContext(userContext);
               })
             }
     else if(props.forapicall === "children"){
+              //const apiendpoint = "static/recentlyAddedHome.json"
               const apiendpoint = "http://localhost:8050/api/v1/books/category/Children"
               axios.get(apiendpoint)
                       .then(response =>response.data)
@@ -52,6 +54,7 @@ const {id,setId} = useContext(userContext);
                       })
                     }
                     else if(props.forapicall === "mostviewed"){
+                      //const apiendpoint = "static/recentlyAddedHome.json"
               const apiendpoint = "http://localhost:8050/api/v1/books/mostviewed"
               axios.get(apiendpoint)
                       .then(response =>response.data)
@@ -62,6 +65,7 @@ const {id,setId} = useContext(userContext);
                     }
 
                     else if(props.forapicall ==="continuereading"){
+                      //const apiendpoint = "static/recentlyAddedHome.json"
                       const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
                       axios.get(apiendpoint)
                               .then(response =>response.data)

@@ -27,6 +27,7 @@ import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -53,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+  browse: {
+    border: '1px solid blue',
+    borderRadius: '1em',
+    color:'blue'
+  }
 }));
 
 function SavedBooks(props){
@@ -135,7 +141,9 @@ function SavedBooks(props){
     fetchData();
   }
 
-      
+    const handleBrowse=()=>{
+        history.push('/PDFBooks')
+    }
     
 
 
@@ -152,13 +160,21 @@ function SavedBooks(props){
           <div>
         
           {/* <h2>Saved Books</h2> */}
-  
+          {books.length === 0 ? <div className="not-found-div"> 
+          <img src="https://mednear.com/assets/web/images/icons/empty-product.png" className="not-found-img" style={{width:`29%`}}/> 
+          <p>You do not have any saved books!</p>
+          <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>: null}
           <div className={classes.root}>
       {console.log(books)}
          
       <ul classname="subcategorylist">
      
           {books.map((book)=>(
+            user.savedBooks.map((savedBook)=>(
+              book.id === savedBook.bookId ? 
+            
+
+            
             
               <div>
 
@@ -212,15 +228,15 @@ function SavedBooks(props){
                    {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null } */}
-          {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> }
-                
+          {/* {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> } */}
+                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}
              
                 </div>
               </Grid>
               
                <Grid item xs={1}>
                    <div>
-                   {console.log(user.savedBooks[j++].bookId)}
+                   {/* {console.log(user.savedBooks[j++].bookId)} */}
                 <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
                 
                 {/* <Typography variant="subtitle2">Save</Typography> */}
@@ -232,7 +248,9 @@ function SavedBooks(props){
         </Paper>
         </li>
         
-        </div>
+        </div> 
+        : null
+            ))
           ))}
          
   </ul>
