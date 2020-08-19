@@ -72,6 +72,7 @@ function SavedBooks(props){
       // alert(id)
     const classes = useStyles();
     const [books,setBooks] = useState([])
+    const [finishedBooks, setFinishedBooks] = useState([])
     const history = useHistory();
     var i = 0
     var j =0 
@@ -80,6 +81,7 @@ function SavedBooks(props){
 
       const userSavedBooksApiEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbooks'
       const userEndPoint = "http://localhost:8050/api/v1/user/"+id
+      const finishedBooksEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/finishedbooks'
 
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.get(userSavedBooksApiEndPoint)
@@ -95,6 +97,12 @@ function SavedBooks(props){
         console.log("USER DATA")
           console.log(data)
           setUser(data)
+      })
+      axios.get(finishedBooksEndPoint)
+      .then(response => response.data)
+      .then((data) => {
+          console.log(data);
+          setFinishedBooks(data)
       })
   }
   useEffect(() => {
@@ -133,11 +141,13 @@ function SavedBooks(props){
   }
 
   function handleUnsave(book){
+    // alert("Are you sure you want to unsave the book?")
     const unsaveBookEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/unsavebook/'+book.book.id
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
     axios.put(unsaveBookEndPoint);
     // window.location.reload(); 
     console.log("book unsaved")
+    
     fetchData();
   }
 
@@ -158,16 +168,18 @@ function SavedBooks(props){
         }
         return(
           <div>
-        
+         
           {/* <h2>Saved Books</h2> */}
           {books.length === 0 ? <div className="not-found-div"> 
+        
           <img src="https://mednear.com/assets/web/images/icons/empty-product.png" className="not-found-img" style={{width:`29%`}}/> 
           <p>You do not have any saved books!</p>
-          <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>: null}
+          <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>:   <h2>Saved Books</h2>}
           <div className={classes.root}>
       {console.log(books)}
          
       <ul classname="subcategorylist">
+    
      
           {books.map((book)=>(
             user.savedBooks.map((savedBook)=>(
@@ -255,7 +267,103 @@ function SavedBooks(props){
          
   </ul>
       </div>
+      
+      {finishedBooks.length === 0 ? null :   <div> <h2>Finished Books</h2>
+          <div className={classes.root}>
+      {console.log(books)}
+    
+      <ul classname="subcategorylist">
+   
+          {finishedBooks.map((book)=>(
+            user.savedBooks.map((savedBook)=>(
+              book.id === savedBook.bookId ? 
+            
+
+            
+            
+              <div>
+
+                  <li style={{listStyleType:"none"}}>
+        <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <ButtonBase className={classes.image}>
+                <img className={classes.img} alt="Bookimage" src={book.bookImage} />
+              </ButtonBase>
+            </Grid>
+            <Grid item xs={8} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                <Grid item xs>
+                  <Typography gutterBottom variant="subtitle2">
+                  <h4>{book.name}</h4>
+                  </Typography>
+                  <Typography variant="body2" gutterBottom>
+                    <h6>{book.author}</h6>
+                  </Typography>
+              </Grid>
+              </Grid>
+              <Grid item xs={8} sm container>
+              <Grid item xs container direction="column" spacing={1}>
+                <Grid item xs={2} sm>
+      
+                 <Typography variant="subtitle2" >400 pages</Typography>
+               </Grid>
+              </Grid>
+              </Grid>
+              <Grid item xs={1}>
+                  <div>
+                     
+                      {book.format[1].url != null ? <IconButton aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+            <PictureAsPdfIcon fontSize="large" />
+          </IconButton> : null }
+         
+                  </div>
+              </Grid>
+               <Grid item xs={1}>
+                    <div>
+              
+                    {book.format[0].url != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+            <HeadsetIcon fontSize="large"/>
+          </IconButton> : null }
+                   </div>
+               </Grid>
+               
+               <Grid item xs={1}>
+                   <div>
+                   {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+            <HeadsetIcon fontSize="large"/>
+          </IconButton> : null } */}
+          {/* {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> } */}
+                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}
+             
+                </div>
+              </Grid>
+              
+               <Grid item xs={1}>
+                   <div>
+                   {/* {console.log(user.savedBooks[j++].bookId)} */}
+                <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
+                
+                {/* <Typography variant="subtitle2">Save</Typography> */}
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
+          
+        </Paper>
+        </li>
+        
+        </div> 
+        : null
+            ))
+          ))}
+         
+  </ul>
       </div>
+      </div>
+      }
+      </div>
+      
       
         )
            

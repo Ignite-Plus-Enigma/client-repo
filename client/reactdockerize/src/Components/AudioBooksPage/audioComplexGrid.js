@@ -8,7 +8,7 @@ function audioComplexGrid(){
 
 
   return (
-    <div><h1> Hi from audio complex grid</h1></div>
+    <div>{console.log("Hi from grid")}<h1> Hi from audio complex grid</h1></div>
   )
 
 }

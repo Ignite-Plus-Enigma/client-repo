@@ -10,8 +10,8 @@
 
 .image {
   display: block;
-  width: 12em;
-  height: 12em;
+  width: 40%;
+  height: 80%;
   border-radius: 0.8em;
   opacity: 1;
   border: 0.1em solid #ddd;
