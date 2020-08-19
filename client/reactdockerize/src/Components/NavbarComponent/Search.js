@@ -37,7 +37,9 @@ export default function CustomizedInputBase() {
      //event.preventDefault();
     console.log("The kye searched for is")
     console.log(key);
+ 
     history.push(`/Search/${key}/`);
+     window.location.reload(true)
 
   }
 
