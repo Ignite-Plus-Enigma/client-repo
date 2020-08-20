@@ -115,7 +115,7 @@ const handleCloseDialog = () => {
 }
 
   return (
-    <div>
+    <div className="card-div">
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia

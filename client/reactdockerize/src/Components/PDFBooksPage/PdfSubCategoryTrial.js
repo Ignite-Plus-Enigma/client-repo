@@ -110,7 +110,6 @@ export default function AudioSubcategoryTrial(props){
 
     return(
       <div>
-      <audioComplexGrid/>
         <Breadcrumbs aria-label="breadcrumb">
       
       <Link
