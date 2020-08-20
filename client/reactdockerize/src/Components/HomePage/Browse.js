@@ -14,17 +14,17 @@ export default function Browse() {
     <div>
        <AutoRotatingCarousel/> 
        {id!== null ? <Row name = "Continue Reading" forapicall="continuereading"/> : null}
-       <hr style={{margin:0}}></hr>
+       <hr id="horizontal-ruler"></hr>
       <Row name="Recently Added" forapicall="recentlyadded"   />
-      <hr style={{margin:0}}></hr>
+      <hr id="horizontal-ruler"></hr>
       <Row
         name="Textbooks " forapicall="textbooks"
       />
-      <hr style={{margin:0}}></hr>
+       <hr id="horizontal-ruler"></hr>
       <Row
        name="Kids/Children" forapicall="children"
       />
-      <hr style={{margin:0}}></hr>
+        <hr id="horizontal-ruler"></hr>
       <Row
         name="Most Viewed" forapicall="mostviewed"
       />

@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useContext} from "react"
-import audioComplexGrid from "./audioComplexGrid"
+// import audioComplexGrid from "./audioComplexGrid"
 import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -20,6 +20,7 @@ import {userContext} from "../../UserContext"
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 // import history from "history"
+import GridComplex from "./GridComplex"
 
 
 
@@ -129,9 +130,9 @@ export default function AudioSubcategoryTrial(props){
        
     <ul classname="subcategorylist">
         {books.map((book)=>(
-            <div>
+             <div>
                 <li style={{listStyleType:"none"}}>
-                <audioComplexGrid/>
+                <GridComplex book ={book}/>
      
       </li>
       
