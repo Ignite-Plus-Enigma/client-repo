@@ -13,6 +13,8 @@ import ReactDOM from "react-dom";
 export default function Row(props) {
 
 const apicall = props.forapicall;
+{console.log("inside row")}
+console.log(typeof(apicall))
 const rootElement = document.getElementById("root");
 
 const [flag, setFlag] = useState(false)
@@ -20,13 +22,16 @@ const [books,setBooks] = useState([])
 const [bookId,setBookId] =useState(0)
 const [activeBook, setActiveBook] = useState();
 const {id,setId} = useContext(userContext);
-{console.log("inside row")}
+
 {console.log(props.forapicall)}
 var x = props.forapicall
+const [key,setKey] = useState(props.forapicall);
 
 
 
   const fetchdata = () =>{
+    console.log(props)
+    console.log("type is")
     if(props.forapicall === "recentlyadded"){
        //const apiendpoint = "static/recentlyAddedHome.json"
          const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
@@ -37,7 +42,7 @@ var x = props.forapicall
                    
             })
           }
-    else if(props.forapicall === "textbooks"){
+    else if(props.forapicall== "textbooks"){
         console.log("entered textbooks")
       //const apiendpoint = "static/recentlyAddedHome.json"
       const apiendpoint = "http://localhost:8050/api/v1/books/category/Textbooks"
@@ -83,7 +88,9 @@ var x = props.forapicall
                     }
                     else {
                         //const apiendpoint = "static/recentlyAddedHome.json"
-                        const apiendpoint = "http://localhost:8050/api/v1/books/category/"+props.forapicall;
+                      
+                        {console.log(props.forapicall)}
+                        const apiendpoint = "http://localhost:8050/api/v1/books/category/"+apicall;
                         axios.get(apiendpoint)
                                 .then(response =>response.data)
                                 .then((data)=>{

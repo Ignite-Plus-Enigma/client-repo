@@ -6,6 +6,9 @@ import {userContext} from "../../UserContext"
 import Row from '../HomePage/Row';
 
 export default class AudioFile extends Component{
+    
+    forapicall = this.props.location.pathname;
+  
     constructor(props) {
         super(props);
         // const apiendpoint = this.props.location.pathname;
@@ -22,6 +25,7 @@ export default class AudioFile extends Component{
             description:'',
             savedBooks:[],
             progress: null
+     
         }
     }
     
@@ -106,12 +110,16 @@ export default class AudioFile extends Component{
                     imageUri:data.bookImage,
                     bookUri:data.format[0].url,
                     description:data.description
+                 
                     });
                     console.log("HERE IS THE DATA")
                     console.log(this.state.bookUri)
                     
                     
             })
+            
+            
+        
 
         if(id !== null){
             const userEndPoint = "http://localhost:8050/api/v1/user/"+id
@@ -213,7 +221,7 @@ export default class AudioFile extends Component{
            
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
-                <h6 className = "audio-book-genre">{this.state.genre}</h6>
+                <h6 className = "audio-book-genre">{this.state.genre[0]}</h6>
                 {/* {window.location.origin + '/Audio/The Vamps-Wake Up.mp3'}  */}
                 <div className = "player">
                     <audio className = "audio-player viewer" src = {this.state.bookUri} ></audio>
@@ -268,7 +276,7 @@ export default class AudioFile extends Component{
                 </div>
                 {/* <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6> */}
                 <div className="recommendation-div">
-                <Row name="You may also like:" forapicall={this.state.genre[0]}   />
+                <Row name="You may also like:" forapicall="Textbooks"/>
                 {console.log("here is the genre")}
                 {console.log(this.state.genre[0])}
                 

@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GridComplex(props){
+export default function GridComplexPDF(props){
   const classes = useStyles();
   const [books,setBooks] = useState([])
   const history = useHistory();

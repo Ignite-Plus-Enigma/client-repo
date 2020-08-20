@@ -13,7 +13,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
 import { withRouter } from 'react-router';
-import Tabs from '../PDFBooksPage/Tabs'
+import AudioTabs from "./AudioTabs"
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import {userContext} from "../../UserContext"
@@ -94,7 +94,7 @@ export default function AudioSubcategoryTrial(props){
         console.log(v)
         const uniqueId = props.location.pathname.split("/")[3]
         console.log(uniqueId)
-        const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/subcategory/'+uniqueId
+        const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/format/Audio/subcategory/'+uniqueId
         axios.get(mainCategoriesApiEndPoint)
         .then(response => response.data)
         .then((data) => {
@@ -120,10 +120,10 @@ export default function AudioSubcategoryTrial(props){
       </Link>
       <Typography color="textPrimary">Textbooks</Typography>
     </Breadcrumbs>
-        <h1>{mainCategoryProps}</h1>
+        <h1 className = "main-category-heading">{mainCategoryProps}</h1>
        {console.log(mainCategoryProps) }
        {console.log("MainCatProps")}
-        <Tabs mainCat={mainCategoryProps}/>
+        <AudioTabs mainCat={mainCategoryProps}/>
         <hr id="tabDivider"></hr>
         <div className={classes.root}>
     {console.log(books)}
