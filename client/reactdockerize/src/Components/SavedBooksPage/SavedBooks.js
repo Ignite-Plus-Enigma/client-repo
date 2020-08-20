@@ -170,10 +170,10 @@ function SavedBooks(props){
           <div>
          
           {/* <h2>Saved Books</h2> */}
-          {books.length === 0 ? <div className="not-found-div"> 
+          {books.length === 0  ? <div className="not-found-div"> 
         
           <img src="https://mednear.com/assets/web/images/icons/empty-product.png" className="not-found-img" style={{width:`29%`}}/> 
-          <p>You do not have any saved books!</p>
+          <p>You do not have any currently saved books!</p>
           <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>:   <p className="savedbooks-heading">Saved Books</p>}
           <div className={classes.root}>
       {console.log(books)}

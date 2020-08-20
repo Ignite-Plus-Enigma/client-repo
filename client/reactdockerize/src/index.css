@@ -188,11 +188,11 @@ code {
   list-style:none;
 }
 .carousel{
-  height:25em;
-  margin-bottom:1em;
+  height:20em;
+  margin-bottom:0.5em;
 }
 .carousel-image{
-  height: 25em;
+  height: 20em;
   width:85em;
   filter: blur(2px);
   -webkit-filter: blur(2px);
@@ -205,7 +205,7 @@ code {
   top: 60%;
   left: 50%;
   color:white;
-  font-size:2em;
+  font-size:1.8em;
   transform: translate(-50%, -50%);
 }
 .centered2 {
@@ -213,7 +213,7 @@ code {
   top: 70%;
   left: 50%;
   color:white;
-  font-size:2em;
+  font-size:1.8em;
   transform: translate(-50%, -50%);
 }
 .btn {

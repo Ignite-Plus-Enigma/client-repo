@@ -40,15 +40,6 @@ class AutoRotatingCarousel extends React.Component {
       <Fragment>
         <Fragment>
           <ReactSimpleCarousel isInfinity autoplay className="carousel">
-            {/* <div> 
-              <img src={first} className="carousel-image"
-                  aria-label="Welcome to Digital Library"/>
-                    <div class="centered1"><b>Be the light of someone’s
-life…</b></div>
-<div class="centered2"><b>Be the smile spreader!</b></div>
-<a href="https://www.samarthanam.org/donate/">
-<button class="btn">Support Us</button></a>
-            </div> */}
             <div> 
               <img src={second} className="carousel-image"
                   aria-label="Welcome to Digital Library"/>
@@ -59,7 +50,7 @@ life…</b></div>
 <button class="btn">Support Us</button></a>
             </div>
             {/* <div> 
-              <img src={second} className="carousel-image"
+              <img src={first} className="carousel-image"
                   aria-label="Welcome to Digital Library"/>
                     <div class="centered1"><b>Be the light of someone’s
 life…</b></div>

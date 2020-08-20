@@ -20,6 +20,11 @@ const [books,setBooks] = useState([])
 const [bookId,setBookId] =useState(0)
 const [activeBook, setActiveBook] = useState();
 const {id,setId} = useContext(userContext);
+{console.log("inside row")}
+{console.log(props.forapicall)}
+var x = props.forapicall
+
+
 
   const fetchdata = () =>{
     if(props.forapicall === "recentlyadded"){
@@ -33,6 +38,7 @@ const {id,setId} = useContext(userContext);
             })
           }
     else if(props.forapicall === "textbooks"){
+        console.log("entered textbooks")
       //const apiendpoint = "static/recentlyAddedHome.json"
       const apiendpoint = "http://localhost:8050/api/v1/books/category/Textbooks"
       axios.get(apiendpoint)
@@ -75,6 +81,17 @@ const {id,setId} = useContext(userContext);
                               })
                              
                     }
+                    else {
+                        //const apiendpoint = "static/recentlyAddedHome.json"
+                        const apiendpoint = "http://localhost:8050/api/v1/books/category/"+props.forapicall;
+                        axios.get(apiendpoint)
+                                .then(response =>response.data)
+                                .then((data)=>{
+                                    setBooks(data);
+                                       
+                                })
+                               
+                      }
 
     }
     
@@ -94,6 +111,8 @@ const {id,setId} = useContext(userContext);
     { books.length == 0? null :
     <div><h2 id="browse-heading">{props.name} </h2>
         <div class="row">
+        {console.log("inside row.js")}
+        {console.log(props.forapicall)}
     
     {    books.map((book)=>(
           

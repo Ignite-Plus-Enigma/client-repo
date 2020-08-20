@@ -3,6 +3,7 @@ import {Component} from 'react';
 import Navbar from "../NavbarComponent/Navbar"
 import axios from "axios"
 import {userContext} from "../../UserContext"
+import Row from '../HomePage/Row';
 
 export default class AudioFile extends Component{
     constructor(props) {
@@ -265,8 +266,12 @@ export default class AudioFile extends Component{
                 <div>
                     <hr className ="audio-page-hr"/>
                 </div>
-                <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6>
+                {/* <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6> */}
                 <div className="recommendation-div">
+                <Row name="You may also like:" forapicall={this.state.genre[0]}   />
+                {console.log("here is the genre")}
+                {console.log(this.state.genre[0])}
+                
 
                 </div>
             </div>
