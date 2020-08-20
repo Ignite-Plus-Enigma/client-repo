@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   },
   name:{
     padding:0,
-    right: "9em",
+    right: "7em",
     top:"2em",
     position:"absolute"
   }

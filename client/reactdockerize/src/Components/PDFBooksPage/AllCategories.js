@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AllCategoryTrial(props){
+export default function AllCategories(props){
     const [col3,setCol3] = useState([])
     const [col2,setCol2] = useState([])
     const [col1,setCol1] = useState([])
@@ -56,6 +56,7 @@ export default function AllCategoryTrial(props){
         .then((data) => {
           console.log("Check here for data")
             // console.log(response.data)
+            console.log("The data is:")
             console.log(data);
             setMainCategories(data)
             console.log("set main categories")
@@ -68,14 +69,16 @@ export default function AllCategoryTrial(props){
             setCol1(c);
           c = []
           
-          // for(var i = Math.floor(data.length/4); i < 2*(Math.floor)(data.length/4);i++){
-          //     c.push(data[i]);
-          //     // console.log(mainCategories[i].category)
-          // }
-          // setCol2(c);
-          // c = []
+          for(var i = Math.floor(data.length/4); i < 2*(Math.floor)(data.length/4);i++){
+              c.push(data[i]);
+              // console.log(mainCategories[i].category)
+              console.log("Inside col2i:"+i)
+          }
+          setCol2(c);
+          c = []
           
           for(var i = 2*(Math.floor)(data.length/4);i < 3*(Math.floor)(data.length/4);i++){
+            console.log("Col3 i"+i)
               c.push(data[i]);
               // console.log(data[i].category)
           }
@@ -108,7 +111,7 @@ export default function AllCategoryTrial(props){
                 <div xs={3}>
                 {/* {console.log("HERE")}
                 {console.log(singleMain)} */}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
                 ))}
@@ -118,19 +121,19 @@ export default function AllCategoryTrial(props){
             </Grid>
             
             <Grid item xs={3}>
-            
-            {/* {col2.map((singleMain) => (
+            {col2.map((singleMain) => (
                 <div xs={3}>
-                <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
-                <ul>
+                {console.log("col3 in render")}
+                {console.log(col3)}
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
-                </ul>
-                <h1> {singleMain}</h1>
+             
                 </div>
-            ))} */}
-            
+            )
+            )
+            }
             </Grid>
             <Grid item xs={3}>
             
@@ -138,7 +141,7 @@ export default function AllCategoryTrial(props){
                 <div xs={3}>
                 {console.log("col3 in render")}
                 {console.log(col3)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
@@ -147,11 +150,13 @@ export default function AllCategoryTrial(props){
             )
             )
             }
+            </Grid>
+            <Grid item xs={3}>
             {col4.map((singleMain) => (
                 <div xs={3}>
                 {console.log("col4 in render")}
                 {console.log(col4)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
