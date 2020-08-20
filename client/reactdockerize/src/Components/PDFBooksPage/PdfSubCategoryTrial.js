@@ -63,7 +63,9 @@ export default function AudioSubcategoryTrial(props){
     const {id,setId} = useContext(userContext);
     const[saved,setSaved] = useState(false)
     const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
+    var uniqueId = "Physics"
     function handleAudio(book){
+
       console.log(book.book.id)
       // eslint-disable-next-line no-restricted-globals
       history.push(`/Audio/${book.book.id}/`)
@@ -92,7 +94,7 @@ export default function AudioSubcategoryTrial(props){
         const v= props.location.pathname.split("/")[2]
         setMainCategoryProps(v)
         console.log(v)
-        const uniqueId = props.location.pathname.split("/")[3]
+       uniqueId = props.location.pathname.split("/")[3]
         console.log(uniqueId)
         const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/format/PDF/subcategory/'+uniqueId
         axios.get(mainCategoriesApiEndPoint)
@@ -123,7 +125,7 @@ export default function AudioSubcategoryTrial(props){
         <h1 className = "main-category-heading">{mainCategoryProps}</h1>
        {console.log(mainCategoryProps) }
        {console.log("MainCatProps")}
-        <Tabs mainCat={mainCategoryProps}/>
+        <Tabs mainCat={mainCategoryProps} subCat = {props.location.pathname.split("/")[3]}/>
         <hr id="tabDivider"></hr>
         <div className={classes.root}>
     {console.log(books)}
