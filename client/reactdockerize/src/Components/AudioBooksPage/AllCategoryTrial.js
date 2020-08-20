@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AllCategoryTrial(props){
     const [col3,setCol3] = useState([])
+    const [col2,setCol2] = useState([])
+    const [col1,setCol1] = useState([])
+    const [col4,setCol4] = useState([])
     const [mainCategories, setMainCategories] = useState([]);
 
     const fetchData = ()  => {
@@ -57,28 +60,33 @@ export default function AllCategoryTrial(props){
             setMainCategories(data)
             console.log("set main categories")
             console.log(mainCategories)
-        //     for(var i = 0; i < Math.floor(data.length/3);i++){
-        //       // console.log(mainCategories[i].category)
-        //       col1.push(data[i]);
-        //   }
-        //   // console.log(col1)
-          
-        //   for(var i = Math.floor(data.length/3); i < 2*(Math.floor)(data.length/3);i++){
-        //       col2.push(data[i]);
-        //       // console.log(mainCategories[i].category)
-        //   }
-          // console.log(col2)
-          var c = []
-          for(var i = 2*(Math.floor)(data.length/3);i < data.length;i++){
+            var c = []
+            for(var i = 0; i < Math.floor(data.length/4);i++){
+              // console.log(mainCategories[i].category)
               c.push(data[i]);
-              console.log("data")
-              console.log(data[i])
-              console.log("this is column3")
-              console.log(col3)
-    
+            }
+            setCol1(c);
+          c = []
+          
+          for(var i = Math.floor(data.length/4); i < 2*(Math.floor)(data.length/4);i++){
+              c.push(data[i]);
+              // console.log(mainCategories[i].category)
+          }
+          setCol2(c);
+          c = []
+          
+          for(var i = 2*(Math.floor)(data.length/4);i < 3*(Math.floor)(data.length/4);i++){
+              c.push(data[i]);
               // console.log(data[i].category)
           }
           setCol3(c);
+          c = []
+          
+          for(var i = 3*(Math.floor)(data.length/4);i < data.length;i++){
+              c.push(data[i]);
+              // console.log(data[i].category)
+          }
+          setCol4(c);
         })
     }
   useEffect(() => {
@@ -88,11 +96,79 @@ export default function AllCategoryTrial(props){
  
         return(
           <div>
-         <h1>Categories</h1>
-         {col3.map((singleMain)=>(
-             <li>{singleMain.category}</li>
+         <div>
+    {console.log("here is main category")}
+    {console.log(mainCategories)}
+         <Grid container>
+            <Grid item xs={4}>
+            <div>
+           
+            {col1.map((singleMain) => (
+                
+                <div xs={4}>
+                {/* {console.log("HERE")}
+                {console.log(singleMain)} */}
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                {singleMain.subCategory.map((singleSub) => (
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
+                ))}
+                </div>
+            ))}
+            </div>
+            </Grid>
+            
+            <Grid item xs={4}>
+            
+            {col2.map((singleMain) => (
+                <div xs={4}>
+                <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                <ul>
+                {singleMain.subCategory.map((singleSub) => (
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
+                ))}
+                </ul>
+                <h1> {singleMain}</h1>
+                </div>
+            ))}
+            
+            </Grid>
+            <Grid item xs={4}>
+            
+            {col3.map((singleMain) => (
+                <div xs={4}>
+                {console.log("col3 in render")}
+                {console.log(col3)}
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                {singleMain.subCategory.map((singleSub) => (
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
+                ))}
              
-         ))}
+                </div>
+            )
+            )
+            }
+            {col4.map((singleMain) => (
+                <div xs={4}>
+                {console.log("col4 in render")}
+                {console.log(col4)}
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                {singleMain.subCategory.map((singleSub) => (
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
+                ))}
+             
+                </div>
+            )
+            )
+            }
+            
+            
+            
+            </Grid>
+
+        </Grid>
+
+      
+    </div>
       </div>
       
       
