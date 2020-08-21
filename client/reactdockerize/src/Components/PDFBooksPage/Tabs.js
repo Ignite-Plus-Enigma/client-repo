@@ -14,11 +14,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function Tabs(props) {
   const classes = useStyles();
   const [mainCategories, setMainCategories] = useState([]);
   const keyforEndPoint =props.mainCat;
  const history = useHistory();
+
+
 
   const fetchData = ()  => {
     const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/category/'+keyforEndPoint+'/subcategory'
@@ -68,7 +72,7 @@ export default function Tabs(props) {
   //   );
   // }
   function handleClick(singleSub){
-    history.push(`/AudioSubCategory/Text%20Books/${singleSub.singleSub}/`)
+      history.push(`/AudioSubCategory/Text%20Books/${singleSub.singleSub}/`)
       console.log(singleSub)
       window.location.reload()
       console.log("inside handleclick")
@@ -81,7 +85,7 @@ export default function Tabs(props) {
         {mainCategories.map(singleSub=>(
     //  <Grid item xs={3}>
             // 
-            <Button variant="outlined" color="secondary"   onClick={() => handleClick({singleSub})}  >{singleSub}</Button>
+            <Button  color="secondary"   onClick={() => handleClick({singleSub}) }  >{singleSub}</Button>
         // </Grid>
         // <li>{singleSub}</li>
         ))}
