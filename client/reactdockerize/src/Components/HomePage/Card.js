@@ -1,5 +1,7 @@
 import React,{useState,useContext,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import GoogleLogin from "react-google-login";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 import CardActions from '@material-ui/core/CardActions';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import HeadsetIcon from '@material-ui/icons/Headset';
@@ -18,22 +18,29 @@ import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 import {userContext} from "../../UserContext"
 import LoginDialog from "../SignInPage/LoginDialog";
 import axios from "axios"
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import ReactDOM from 'react-dom';
 
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 280,
-    height :350,
-    alignContent:"left"
-  },
-  media: {
-    height: 170,
+    maxWidth:'100%',
+    height:'100%',
+    alignContent:"left",
     position:"relative"
   },
+  media: {
+    height:170,
+    position:"relative"
+  },
+ 
   icon :{
-    position:"absolute"
-  }
+    position:"bottom"
+  },
+  
+
   });
 
  function MediaCard(props) {
@@ -42,8 +49,28 @@ const useStyles = makeStyles({
   const history = useHistory();
   const {id,setId} = useContext(userContext);
   const[saved,setSaved] = useState(false)
-
+  const [open, setOpen] = useState(false);
   const [savedbook, setSavedBook] = useState(null)
+
+  function responseGoogle(response){
+
+      console.log(response.profileObj)
+      //setName(response.profileObj.name)
+      setOpen(false)
+      const x = response.profileObj.googleId;
+      setId(x)
+      const saveUserEndPoint = "http://localhost:8050/api/v1/user/save"
+  
+      axios.post(saveUserEndPoint,{
+        "googleId":response.profileObj.googleId,
+         "savedBooks":[],
+         "role":"User"
+      })
+  }
+
+  function failedLogin(response){
+      console.log("Login failed!")
+  }
 
   function handleAudio(){
     console.log(book)
@@ -57,26 +84,18 @@ const useStyles = makeStyles({
   setSaved(false)
   }
 
+const handleCloseDialog = () => {
+    setOpen(false);
+  }; 
+
   function handleSave(book){
     if(id === null){ 
-      console.log("Entered")
-      return(
-      <div>
-       <LoginDialog/>
-       <h6>Please login to view your saved books.</h6>
-       </div>
-     );
-    // ReactDOM.render(
-    //   <React.StrictMode>
-    
-    //     <LoginDialog id = {id}/>
-    //   </React.StrictMode>,
-    //   document.getElementById('root')
-    // );
+      setOpen(true);
     } 
      else{
        setSaved(true)
        fetchData(book);
+       setOpen(false);
      }
   
   }
@@ -86,7 +105,7 @@ const useStyles = makeStyles({
 
     const saveBookEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savebook/'
     axios.post(saveBookEndPoint,{ "bookId" : book.book.id,
-    "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],
+    "progress":[{"format":"Audio","length":0,"remaining" : 0},{"format":"PDF","length":0,"remaining" : 0}],
     "isFinished":"False"})
     .then(res => {
       console.log(res);
@@ -96,6 +115,7 @@ const useStyles = makeStyles({
 }
 
   return (
+    <div className="card-div">
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -103,30 +123,53 @@ const useStyles = makeStyles({
           image={props.image}
           title="Book Image"
         />
-        <CardContent>
-          <Typography  variant="subTitle1"  component="h6">
+        <CardContent >
+          <Typography  variant="subTitle1"  component="h6"   noWrap >
       {props.title} 
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-         By {props.author}
+          <Typography variant="body2" color="textSecondary" component="p" noWrap >
+         {props.author}
           </Typography>
           </CardContent>
-          <CardActions disableSpacing>
+          </CardActionArea>
+          <CardActions>
+         
           {console.log(book.format.pdf)}
-          {book.format.pdf != null ? <IconButton aria-label="read pdf book" className="icon"   onClick={() => handlePdf({book})}>
+          {book.format[1].url != null ? <IconButton aria-label="read pdf book" className="icon"   onClick={() => handlePdf({book})}>
           <PictureAsPdfIcon />
         </IconButton> : null }
-        {book.format.audio != null ? <IconButton aria-label="listen to audio book" className="icon" onClick={() => handleAudio({book})}>
+        {book.format[0].url!=null ? <IconButton aria-label="listen to audio book" className="icon" onClick={() => handleAudio({book})}>
           <HeadsetIcon />
         </IconButton> : null }
         <IconButton className='icon' aria-label="save the book">
               {saved?  <BookmarkOutlinedIcon  onClick={() => handleUnsave({book})} fontSize="medium" /> :  <BookmarkBorderOutlinedIcon  onClick={() => handleSave({book})} fontSize="medium" />}
                </IconButton>
-        
-      
-        </CardActions>
-      </CardActionArea>
+               
+               
+               </CardActions>
+       
     </Card>
+
+    <Dialog
+        open={open}
+        onClose={handleCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Have a Google Account?"}
+        </DialogTitle>
+        <DialogActions>
+          <GoogleLogin
+            clientId="992798065124-l39cdadgtpb6l4ikt8nf4m909vspjnr0.apps.googleusercontent.com"
+            buttonText="Sign In With Google"
+            onSuccess={responseGoogle}
+            onFailure={failedLogin}
+            cookiePolicy={"single_host_origin"}
+          />
+        </DialogActions>
+      </Dialog>
+      </div>
   );
 }
  

@@ -1,5 +1,4 @@
 import React,{useEffect,useState,useContext} from "react"
-// import audioComplexGrid from "./audioComplexGrid"
 import axios from "axios"
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -20,8 +19,6 @@ import {userContext} from "../../UserContext"
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 // import history from "history"
-import GridComplex from "./GridComplexPDF"
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -62,10 +59,8 @@ export default function AudioSubcategoryTrial(props){
     const history = useHistory();
     const {id,setId} = useContext(userContext);
     const[saved,setSaved] = useState(false)
-    const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
-    var uniqueId = "Physics"
+    //const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
     function handleAudio(book){
-
       console.log(book.book.id)
       // eslint-disable-next-line no-restricted-globals
       history.push(`/Audio/${book.book.id}/`)
@@ -76,7 +71,7 @@ export default function AudioSubcategoryTrial(props){
       history.push(`/PDF/${book.book.id}/`)
     }
     function handleSave(book){
-      if(id!=null){
+      if(id!==null){
         const saveBookEndPoint = 'http://localhost:8050/api/v1/user/' + id+ '/savebook'
         axios.post(saveBookEndPoint,{"bookId" : book.book.id, "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],"isFinished":"False"})
         fetchData();
@@ -91,13 +86,15 @@ export default function AudioSubcategoryTrial(props){
     const fetchData = () => {
         console.log(props.location.pathname)
         console.log(props)
-        const v= props.location.pathname.split("/")[2]
-        setMainCategoryProps(v)
-        console.log(v)
-       uniqueId = props.location.pathname.split("/")[3]
-        console.log(uniqueId)
-        const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/books/format/PDF/subcategory/'+uniqueId
-        axios.get(mainCategoriesApiEndPoint)
+        
+        const searchKey= props.location.pathname.split("/")[2]
+        console.log("The search key is:"+searchKey);
+        // setMainCategoryProps(v)
+        
+        
+        const searchKeyApiEndPoint = `http://localhost:8050/api/v1/books/search=${searchKey}/`
+        // const searchKeyApiEndPoint = "static/recentlyAddedHome.json"
+        axios.get(searchKeyApiEndPoint)
         .then(response => response.data)
         .then((data) => {
             console.log(data);
@@ -110,39 +107,84 @@ export default function AudioSubcategoryTrial(props){
 
     return(
       <div>
-        <Breadcrumbs aria-label="breadcrumb">
-      
-      <Link
-        color="inherit"
-        href="http://localhost:3000/AudioBooks/"
-        
-      >
-        AudioBooks
-      </Link>
-      <Typography color="textPrimary">Textbooks</Typography>
-    </Breadcrumbs>
-        <h1 className = "main-category-heading">{mainCategoryProps}</h1>
-       {console.log(mainCategoryProps) }
-       {console.log("MainCatProps")}
-        <Tabs mainCat={mainCategoryProps} subCat = {props.location.pathname.split("/")[3]}/>
-        <hr id="tabDivider"></hr>
-        <div className={classes.root}>
-    {console.log(books)}
-       
+        {books.length === 0 ? <div className="not-found-div">
+        <img src="https://www.shaadibaraati.com/assets/img/no-result.png" className = "not-found-img"/>
+        </div> : null}
     <ul classname="subcategorylist">
+      
         {books.map((book)=>(
-             <div>
+            <div>
                 <li style={{listStyleType:"none"}}>
-                <GridComplex book ={book}/>
-     
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img className={classes.img} alt="Bookimage" src={book.bookImage} />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={8} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle2">
+                <h4>{book.name}</h4>
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  <h5>{book.author}</h5>
+                </Typography>
+            </Grid>
+            </Grid>
+            </Grid>
+            <Grid container wrap="nowrap" spacing={2} xs={8} sm  >
+          <Grid item xs>
+            <Typography  gutterBottom variant="body1">{book.description}</Typography>
+          </Grid>
+        </Grid>
+        <Grid item xs={8} sm container>
+            <Grid item xs container direction="row" spacing={2}>
+
+            <Grid item xs={4}>
+                <div>
+                    {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
+                    <Typography variant="subtitle2">Read</Typography> */}
+                    {book.format[1].url != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
+          <PictureAsPdfIcon fontSize="large"/>
+        </IconButton> : null }
+       
+                </div>
+            </Grid>
+             <Grid item xs={4}>
+                  <div>
+          {book.format[0].url != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
+          <HeadsetIcon fontSize="large"/>
+        </IconButton> : null }
+                 </div>
+             </Grid>
+             <Grid item xs={4}>
+                 <div>
+                   <IconButton aria-label="save the book">
+                   {saved?  <BookmarkOutlinedIcon  onClick={() => handleUnsave({book})} fontSize="large" /> :  <BookmarkBorderOutlinedIcon  onClick={() => handleSave({book})} fontSize="large" />}
+              </IconButton>
+             </div>
+            </Grid>
+            <Grid item xs={2} sm >
+             <div>
+             {/* <Rating name="size-large" defaultValue={book.rating} size="large" readOnly /> */}
+            </div>
+          </Grid>
+            </Grid>
+            </Grid>
+        </Grid>
+        
+      </Paper>
       </li>
       
       </div>
         ))}
        
 </ul>
+
     </div>
-    </div>
+        
     )
 
 }

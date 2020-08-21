@@ -27,8 +27,12 @@ import "./Components/NavbarComponent/Navbar.css"
 import AudioSubcategoryTrial from "./Components/AudioBooksPage/AudioSubcategoryTrial"
 import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
+import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
+import SearchGrid from "./Components/SearchResultPage/SearchGrid"
+import Upload from "./Components/UploadPage/Upload"
 
 import { makeStyles } from '@material-ui/core/styles';
+import Axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -41,6 +45,12 @@ const useStyles = makeStyles({
     right: 0,
     position: "absolute",
     border: "1px solid crimson"
+  },
+  name:{
+    padding:0,
+    right: "7em",
+    top:"2em",
+    position:"absolute"
   }
   });
 
@@ -49,6 +59,7 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [id,setId] = useState(null)
+  const [role,setRole] = useState(null)
   const provideValue = useMemo(() => ({id,setId}),[id,setId]);
   const handleClickOpen = () => {
       if(id == null){
@@ -63,14 +74,20 @@ function App() {
 
   useEffect(()=>{
     const data = localStorage.getItem('my-id')
+    const data_name = localStorage.getItem('my-name')
     if(data){
       setId(JSON.parse(data));
+    }
+    if(data_name){
+      setName(JSON.parse(data_name));
+      
     }
 
   },[])
 
   useEffect(()=>{
     localStorage.setItem('my-id',JSON.stringify(id));
+    localStorage.setItem('my-name',JSON.stringify(name));
   })
   
 
@@ -83,16 +100,35 @@ function App() {
 
   function handleLogOut(){
     setId(null)
+    setRole(null)
+    localStorage.setItem('my-id',JSON.stringify(id));
   }
 
 
   function responseGoogle(response){
+
       console.log(response.profileObj)
       setState("Sign Out")
       setName(response.profileObj.name)
       setOpen(false)
       const x = response.profileObj.googleId;
       setId(x)
+      const saveUserEndPoint = "http://localhost:8050/api/v1/user/save"
+  
+      Axios.post(saveUserEndPoint,{
+        "googleId":response.profileObj.googleId,
+         "savedBooks":[],
+         "role":"User"
+      })
+
+      const getRoleOfUser = "http://localhost:8050/api/v1/user/" +response.profileObj.googleId +"/role"
+      Axios.get(getRoleOfUser)
+      .then(response => response.data)
+      .then((data) => {
+        console.log("USER Role")
+          console.log(data)
+          setRole(data)
+      })
   }
 
   function failedLogin(response){
@@ -101,21 +137,25 @@ function App() {
   
  
     return (
+      <div>
+      {/* <PDFTrail/> */}
       <BrowserRouter>
      {/* {alert(id)} */}
       <div className="App">
         {/* <Navbar/> */}
-        <nav className="app">
+        <nav className="app sticky">
                 
                 <ul>
                     <img src={logo} alt="logo" width="170" height="100"/>
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
-                    <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
+                    {role == "Admin" ?<li><NavLink exact activeClassName="current" to="/Upload" aria-label="Admin Rights">Admin Rights </NavLink></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
+                   {console.log("Role is")}
+                   {console.log(role)}
                     <li><Search/></li>
-                    <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
-                    {name ?<li>Hello, {name}</li>: null}
+                    {/* <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li> */}
+                    {id ?<li className ={classes.name}>Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li>{id === null ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
                       Sign In 
@@ -162,10 +202,13 @@ function App() {
           {/* <Route path="/AudioSubCategory" component={AudioSubCategory}/> */}
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
+          <Route path="/Search" component={SearchGrid}/>
+          <Route path="/Upload" component={Upload}/>
           </userContext.Provider>
         </Switch>
       </div>
       </BrowserRouter>
+      </div>
     );
   
 }

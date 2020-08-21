@@ -3,12 +3,16 @@ import {Component} from 'react';
 import Navbar from "../NavbarComponent/Navbar"
 import axios from "axios"
 import {userContext} from "../../UserContext"
+import Row from '../HomePage/Row';
 
 export default class AudioFile extends Component{
+    
+    forapicall = this.props.location.pathname;
+  
     constructor(props) {
         super(props);
         // const apiendpoint = this.props.location.pathname;
-        console.log("Hi")
+      
         this.state = {
             toggleButton:"►",
             currentTime:0,
@@ -21,6 +25,7 @@ export default class AudioFile extends Component{
             description:'',
             savedBooks:[],
             progress: null
+     
         }
     }
     
@@ -33,7 +38,7 @@ export default class AudioFile extends Component{
     
     playAudio = () => {
         const audioEl = document.querySelector(".viewer");
-        console.log("Button prssed");
+        console.log("Button pressed");
         if(audioEl.paused){
             if(this.state.progress !== null ){
                 audioEl.currentTime=this.state.progress;
@@ -103,17 +108,21 @@ export default class AudioFile extends Component{
                     author:data.author,
                     genre:data.category,
                     imageUri:data.bookImage,
-                    bookUri:data.format.audio.url,
+                    bookUri:data.format[0].url,
                     description:data.description
+                 
                     });
                     console.log("HERE IS THE DATA")
                     console.log(this.state.bookUri)
                     
                     
             })
+            
+            
+        
 
         if(id !== null){
-            const userEndPoint = "http://localhost:8050/api/v1/users/"+id
+            const userEndPoint = "http://localhost:8050/api/v1/user/"+id
             axios.get(userEndPoint)
             .then(response =>response.data)
             .then((data)=>{
@@ -130,12 +139,12 @@ export default class AudioFile extends Component{
                 console.log(this.state.savedBooks)
 
                 this.state.savedBooks.map((book) =>{
-                    if(book.bookId === uniqueId){
-                        this.setState({progress: book.progress[0].percentage})
+                    if(book.bookId == uniqueId){
+                        this.setState({progress: book.progress[0].length})
+                        
                     }
                 })
-                console.log("THE PROGRES IS ")
-                console.log(this.state.progress)
+             
 
             }
              
@@ -180,9 +189,10 @@ export default class AudioFile extends Component{
         const percent = Math.floor(video.currentTime/video.duration)*100;
         console.log("Percentage finished is:"+percent);
         const id = this.props.googleId;
+        const remaining = Math.floor(video.duration - video.currentTime);
         if(id !== null){
             const savedBookProgressEndPoint = "http://localhost:8050/api/v1/user/"+ id +"/savedbook/" +uniqueId+"/progress"
-            axios.put(savedBookProgressEndPoint,{"format" : "Audio", "percentage":length})
+            axios.put(savedBookProgressEndPoint,{"format" : "Audio", "length":length,"remaining":remaining})
             
         }
         video.removeEventListener('timeupdate',this.progressUpdate);
@@ -211,7 +221,7 @@ export default class AudioFile extends Component{
            
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
-                <h6 className = "audio-book-genre">{this.state.genre}</h6>
+                <h6 className = "audio-book-genre">{this.state.genre[0]}</h6>
                 {/* {window.location.origin + '/Audio/The Vamps-Wake Up.mp3'}  */}
                 <div className = "player">
                     <audio className = "audio-player viewer" src = {this.state.bookUri} ></audio>
@@ -264,8 +274,12 @@ export default class AudioFile extends Component{
                 <div>
                     <hr className ="audio-page-hr"/>
                 </div>
-                <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6>
+                {/* <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6> */}
                 <div className="recommendation-div">
+                <Row name="You may also like:" forapicall="Textbooks"/>
+                {console.log("here is the genre")}
+                {console.log(this.state.genre[0])}
+                
 
                 </div>
             </div>

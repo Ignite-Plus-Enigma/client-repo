@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AllCategories(props){
+export default function AllCategoryTrial(props){
     const [col3,setCol3] = useState([])
     const [col2,setCol2] = useState([])
     const [col1,setCol1] = useState([])
@@ -111,9 +111,9 @@ export default function AllCategories(props){
                 <div xs={3}>
                 {/* {console.log("HERE")}
                 {console.log(singleMain)} */}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
                 ))}
                 </div>
             ))}
@@ -125,9 +125,9 @@ export default function AllCategories(props){
                 <div xs={3}>
                 {console.log("col3 in render")}
                 {console.log(col3)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
              
                 </div>
@@ -141,9 +141,9 @@ export default function AllCategories(props){
                 <div xs={3}>
                 {console.log("col3 in render")}
                 {console.log(col3)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
              
                 </div>
@@ -156,9 +156,9 @@ export default function AllCategories(props){
                 <div xs={3}>
                 {console.log("col4 in render")}
                 {console.log(col4)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/PDFSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
              
                 </div>

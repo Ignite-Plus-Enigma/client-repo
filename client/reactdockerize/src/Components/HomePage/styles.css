@@ -10,8 +10,8 @@
 
 .image {
   display: block;
-  width: 12em;
-  height: 12em;
+  width: 40%;
+  height: 80%;
   border-radius: 0.8em;
   opacity: 1;
   border: 0.1em solid #ddd;
@@ -40,16 +40,20 @@
 }
 .row{
   padding-bottom: 1em;
-  /* margin-left: 0px;
-  margin-right: 0px; */
+   margin-left: 1em;
+  /*margin-right: 0px; */
 }
 .column {
   float:left;
-  width:12.5%;
+  width:14.2%;
   padding-left:0.05; 
-   padding-top:1.5em; 
+   padding-top:0.5em; 
   padding-right: 0.05;
-  padding-bottom: 1.5em;
+  /* padding-bottom: 0.5em; */
+  margin:0;
+}
+.card-div{
+  margin:0;
 }
 
 /* Clear floats after image containers */
@@ -60,14 +64,19 @@
 }
 
 #browse-heading {
-  padding-top: 2em;;
+  padding-top: 0.5em;;
   font-size: 1.3em;
-  padding-left: 1.5em;
+  padding-left: 1em;
   color: #dc143c;
 }
 
 #horizontal-ruler {
   opacity: .8;
+  margin-left:2.5em;
+  margin-right:2em;
+  margin-top:0;
+  margin-bottom: 0;
+  width:96%;
 }
 #card-button{
   position: absolute;

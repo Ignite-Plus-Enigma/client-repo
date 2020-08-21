@@ -73,7 +73,7 @@ function Navbar() {
                     <li><NavLink exact activeClassName="current" to={`/Saved/${id}/`} aria-label="Saved Books">Saved </NavLink></li>
                     <li><Search/></li>
                     <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li>
-                    {name ?<li>Hello, {name}</li>: null}
+                    {name ?<li className="hello-user">Hello, {name}</li>: null}
                     {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li><Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
 

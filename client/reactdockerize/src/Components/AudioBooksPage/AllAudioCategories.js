@@ -48,18 +48,19 @@ export default function CenteredGrid() {
 //   const classes = useStyles();
   var col1 = [];
   var col2 = [];
-  var col3 = [];
+  // var col3 = [ ];
+  const [col3,setCol3] = useState()
   let i = 0;
-  for(i = 0; i < Math.floor(mainCategory.length/3);i++){
-    col1.push(mainCategory[i]);
- }
+//   for(i = 0; i < Math.floor(mainCategory.length/3);i++){
+//     col1.push(mainCategory[i]);
+//  }
 
- for( i = Math.floor(mainCategory.length/3); i < 2*(Math.floor)(mainCategory.length/3);i++){
-     col2.push(mainCategory[i]);
- }
- for(i = 2*(Math.floor)(mainCategory.length/3);i < mainCategory.length;i++){
-    col3.push(mainCategory[i]);
- }
+//  for( i = Math.floor(mainCategory.length/3); i < 2*(Math.floor)(mainCategory.length/3);i++){
+//      col2.push(mainCategory[i]);
+//  }
+//  for(i = 2*(Math.floor)(mainCategory.length/3);i < mainCategory.length;i++){
+//     col3.push(mainCategory[i]);
+//  }
 
  const [mainCategories, setMainCategories] = useState([]);
 
@@ -76,33 +77,46 @@ export default function CenteredGrid() {
 // }, [])
  const fetchData = ()  => {
     const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/categories'
-    const response =  axios.get(mainCategoriesApiEndPoint)
+    axios.get(mainCategoriesApiEndPoint)
     .then(response => response.data)
     .then((data) => {
-        setMainCategories(data);
+      console.log("Check here for data")
+        // console.log(response.data)
+        console.log(data);
+        setMainCategories(data)
+        console.log("set main categories")
+        console.log(mainCategories)
+        for(var i = 0; i < Math.floor(data.length/3);i++){
+          // console.log(mainCategories[i].category)
+          col1.push(data[i]);
+      }
+      // console.log(col1)
+      
+      for(var i = Math.floor(data.length/3); i < 2*(Math.floor)(data.length/3);i++){
+          col2.push(data[i]);
+          // console.log(mainCategories[i].category)
+      }
+      // console.log(col2)
+      var c = []
+      for(var i = 2*(Math.floor)(data.length/3);i < data.length;i++){
+          c.push(data[i]);
+          console.log("data")
+          console.log(data[i])
+          console.log("this is column3")
+          console.log(col3)
+
+          // console.log(data[i].category)
+      }
+      setCol3(c);
     })
-    console.log(mainCategories)
+
+    //console.log(mainCategories)
     // console.log(response.data)
     // const received = response.data
     // setMainCategories(received)
     // console.log(mainCategories[0])
     // .then(() => {
-        for(var i = 0; i < Math.floor(mainCategories.length/3);i++){
-            // console.log(mainCategories[i].category)
-            // col1.push(mainCategories[i]);
-        }
-        // console.log(col1)
-        
-        for(var i = Math.floor(mainCategories.length/3); i < 2*(Math.floor)(mainCategories.length/3);i++){
-            col2.push(mainCategories[i]);
-            // console.log(mainCategories[i].category)
-        }
-        // console.log(col2)
-        
-        for(var i = 2*(Math.floor)(mainCategories.length/3);i < mainCategories.length;i++){
-            col3.push(mainCategories[i]);
-            // console.log(mainCategories[i].category)
-        }
+      
  //})
 }
 useEffect(() => {
@@ -112,6 +126,8 @@ useEffect(() => {
   return (
     <section>
     <div>
+    {console.log("here is main category")}
+    {console.log(mainCategories)}
          <Grid container>
             <Grid item xs={4}>
             <div>
@@ -121,9 +137,9 @@ useEffect(() => {
                 <div xs={4}>
                 {/* {console.log("HERE")}
                 {console.log(singleMain)} */}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`} >{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
                 ))}
                 </div>
             ))}
@@ -134,12 +150,13 @@ useEffect(() => {
             
             {col2.map((singleMain) => (
                 <div xs={4}>
-                <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                {/* <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
                 <ul>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
                 ))}
-                </ul>
+                </ul> */}
+                <h1> {singleMain}</h1>
                 </div>
             ))}
             
@@ -148,14 +165,23 @@ useEffect(() => {
             
             {col3.map((singleMain) => (
                 <div xs={4}>
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
+                {console.log("col3 in render")}
+                {console.log(col3)}
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
+             
                 </div>
-            ))}
+            )
+            )
+            }
+            {col3 == [] ? null : <h1>{col3[0]}</h1>}
+
+           
             {console.log("COLUMN 3 ")}
             {console.log(col3)}
+            
             
             </Grid>
 

@@ -59,3 +59,8 @@ html {
     position: absolute;
     border: 1px solid crimson;
 }
+/* .sticky {
+  position: fixed;
+  top: 0;
+  width: 80%;
+} */

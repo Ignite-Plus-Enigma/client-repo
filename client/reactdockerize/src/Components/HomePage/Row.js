@@ -1,10 +1,11 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect,useContext} from "react";
 import MediaCard from "./Card";
 import axios from "axios";
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Audio from "../AudioBooksPage/Audio"
 import SubCategory from "../PDFBooksPage/SubCategory"
 import {NavLink} from 'react-router-dom';
+import {userContext} from "../../UserContext"
 
 import {BrowserRouter,Route,Switch,Router} from 'react-router-dom';
 import ReactDOM from "react-dom";
@@ -12,17 +13,28 @@ import ReactDOM from "react-dom";
 export default function Row(props) {
 
 const apicall = props.forapicall;
+{console.log("inside row")}
+console.log(typeof(apicall))
 const rootElement = document.getElementById("root");
 
 const [flag, setFlag] = useState(false)
 const [books,setBooks] = useState([])
 const [bookId,setBookId] =useState(0)
 const [activeBook, setActiveBook] = useState();
+const {id,setId} = useContext(userContext);
+
+{console.log(props.forapicall)}
+var x = props.forapicall
+const [key,setKey] = useState(props.forapicall);
+
+
 
   const fetchdata = () =>{
+    console.log(props)
+    console.log("type is")
     if(props.forapicall === "recentlyadded"){
-      //  const apiendpoint = "static/recentlyAddedHome.json"
-        const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
+       //const apiendpoint = "static/recentlyAddedHome.json"
+         const apiendpoint = "http://localhost:8050/api/v1/books/recentlyadded"
     axios.get(apiendpoint)
             .then(response =>response.data)
             .then((data)=>{
@@ -30,16 +42,20 @@ const [activeBook, setActiveBook] = useState();
                    
             })
           }
-    else if(props.forapicall === "textbooks"){
-      const apiendpoint = "http://localhost:8050/api/v1/books/category/TextBooks"
+    else if(props.forapicall== "textbooks"){
+        console.log("entered textbooks")
+      //const apiendpoint = "static/recentlyAddedHome.json"
+      const apiendpoint = "http://localhost:8050/api/v1/books/category/Textbooks"
       axios.get(apiendpoint)
               .then(response =>response.data)
               .then((data)=>{
+                console.log(data)
                   setBooks(data);
                      
               })
             }
     else if(props.forapicall === "children"){
+              //const apiendpoint = "static/recentlyAddedHome.json"
               const apiendpoint = "http://localhost:8050/api/v1/books/category/Children"
               axios.get(apiendpoint)
                       .then(response =>response.data)
@@ -49,6 +65,7 @@ const [activeBook, setActiveBook] = useState();
                       })
                     }
                     else if(props.forapicall === "mostviewed"){
+                      //const apiendpoint = "static/recentlyAddedHome.json"
               const apiendpoint = "http://localhost:8050/api/v1/books/mostviewed"
               axios.get(apiendpoint)
                       .then(response =>response.data)
@@ -57,6 +74,31 @@ const [activeBook, setActiveBook] = useState();
                              
                       })
                     }
+
+                    else if(props.forapicall ==="continuereading"){
+                      //const apiendpoint = "static/recentlyAddedHome.json"
+                      const apiendpoint = "http://localhost:8050/api/v1/user/"+ id+"/continuereading"
+                      axios.get(apiendpoint)
+                              .then(response =>response.data)
+                              .then((data)=>{
+                                  setBooks(data);
+                                     
+                              })
+                             
+                    }
+                    else {
+                        //const apiendpoint = "static/recentlyAddedHome.json"
+                      
+                        {console.log(props.forapicall)}
+                        const apiendpoint = "http://localhost:8050/api/v1/books/category/"+apicall;
+                        axios.get(apiendpoint)
+                                .then(response =>response.data)
+                                .then((data)=>{
+                                    setBooks(data);
+                                       
+                                })
+                               
+                      }
 
     }
     
@@ -67,33 +109,19 @@ const [activeBook, setActiveBook] = useState();
     fetchdata()
   },[])
 
-  function handleClick(book){
-    console.log("The book is")
-    console.log(book)
-    const rootElement = document.getElementById("root");
-    ReactDOM.render(
-      <React.StrictMode>
-        <Audio id={book.book.id} />
-      </React.StrictMode>,
-      rootElement
-    );
-
-}
 
 
 
 
   return (
     <div>
-    <BrowserRouter>
-        <Switch>
-          <Route exact path="Audio/" component={Audio}/>
-        </Switch>
-      </BrowserRouter>
-    
+    { books.length == 0? null :
     <div><h2 id="browse-heading">{props.name} </h2>
         <div class="row">
-        {books.map((book)=>(
+        {console.log("inside row.js")}
+        {console.log(props.forapicall)}
+    
+    {    books.map((book)=>(
           
           <div class="column">
           {/* <ButtonBase
@@ -106,6 +134,8 @@ const [activeBook, setActiveBook] = useState();
   
     </div>
     </div>
+    }
     </div>
+    
   );
 }
