@@ -29,6 +29,7 @@ import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 import SearchGrid from "./Components/SearchResultPage/SearchGrid"
+import Upload from "./Components/UploadPage/Upload"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
@@ -58,6 +59,7 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [id,setId] = useState(null)
+  const [role,setRole] = useState(null)
   const provideValue = useMemo(() => ({id,setId}),[id,setId]);
   const handleClickOpen = () => {
       if(id == null){
@@ -98,6 +100,7 @@ function App() {
 
   function handleLogOut(){
     setId(null)
+    setRole(null)
     localStorage.setItem('my-id',JSON.stringify(id));
   }
 
@@ -116,6 +119,15 @@ function App() {
         "googleId":response.profileObj.googleId,
          "savedBooks":[],
          "role":"User"
+      })
+
+      const getRoleOfUser = "http://localhost:8050/api/v1/user/" +response.profileObj.googleId +"/role"
+      Axios.get(getRoleOfUser)
+      .then(response => response.data)
+      .then((data) => {
+        console.log("USER Role")
+          console.log(data)
+          setRole(data)
       })
   }
 
@@ -138,7 +150,9 @@ function App() {
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
-                    <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
+                    {role == "Admin" ?<li><NavLink exact activeClassName="current" to="/Upload" aria-label="Admin Rights">Admin Rights </NavLink></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
+                   {console.log("Role is")}
+                   {console.log(role)}
                     <li><Search/></li>
                     {/* <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li> */}
                     {id ?<li className ={classes.name}>Hello, {name}</li>: null}
@@ -189,6 +203,7 @@ function App() {
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           <Route path="/Search" component={SearchGrid}/>
+          <Route path="/Upload" component={Upload}/>
           </userContext.Provider>
         </Switch>
       </div>
