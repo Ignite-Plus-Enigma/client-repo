@@ -33,6 +33,7 @@ import Upload from "./Components/UploadPage/Upload"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
+import UploadBooks from './Components/UploadPage/UploadBooks';
 
 const useStyles = makeStyles({
   root: {
@@ -203,7 +204,7 @@ function App() {
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           <Route path="/Search" component={SearchGrid}/>
-          <Route path="/Upload" component={Upload}/>
+          <Route path="/Upload" component={UploadBooks}/>
           </userContext.Provider>
         </Switch>
       </div>
