@@ -29,8 +29,6 @@ import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 import SearchGrid from "./Components/SearchResultPage/SearchGrid"
-import Upload from "./Components/UploadPage/Upload"
-
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
 import UploadBooks from './Components/UploadPage/UploadBooks';
