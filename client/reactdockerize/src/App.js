@@ -1,5 +1,6 @@
 import React, { Component,useState,useMemo, useEffect } from 'react';
 import Navbar from './Components/NavbarComponent/Navbar';
+import Footer from "./Components/FooterComponent/Footer"
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Home from './Components/HomePage/Browse'
 import Books from './Components/PDFBooksPage/Books'
@@ -217,6 +218,7 @@ function App() {
         </Switch>
       </div>
       </BrowserRouter>
+      <Footer/>
       </div>
     );
   
