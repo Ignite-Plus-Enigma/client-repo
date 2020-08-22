@@ -76,6 +76,7 @@ function App() {
   useEffect(()=>{
     const data = localStorage.getItem('my-id')
     const data_name = localStorage.getItem('my-name')
+    const data_role = localStorage.getItem('my-role')
     if(data){
       setId(JSON.parse(data));
     }
@@ -83,12 +84,16 @@ function App() {
       setName(JSON.parse(data_name));
       
     }
+    if(data_role){
+      setRole(JSON.parse(data_role));
+    }
 
   },[])
 
   useEffect(()=>{
     localStorage.setItem('my-id',JSON.stringify(id));
     localStorage.setItem('my-name',JSON.stringify(name));
+    localStorage.setItem('my-role',JSON.stringify(role))
   })
   
 
@@ -102,7 +107,10 @@ function App() {
   function handleLogOut(){
     setId(null)
     setRole(null)
+    setName(null)
     localStorage.setItem('my-id',JSON.stringify(id));
+    localStorage.setItem('my-name',JSON.stringify(name));
+    localStorage.setItem('my-role',JSON.stringify(role));
   }
 
 
@@ -147,7 +155,7 @@ function App() {
         <nav className="app sticky">
                 
                 <ul>
-                    <img src={logo} alt="logo" width="170" height="100"/>
+                    <img src={logo} alt="logo" width="140" height="70"/>
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
