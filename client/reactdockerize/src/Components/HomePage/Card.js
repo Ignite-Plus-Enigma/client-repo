@@ -50,6 +50,7 @@ const useStyles = makeStyles({
   const {id,setId} = useContext(userContext);
   const[saved,setSaved] = useState(false)
   const [open, setOpen] = useState(false);
+  const [role, setRole] = useState();
   const [savedbook, setSavedBook] = useState(null)
 
   function responseGoogle(response){
@@ -57,6 +58,8 @@ const useStyles = makeStyles({
       console.log(response.profileObj)
       //setName(response.profileObj.name)
       setOpen(false)
+      const name = response.profileObj.name;
+      
       const x = response.profileObj.googleId;
       setId(x)
       const saveUserEndPoint = "http://localhost:8050/api/v1/user/save"
@@ -66,6 +69,19 @@ const useStyles = makeStyles({
          "savedBooks":[],
          "role":"User"
       })
+
+      const getRoleOfUser = "http://localhost:8050/api/v1/user/" +response.profileObj.googleId +"/role"
+      axios.get(getRoleOfUser)
+      .then(response => response.data)
+      .then((data) => {
+        console.log("USER Role")
+          console.log(data)
+          setRole(data)
+      })
+
+      localStorage.setItem('my-id',JSON.stringify(response.profileObj.googleId));
+      localStorage.setItem('my-name',JSON.stringify(response.profileObj.name));
+      localStorage.setItem('my-role',JSON.stringify(role))
   }
 
   function failedLogin(response){

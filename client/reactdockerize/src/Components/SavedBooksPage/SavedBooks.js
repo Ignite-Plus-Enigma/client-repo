@@ -174,7 +174,7 @@ function SavedBooks(props){
         
           <img src="https://mednear.com/assets/web/images/icons/empty-product.png" className="not-found-img" style={{width:`29%`}}/> 
           <p>You do not have any currently saved books!</p>
-          <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>:   <p className="savedbooks-heading">Saved Books</p>}
+          <Button onClick={handleBrowse} className={classes.browse} >Browse</Button></div>:   <p className="savedbooks-heading">Saved Books</p>}
           <div className={classes.root}>
       {console.log(books)}
          
@@ -213,7 +213,7 @@ function SavedBooks(props){
               <Grid item xs container direction="column" spacing={1}>
                 <Grid item xs={2} sm>
       
-                 <Typography variant="subtitle2" >400 pages</Typography>
+                <Typography  gutterBottom variant="body1">{book.description}</Typography>
                </Grid>
               </Grid>
               </Grid>

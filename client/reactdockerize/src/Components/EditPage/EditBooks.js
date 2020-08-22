@@ -13,7 +13,7 @@ import Search from './Search'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { DropzoneDialog } from 'material-ui-dropzone';
+// import { DropzoneDialog } from 'material-ui-dropzone';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { green } from '@material-ui/core/colors';
@@ -21,54 +21,23 @@ import Icon from '@material-ui/core/Icon';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Alert from '@material-ui/lab/Alert'
-
-// import Dialog from '@material-ui/core/Dialog';
-// import DialogActions from '@material-ui/core/DialogActions';
-// import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-// import DialogTitle from '@material-ui/core/DialogTitle';
 import { AttachFile, Description, PictureAsPdf, Theaters } from '@material-ui/icons';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
-// import FormDialog from './Check'
-
-// const fs = require("fs");
-// const express = require("express");
-// const multer = require("multer");
-// const OAuth2Data = require("./credentials.json");
-// var name,pic
-
-// const { google } = require("googleapis");
-
-// const app = express();
+import GooglePicker from 'react-google-picker';
 
 
-// const CLIENT_ID = OAuth2Data.web.client_id;
-// const CLIENT_SECRET = OAuth2Data.web.client_secret;
-// const REDIRECT_URL = OAuth2Data.web.redirect_uris[9];
 
-// const oAuth2Client = new google.auth.OAuth2(
-//   CLIENT_ID,
-//   CLIENT_SECRET,
-//   REDIRECT_URL
-// );
-// var authed = false;
-
-// // If modifying these scopes, delete token.json.
-// const SCOPES =
-//   "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.profile";
-
-
-const reason = [
-    {
-      value: '1',
-      label: 'Copyright issues',
-    },
-    {
-      value: '2',
-      label: 'Book not found',
-    },
+// const reason = [
+//     {
+//       value: '1',
+//       label: 'Copyright issues',
+//     },
+//     {
+//       value: '2',
+//       label: 'Book not found',
+//     },
     
-  ];
+//   ];
 
 
 
@@ -118,7 +87,7 @@ const handleChange = (event) => {
 
   
   
-  const [fileObjects, setFileObjects] = useState([]);
+  const [fileObjects, setFileObjects] = React.useState([]);
 
   
 
@@ -128,7 +97,7 @@ const handleChange = (event) => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <div className={classes.paper}>
       
         <Search/>
@@ -162,25 +131,51 @@ const handleChange = (event) => {
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-            <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
+            {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
      Image File
-  </Button>
+  </Button> */}
 <div>
-<DropzoneDialog
-    acceptedFiles={['image/*']}
-    cancelButtonText={"cancel"}
-    submitButtonText={"submit"}
-    maxFileSize={5000000}
-    open={open}
-    onClose={() => setOpen(false)}
-    onSave={(files) => {
-      console.log('Files:', files);
-      setOpen(false);
-    }}
-    showPreviews={true}
-    showFileNamesInPreview={true}
-    
-  />
+<GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+              developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
+              scope={['https://www.googleapis.com/auth/drive']}
+              onChange={data => console.log('on change:', data)}
+              onAuthFailed={data => console.log('on auth failed:', data)}
+              multiselect={true}
+              navHidden={true}
+              authImmediate={true}
+              viewId={'DOCS'}
+              mimeTypes={['application/pdf']}
+              createPicker={ (google, oauthToken) => {
+                const googleViewId = google.picker.ViewId.DOCS;
+                const uploadView = new google.picker.DocsUploadView()
+                .setParent("1hu0Sx7vqfkb71yQdSxHGRuXC0rNI8KPC");;
+                const docsView = new google.picker.DocsView(googleViewId)
+                    .setIncludeFolders(true)
+                    .setSelectFolderEnabled(true);
+                const picker = new window.google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+                  .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                    .addView(docsView)
+                    .addView(uploadView)/*DocsUploadView added*/
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey('AIzaSyAt0xkbUJKMFTa4oNfx6jCZlXZHX99mTnY')
+                    .setCallback((data)=>{
+                      if (data.action == google.picker.Action.PICKED) {
+                          var fileId = data.docs[0].id;
+                        //   alert('The user selected: ' + fileId);
+                          console.log(fileId)
+                          //  headerimage+= fileId
+                          // setbookimage(data.docs[0].id)
+                          console.log("bookimage")
+                          // console.log(bookimage)
+                        //   picker();
+                      }
+                    });
+                picker.build().setVisible(true);
+            }}>
+            <Button variant="contained" color="secondary" >UPLOAD BOOK IMAGE</Button>
+            <div className="google"></div>
+        </GooglePicker>
   
 </div>
             </Grid>
@@ -322,24 +317,51 @@ const handleChange = (event) => {
                 <Typography component="h3" variant="h6">CHOOSE FILE</Typography>
                 <hr></hr>
                 <div>
-  <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
+  {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
      PDF File
-  </Button>
+  </Button> */}
 <div>
-<DropzoneDialog
-    acceptedFiles={['application/pdf']}
-    cancelButtonText={"cancel"}
-    submitButtonText={"submit"}
-    maxFileSize={5000000}
-    open={open}
-    onClose={() => setOpen(false)}
-    onSave={(files) => {
-      console.log('Files:', files);
-      setOpen(false);
-    }}
-    showPreviews={true}
-    showFileNamesInPreview={true}
-  />
+<GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+              developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
+              scope={['https://www.googleapis.com/auth/drive']}
+              onChange={data => console.log('on change:', data)}
+              onAuthFailed={data => console.log('on auth failed:', data)}
+              multiselect={true}
+              navHidden={true}
+              authImmediate={true}
+              viewId={'DOCS'}
+              mimeTypes={['application/pdf']}
+              createPicker={ (google, oauthToken) => {
+                const googleViewId = google.picker.ViewId.DOCS;
+                const uploadView = new google.picker.DocsUploadView()
+                .setParent("1hu0Sx7vqfkb71yQdSxHGRuXC0rNI8KPC");;
+                const docsView = new google.picker.DocsView(googleViewId)
+                    .setIncludeFolders(true)
+                    .setSelectFolderEnabled(true);
+                const picker = new window.google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+                  .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                    .addView(docsView)
+                    .addView(uploadView)/*DocsUploadView added*/
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey('AIzaSyAt0xkbUJKMFTa4oNfx6jCZlXZHX99mTnY')
+                    .setCallback((data)=>{
+                      if (data.action == google.picker.Action.PICKED) {
+                          var fileId = data.docs[0].id;
+                        //   alert('The user selected: ' + fileId);
+                          console.log(fileId)
+                          //  headerimage+= fileId
+                          // setbookimage(data.docs[0].id)
+                          console.log("pdf")
+                          // console.log(bookimage)
+                        //   picker();
+                      }
+                    });
+                picker.build().setVisible(true);
+            }}>
+            <Button variant="contained" color="secondary" >PDF FILE</Button>
+            <div className="google"></div>
+        </GooglePicker>
 </div>
 </div>
             </Grid>
@@ -355,24 +377,51 @@ const handleChange = (event) => {
             <Grid item xs={12} sm={6}>
                 
                 <div>
-  <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
+  {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
      Audio File
-  </Button>
+  </Button> */}
 <div>
-<DropzoneDialog
-    acceptedFiles={['audio/mpeg']}
-    cancelButtonText={"cancel"}
-    submitButtonText={"submit"}
-    maxFileSize={15000000}
-    open={open}
-    onClose={() => setOpen(false)}
-    onSave={(files) => {
-      console.log('Files:', files);
-      setOpen(false);
-    }}
-    showPreviews={true}
-    showFileNamesInPreview={true}
-  />
+<GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+              developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
+              scope={['https://www.googleapis.com/auth/drive']}
+              onChange={data => console.log('on change:', data)}
+              onAuthFailed={data => console.log('on auth failed:', data)}
+              multiselect={true}
+              navHidden={true}
+              authImmediate={true}
+              viewId={'DOCS'}
+              mimeTypes={['application/pdf']}
+              createPicker={ (google, oauthToken) => {
+                const googleViewId = google.picker.ViewId.DOCS;
+                const uploadView = new google.picker.DocsUploadView()
+                .setParent("1hu0Sx7vqfkb71yQdSxHGRuXC0rNI8KPC");;
+                const docsView = new google.picker.DocsView(googleViewId)
+                    .setIncludeFolders(true)
+                    .setSelectFolderEnabled(true);
+                const picker = new window.google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+                  .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                    .addView(docsView)
+                    .addView(uploadView)/*DocsUploadView added*/
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey('AIzaSyAt0xkbUJKMFTa4oNfx6jCZlXZHX99mTnY')
+                    .setCallback((data)=>{
+                      if (data.action == google.picker.Action.PICKED) {
+                          var fileId = data.docs[0].id;
+                        //   alert('The user selected: ' + fileId);
+                          console.log(fileId)
+                          //  headerimage+= fileId
+                          // setbookimage(data.docs[0].id)
+                          console.log("audio")
+                          // console.log(bookimage)
+                        //   picker();
+                      }
+                    });
+                picker.build().setVisible(true);
+            }}>
+            <Button variant="contained" color="secondary" >AUDIO FILE</Button>
+            <div className="google"></div>
+        </GooglePicker>
 </div>
 </div>
             </Grid>
