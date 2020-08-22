@@ -27,6 +27,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { AttachFile, Description, PictureAsPdf, Theaters } from '@material-ui/icons';
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import Alert from '@material-ui/lab/Alert'
+import GooglePicker from 'react-google-picker';
+
 // import FormDialog from './Check'
 import axios from 'axios'
 
@@ -215,7 +217,7 @@ fetchData()
 
   return (
     <Container component="main" maxWidth="sm">
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <div className={classes.paper}>
      <form className={classes.form} noValidate>
         <Typography component="h1" variant="h5">
@@ -240,19 +242,43 @@ fetchData()
               />
             </Grid>
             <Grid item xs={12}>
-                
-              <TextField
-                autoComplete="fname"
-                name="bookImage"
-                variant="outlined"
-                required
-                fullWidth
-                id="bookIamge"
-                label="Book Image"
-                autoFocus
-                color="secondary"
-                onChange={handleBookImage}
-              />
+            <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+              developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
+              scope={['https://www.googleapis.com/auth/drive']}
+              onChange={data => console.log('on change:', data)}
+              onAuthFailed={data => console.log('on auth failed:', data)}
+              multiselect={true}
+              navHidden={true}
+              authImmediate={true}
+              viewId={'DOCS'}
+              mimeTypes={['application/pdf']}
+              createPicker={ (google, oauthToken) => {
+                const googleViewId = google.picker.ViewId.DOCS;
+                const uploadView = new google.picker.DocsUploadView()
+                .setParent("1hu0Sx7vqfkb71yQdSxHGRuXC0rNI8KPC");;
+                const docsView = new google.picker.DocsView(googleViewId)
+                    .setIncludeFolders(true)
+                    .setSelectFolderEnabled(true);
+                const picker = new window.google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+                  .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                    .addView(docsView)
+                    .addView(uploadView)/*DocsUploadView added*/
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey('AIzaSyAt0xkbUJKMFTa4oNfx6jCZlXZHX99mTnY')
+                    .setCallback((data)=>{
+                      if (data.action == google.picker.Action.PICKED) {
+                          var fileId = data.docs[0].id;
+                        //   alert('The user selected: ' + fileId);
+                          console.log(fileId)
+                        //   picker();
+                      }
+                    });
+                picker.build().setVisible(true);
+            }}>
+            <Button variant="contained" color="secondary">UPLOAD AUDIO</Button>
+            <div className="google"></div>
+        </GooglePicker>
             </Grid>
            
    
@@ -434,16 +460,45 @@ fetchData()
              <hr></hr>
 <div>
 <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="PdfFile"
-                label="PDF File"
-                name="PdfFile"
-                color="secondary"
-                onChange={handlepdfurl}
-              />
+<GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+              developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
+              scope={['https://www.googleapis.com/auth/drive']}
+              onChange={data => console.log('on change:', data)}
+              onAuthFailed={data => console.log('on auth failed:', data)}
+              multiselect={true}
+              navHidden={true}
+              authImmediate={false}
+              viewId={'DOCS'}
+              mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
+              createPicker={ (google, oauthToken) => {
+                const googleViewId = google.picker.ViewId.DOCS;
+                const uploadView = new google.picker.DocsUploadView()
+                .setParent("163znjtImSL_6eih-mtGOmoSo8Gv777p6");
+                const docsView = new google.picker.DocsView(googleViewId)
+                    .setIncludeFolders(true)
+                    .setSelectFolderEnabled(true);
+                const picker = new window.google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+                  .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                    .addView(docsView)
+                    .addView(uploadView)/*DocsUploadView added*/
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey('AIzaSyAt0xkbUJKMFTa4oNfx6jCZlXZHX99mTnY')
+                    .setCallback((data)=>{
+                      if (data.action == google.picker.Action.PICKED) {
+                          var fileId = data.docs[0].id;
+                        //   alert('The user selected: ' + fileId);
+                          console.log(fileId)
+                          setbookimage("https://drive.google.com/uc?export=view&id="+fileId)
+                          console.log(bookimage)
+                        //   picker();
+                      }
+                    });
+                picker.build().setVisible(true);
+            }}>
+            <Button variant="contained" color="secondary">UPLOAD PDF</Button>
+            <div className="google"></div>
+        </GooglePicker>
             </Grid>
 <div>
 <div className={classes.root}>
@@ -465,16 +520,43 @@ fetchData()
                 
                 <div>
                 <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="audioFile"
-                label="Audio File"
-                name="audioFile"
-                color="secondary"
-                onChange={handleaudiourl}
-              />
+                <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+              developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
+              scope={['https://www.googleapis.com/auth/drive']}
+              onChange={data => console.log('on change:', data)}
+              onAuthFailed={data => console.log('on auth failed:', data)}
+              multiselect={true}
+              navHidden={true}
+              authImmediate={false}
+              viewId={'DOCS'}
+              mimeTypes={['application/pdf']}
+              createPicker={ (google, oauthToken) => {
+                const googleViewId = google.picker.ViewId.DOCS;
+                const uploadView = new google.picker.DocsUploadView()
+                .setParent("1hu0Sx7vqfkb71yQdSxHGRuXC0rNI8KPC");;
+                const docsView = new google.picker.DocsView(googleViewId)
+                    .setIncludeFolders(true)
+                    .setSelectFolderEnabled(true);
+                const picker = new window.google.picker.PickerBuilder()
+                .enableFeature(google.picker.Feature.SIMPLE_UPLOAD_ENABLED)
+                  .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+                    .addView(docsView)
+                    .addView(uploadView)/*DocsUploadView added*/
+                    .setOAuthToken(oauthToken)
+                    .setDeveloperKey('AIzaSyAt0xkbUJKMFTa4oNfx6jCZlXZHX99mTnY')
+                    .setCallback((data)=>{
+                      if (data.action == google.picker.Action.PICKED) {
+                          var fileId = data.docs[0].id;
+                        //   alert('The user selected: ' + fileId);
+                          console.log(fileId)
+                        //   picker();
+                      }
+                    });
+                picker.build().setVisible(true);
+            }}>
+            <Button variant="contained" color="secondary">UPLOAD AUDIO</Button>
+            <div className="google"></div>
+        </GooglePicker>
             </Grid>
 <div>
 <div className={classes.root}>
@@ -511,4 +593,4 @@ fetchData()
       </Box>
     </Container>
   );
-}
+          }
