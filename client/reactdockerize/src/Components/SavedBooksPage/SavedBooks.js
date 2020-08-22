@@ -213,7 +213,7 @@ function SavedBooks(props){
               <Grid item xs container direction="column" spacing={1}>
                 <Grid item xs={2} sm>
       
-                 <Typography variant="subtitle2" >400 pages</Typography>
+                <Typography  gutterBottom variant="body1">{book.description}</Typography>
                </Grid>
               </Grid>
               </Grid>

@@ -123,7 +123,7 @@ export default function AudioSubcategoryTrial(props){
         <h1 className = "main-category-heading">{mainCategoryProps}</h1>
        {console.log(mainCategoryProps) }
        {console.log("MainCatProps")}
-        <AudioTabs mainCat={mainCategoryProps}/>
+       <AudioTabs mainCat={mainCategoryProps} subCat = {props.location.pathname.split("/")[3]}/>
         <hr id="tabDivider"></hr>
         <div className={classes.root}>
     {console.log(books)}

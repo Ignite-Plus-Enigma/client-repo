@@ -56,37 +56,40 @@ export default function AllCategoryTrial(props){
         .then((data) => {
           console.log("Check here for data")
             // console.log(response.data)
+            console.log("The data is:")
             console.log(data);
             setMainCategories(data)
             console.log("set main categories")
             console.log(mainCategories)
-            var c1 = []
+            var c = []
             for(var i = 0; i < Math.floor(data.length/4);i++){
               // console.log(mainCategories[i].category)
-              setCol1.push(data[i]);
+              c.push(data[i]);
             }
-            setCol1(c1);
-          var c2 = []
+            setCol1(c);
+          c = []
           
           for(var i = Math.floor(data.length/4); i < 2*(Math.floor)(data.length/4);i++){
-              c2.push(data[i]);
+              c.push(data[i]);
               // console.log(mainCategories[i].category)
+              console.log("Inside col2i:"+i)
           }
-          setCol2(c2);
-          var c3 = []
+          setCol2(c);
+          c = []
           
           for(var i = 2*(Math.floor)(data.length/4);i < 3*(Math.floor)(data.length/4);i++){
-              c3.push(data[i]);
+            console.log("Col3 i"+i)
+              c.push(data[i]);
               // console.log(data[i].category)
           }
-          setCol3(c3);
-          var c4 = []
+          setCol3(c);
+          c = []
           
           for(var i = 3*(Math.floor)(data.length/4);i < data.length;i++){
-              c4.push(data[i]);
+              c.push(data[i]);
               // console.log(data[i].category)
           }
-          setCol4(c4);
+          setCol4(c);
         })
     }
   useEffect(() => {
@@ -108,9 +111,9 @@ export default function AllCategoryTrial(props){
                 <div xs={3}>
                 {/* {console.log("HERE")}
                 {console.log(singleMain)} */}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
                 ))}
                 </div>
             ))}
@@ -118,19 +121,19 @@ export default function AllCategoryTrial(props){
             </Grid>
             
             <Grid item xs={3}>
-            
             {col2.map((singleMain) => (
                 <div xs={3}>
-                <h5 id ="category-heading" aria-label="Main category"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/Physics`} style={{color:'black'}}>{singleMain.name}</NavLink></h5>
-                <ul>
+                {console.log("col3 in render")}
+                {console.log(col3)}
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}/`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
-                </ul>
-                <h1> {singleMain}</h1>
+             
                 </div>
-            ))}
-            
+            )
+            )
+            }
             </Grid>
             <Grid item xs={3}>
             
@@ -138,22 +141,24 @@ export default function AllCategoryTrial(props){
                 <div xs={3}>
                 {console.log("col3 in render")}
                 {console.log(col3)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.name}/${singleSub}`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
              
                 </div>
             )
             )
             }
+            </Grid>
+            <Grid item xs={3}>
             {col4.map((singleMain) => (
                 <div xs={3}>
                 {console.log("col4 in render")}
                 {console.log(col4)}
-                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/Physics`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
+                <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
-                        <li><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
+                        <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
                 ))}
              
                 </div>

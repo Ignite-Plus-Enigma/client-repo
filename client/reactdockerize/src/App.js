@@ -30,8 +30,10 @@ import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 import SearchGrid from "./Components/SearchResultPage/SearchGrid"
 
+
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
+import UploadBooks from './Components/UploadPage/UploadBooks';
 
 const useStyles = makeStyles({
   root: {
@@ -47,7 +49,7 @@ const useStyles = makeStyles({
   },
   name:{
     padding:0,
-    right: "9em",
+    right: "7em",
     top:"2em",
     position:"absolute"
   }
@@ -58,6 +60,7 @@ function App() {
 
   const [open, setOpen] = React.useState(false);
   const [id,setId] = useState(null)
+  const [role,setRole] = useState(null)
   const provideValue = useMemo(() => ({id,setId}),[id,setId]);
   const handleClickOpen = () => {
       if(id == null){
@@ -73,6 +76,7 @@ function App() {
   useEffect(()=>{
     const data = localStorage.getItem('my-id')
     const data_name = localStorage.getItem('my-name')
+    const data_role = localStorage.getItem('my-role')
     if(data){
       setId(JSON.parse(data));
     }
@@ -80,12 +84,16 @@ function App() {
       setName(JSON.parse(data_name));
       
     }
+    if(data_role){
+      setRole(JSON.parse(data_role));
+    }
 
   },[])
 
   useEffect(()=>{
     localStorage.setItem('my-id',JSON.stringify(id));
     localStorage.setItem('my-name',JSON.stringify(name));
+    localStorage.setItem('my-role',JSON.stringify(role))
   })
   
 
@@ -98,7 +106,11 @@ function App() {
 
   function handleLogOut(){
     setId(null)
+    setRole(null)
+    setName(null)
     localStorage.setItem('my-id',JSON.stringify(id));
+    localStorage.setItem('my-name',JSON.stringify(name));
+    localStorage.setItem('my-role',JSON.stringify(role));
   }
 
 
@@ -117,6 +129,15 @@ function App() {
          "savedBooks":[],
          "role":"User"
       })
+
+      const getRoleOfUser = "http://localhost:8050/api/v1/user/" +response.profileObj.googleId +"/role"
+      Axios.get(getRoleOfUser)
+      .then(response => response.data)
+      .then((data) => {
+        console.log("USER Role")
+          console.log(data)
+          setRole(data)
+      })
   }
 
   function failedLogin(response){
@@ -134,11 +155,13 @@ function App() {
         <nav className="app sticky">
                 
                 <ul>
-                    <img src={logo} alt="logo" width="170" height="100"/>
+                    <img src={logo} alt="logo" width="140" height="70"/>
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
-                    <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li>
+                    {role == "Admin" ?<li><NavLink exact activeClassName="current" to="/Upload" aria-label="Admin Rights">Admin Rights </NavLink></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
+                   {console.log("Role is")}
+                   {console.log(role)}
                     <li><Search/></li>
                     {/* <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li> */}
                     {id ?<li className ={classes.name}>Hello, {name}</li>: null}
@@ -189,6 +212,7 @@ function App() {
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           <Route path="/Search" component={SearchGrid}/>
+          <Route path="/Upload" component={UploadBooks}/>
           </userContext.Provider>
         </Switch>
       </div>

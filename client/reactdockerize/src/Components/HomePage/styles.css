@@ -49,7 +49,10 @@
   padding-left:0.05; 
    padding-top:0.5em; 
   padding-right: 0.05;
-  padding-bottom: 0.5em;
+  /* padding-bottom: 0.5em; */
+  margin:0;
+}
+.card-div{
   margin:0;
 }
 
@@ -63,14 +66,17 @@
 #browse-heading {
   padding-top: 0.5em;;
   font-size: 1.3em;
-  padding-left: 1.5em;
+  padding-left: 1em;
   color: #dc143c;
 }
 
 #horizontal-ruler {
   opacity: .8;
-  margin-left:2em;
-  margin-right:2em
+  margin-left:2.5em;
+  margin-right:2em;
+  margin-top:0;
+  margin-bottom: 0;
+  width:96%;
 }
 #card-button{
   position: absolute;

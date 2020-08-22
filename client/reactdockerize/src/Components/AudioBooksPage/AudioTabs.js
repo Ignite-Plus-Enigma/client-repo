@@ -19,17 +19,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AudioTabs(props) {
+export default function Tabs(props) {
   const classes = useStyles();
   const [mainCategories, setMainCategories] = useState([]);
   const keyforEndPoint =props.mainCat;
  const history = useHistory();
+ const [active,setActive]=useState(null)
 
   const fetchData = ()  => {
     const mainCategoriesApiEndPoint = 'http://localhost:8050/api/v1/category/'+keyforEndPoint+'/subcategory'
-    
+    console.log("check for props")
+
     console.log(props)
     console.log("inside tabs")
+
     const response =  axios.get(mainCategoriesApiEndPoint)
     .then(response => response.data)
     .then((data) => {
@@ -43,8 +46,38 @@ export default function AudioTabs(props) {
       fetchData()
   },[])
 
+  // function FormRow() {
+  //   return (
+  //     <React.Fragment>
 
+  //       {console.log(mainCategories)}
+  //       {mainCategories.map(singleSub=>(
+  //        <Grid item xs={3}>
+  //          <Paper elevation={0} xs={3} className={classes.paper}>{singleSub}</Paper>
+  //        </Grid>
+  //       // <li>{singleSub}</li>
+  //       ))}
+      
+        
+        {/* <Grid item xs={3}>
+          <Paper elevation={0} className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper elevation={0} className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper elevation={0} className={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper elevation={0} className={classes.paper}>item</Paper>
+        </Grid> */}
+        
+  //     </React.Fragment>
+  //   );
+  // }
   function handleClick(singleSub){
+    var a = singleSub.singleSub
+    setActive(a)
     history.push(`/AudioSubCategory/Text%20Books/${singleSub.singleSub}/`)
       console.log(singleSub)
       window.location.reload()
@@ -55,10 +88,13 @@ export default function AudioTabs(props) {
   return (
     
      <div className={classes.root}>
+       {console.log("hi from tabs")}
        {console.log(mainCategories)}
         {mainCategories.map(singleSub=>(
     //  <Grid item xs={3}>
             // 
+            singleSub==props.subCat ? 
+            <Button color="secondary" onClick={() => handleClick({singleSub})} className={classes.subcategoryTab} activeClassName="current">{singleSub}</Button>:
             <Button color="primary" onClick={() => handleClick({singleSub})} className={classes.subcategoryTab} activeClassName="current">{singleSub}</Button>
         // </Grid>
         // <li>{singleSub}</li>
