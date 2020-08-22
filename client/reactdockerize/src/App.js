@@ -29,7 +29,7 @@ import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 import SearchGrid from "./Components/SearchResultPage/SearchGrid"
-import Upload from "./Components/UploadPage/Upload"
+// import Upload from "./Components/UploadPage/Upload"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
@@ -203,7 +203,7 @@ function App() {
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           <Route path="/Search" component={SearchGrid}/>
-          <Route path="/Upload" component={Upload}/>
+          {/* <Route path="/Upload" component={Upload}/> */}
           </userContext.Provider>
         </Switch>
       </div>

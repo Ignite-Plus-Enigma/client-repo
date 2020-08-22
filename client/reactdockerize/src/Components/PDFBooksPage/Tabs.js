@@ -80,13 +80,9 @@ export default function Tabs(props) {
   //   );
   // }
   function handleClick(singleSub){
-<<<<<<< HEAD
-      history.push(`/AudioSubCategory/Text%20Books/${singleSub.singleSub}/`)
-=======
     var a = singleSub.singleSub
     setActive(a)
     history.push(`/PDFSubCategory/Text%20Books/${singleSub.singleSub}/`)
->>>>>>> df4b590c1a8e89366fd9f4f1624fe9485f1ea9be
       console.log(singleSub)
       window.location.reload()
       // fetchData();
@@ -101,13 +97,9 @@ export default function Tabs(props) {
         {mainCategories.map(singleSub=>(
     //  <Grid item xs={3}>
             // 
-<<<<<<< HEAD
-            <Button  color="secondary"   onClick={() => handleClick({singleSub}) }  >{singleSub}</Button>
-=======
             singleSub==props.subCat ? 
             <Button color="secondary" onClick={() => handleClick({singleSub})} className={classes.subcategoryTab} activeClassName="current">{singleSub}</Button>:
             <Button color="primary" onClick={() => handleClick({singleSub})} className={classes.subcategoryTab} activeClassName="current">{singleSub}</Button>
->>>>>>> df4b590c1a8e89366fd9f4f1624fe9485f1ea9be
         // </Grid>
         // <li>{singleSub}</li>
         ))}
