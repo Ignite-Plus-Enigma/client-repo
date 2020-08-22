@@ -46,7 +46,7 @@ class AutoRotatingCarousel extends React.Component {
                     <div class="centered1"><b>Let’s open the gates to accessibility…
 </b></div>
 <div class="centered2"><b>Let’s build an inclusive society together</b></div>
-<a href="https://www.samarthanam.org/donate/">
+<a href="https://www.samarthanam.org/donate/" target="_blank">
 <button class="btn">Support Us</button></a>
             </div>
             {/* <div> 

@@ -85,7 +85,7 @@ export default function UploadBooks() {
 
     const uploadBookEndPoint = 'http://localhost:8050/api/v1/book/add'
     axios.post(uploadBookEndPoint,{
-      "id":"41",
+      "id":50,
       "name":bookname,
       "isbn":bookisbn,
       "author":bookauthor,
@@ -96,7 +96,7 @@ export default function UploadBooks() {
       "category":bookcat,
       "subCategory":booksubcat,
       "rating":4,
-      "format":{ "Audio" : { "url" :{audiourl} }, "PDF" : {"url" :{pdfurl}}}
+      "format":[{type:"Audio",url:audiourl},{type:"PDF", url:pdfurl}]
     })
     .then(res => {
       console.log(res);
