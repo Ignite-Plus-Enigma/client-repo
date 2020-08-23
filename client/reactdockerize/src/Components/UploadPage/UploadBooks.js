@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 export default function UploadBooks() {
   var headerimage="https://drive.google.com/uc?export=view&id="
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [openCategory, setOpenCategory] = React.useState(false);
   const [setReason] = React.useState([]);
   const [bookname, setbookname]=React.useState(null)
   const [bookisbn, setbookisbn]=React.useState(null)
@@ -149,7 +149,7 @@ const fetchSubCategory = (label) => {
 }
 
 const postCategory=()=>{
-  const uploadCatEndPoint = 'http://localhost:8050/api/v1/newCatAndSubcat/add'
+  const uploadCatEndPoint = 'http://localhost:8050/api/v1/newCatAndSubcat/add/'
     axios.post(uploadCatEndPoint,{
       
       "category": newcat,
@@ -166,19 +166,23 @@ const postCategory=()=>{
 }
 
 const postnewsubcat=()=>{
-  const postsubcaturl = 'http://localhost:8050/api/v1/oldCatAndNewsubCat/add'
+  const postsubcaturl = 'http://localhost:8050/api/v1/oldCatAndNewsubCat/add/'
     axios.put(postsubcaturl,{
       
-      "category": bookcat,
+      "category": bookcat[0],
       "subCategory": newsubcat
+      
     })
     
     .then(res => {
       console.log(res);
       console.log(res.data);
       console.log(subcat)
+      console.log("subcat posted")
     })
-
+    fetchSubCategory(bookcat[0])
+    console.log(bookcat)
+    console.log(newsubcat)
 }
 
 
@@ -186,12 +190,12 @@ const postnewsubcat=()=>{
 
 
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpenCategory = () => {
+    setOpenCategory(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseCategory = () => {
+    setOpenCategory(false);
   };
 
   const handleClickOpenSubCategory = () => {
@@ -258,15 +262,15 @@ console.log(subcat)
 // console.log(booksubcat)
 }
 
-const handlepdfurl=(e)=>{
-  console.log(e.target.value)
-  setpdfurl(e.target.value)
-}
+// const handlepdfurl=(e)=>{
+//   console.log(e.target.value)
+//   setpdfurl(e.target.value)
+// }
 
-const handleaudiourl=(e)=>{
-  console.log(e.target.value)
-  setaudiourl(e.target.value)
-}
+// const handleaudiourl=(e)=>{
+//   console.log(e.target.value)
+//   setaudiourl(e.target.value)
+// }
 
 const handleSubmit=()=>{
 fetchData()
@@ -390,10 +394,10 @@ const handlebookimageflag=()=>{
             <Grid>
             <FormControl component="fieldset">
             <Typography component="h3" variant="h6">CATEGORY
-            <IconButton aria-label="add" onClick={handleClickOpen}>
+            <IconButton aria-label="add" onClick={handleClickOpenCategory}>
         <AddCircleRoundedIcon />
       </IconButton>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={openCategory} onClose={handleCloseCategory} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">ADD CATEGORY</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -410,7 +414,7 @@ const handlebookimageflag=()=>{
             onChange={handlenewcat}
           /></DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleCloseCategory} color="primary">
               Cancel
             </Button>
             <Button onClick={postCategory} color="primary">
@@ -444,10 +448,10 @@ const handlebookimageflag=()=>{
             </Grid>
             <FormControl component="fieldset">
       <Typography component="h3" variant="h6">SUBCATEGORY
-      <IconButton aria-label="add category"onClick={handleClickOpen}>
+      <IconButton aria-label="add category"onClick={handleClickOpenSubCategory}>
         <AddCircleRoundedIcon />
       </IconButton>
-      {/* <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={openSubCat} onClose={handleCloseSubCategory} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">ADD SUBCATEGORY</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -464,14 +468,14 @@ const handlebookimageflag=()=>{
             onChange={handlenewsubcat}
           /></DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleCloseSubCategory} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={postnewsubcat} color="primary">
               ADD
             </Button>
           </DialogActions>
-        </Dialog> */}
+        </Dialog>
       </Typography>
       <hr></hr>
       <FormGroup aria-label="position" row>
