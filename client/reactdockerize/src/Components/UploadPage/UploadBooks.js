@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { DropzoneDialog } from 'material-ui-dropzone';
+// import { DropzoneDialog } from 'material-ui-dropzone';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { green } from '@material-ui/core/colors';
