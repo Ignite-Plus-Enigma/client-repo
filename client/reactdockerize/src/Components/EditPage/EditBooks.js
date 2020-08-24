@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Search from './EditSearch'
+// import Search from './EditSearch'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -31,7 +31,8 @@ import Dialog from '@material-ui/core/Dialog';
  import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 // const reason = [
 //     {
@@ -113,6 +114,8 @@ const[books, setBooks]=React.useState([])
   const[imageurl, setimageurl]=React.useState()
   const[pdf, setpdf]=React.useState()
   const[audio, setaudio]=React.useState()
+  const[opensnack, setopensnack]=React.useState(false)
+
 
 
 
@@ -284,7 +287,17 @@ const handlenewsubcat=(e)=>{
   
   
   const [fileObjects, setFileObjects] = React.useState([]);
-
+  const handleclicksnack=()=>{
+    setopensnack(true)
+  }
+  
+  const handleClosesnack = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+  
+    setopensnack(false);
+  };
   
 
   
@@ -679,7 +692,6 @@ const handlenewsubcat=(e)=>{
           labelPlacement="category"
         />
             </Grid>
-
             <Grid item xs={12} sm={6}>
                 <Typography component="h3" variant="h6">REASON</Typography>
                 <hr></hr>
@@ -709,7 +721,6 @@ const handlenewsubcat=(e)=>{
           labelPlacement="category"
         />
             </Grid>
-
             <Grid item xs={12} sm={6}>
                 
             
@@ -740,10 +751,19 @@ const handlenewsubcat=(e)=>{
             variant="contained"
             color="secondary"
             className={classes.submit}
-            onClick={handlesubmit}
+            onClick={handlesubmit, handleclicksnack}
           >
             SAVE CHANGES
           </Button>
+          <Snackbar 
+          
+          open={opensnack} 
+          autoHideDuration={6000} 
+          onClose={handleClosesnack}>
+        <Alert severity="success" onClose={handleClosesnack} varient="filled">
+          Book Edited Successfully!
+        </Alert>
+        </Snackbar>
           <Grid container justify="flex-end">
             <Grid item>
               
