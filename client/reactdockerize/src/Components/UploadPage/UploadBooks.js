@@ -12,7 +12,6 @@ import Container from '@material-ui/core/Container';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { DropzoneDialog } from 'material-ui-dropzone';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { green } from '@material-ui/core/colors';
@@ -63,41 +62,57 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function UploadBooks() {
+  var headerimage="https://drive.google.com/uc?export=view&id="
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [openCategory, setOpenCategory] = React.useState(false);
   const [setReason] = React.useState([]);
   const [bookname, setbookname]=React.useState(null)
   const [bookisbn, setbookisbn]=React.useState(null)
   const [bookimage, setbookimage]=React.useState(null)
   const [booklang, setbooklang]=React.useState(null)
-  const [bookcat, setbookcat]=React.useState(null)
+  const [bookcat, setbookcat]=React.useState([])
   const [bookauthor, setbookauthor]=React.useState(null)
    const [booksubcat, setbooksubcat]=React.useState([])
   const [bookdesc, setbookdesc]=React.useState(null)
   // const [bookformat, setbookformat]=React.useState({'Audio':'', 'PDF':''})
   const subcat=[]
+  const getbookcat=[]
   const[pdfurl, setpdfurl]=React.useState(null)
   const[audiourl, setaudiourl]=React.useState(null)
   const[allcategory, setallcategory]=React.useState([])
   const[allsubcategory, setallsubcategory]=React.useState([])
+  const[newcat, setnewcat]=React.useState()
+  const[newsubcat, setnewsubcat]=React.useState([])
+  const[openSubCat, setOpenSubCat]=React.useState(false)
+  const[flag, setflag]=React.useState(true)
 
   const fetchData = () => {
 
     const uploadBookEndPoint = 'http://localhost:8050/api/v1/book/add'
     axios.post(uploadBookEndPoint,{
-      "id":50,
+      
       "name":bookname,
       "isbn":bookisbn,
       "author":bookauthor,
       "language":booklang,
-      "bookImage":bookimage,
+      "bookImage":headerimage+bookimage,
       "description":bookdesc,
       "views":20,
       "category":bookcat,
       "subCategory":booksubcat,
       "rating":4,
-      "format":[{type:"Audio",url:audiourl},{type:"PDF", url:pdfurl}]
+      "format": [
+        {
+            "type": "Audio",
+            "url": headerimage+audiourl
+        },
+        {
+            "type": "PDF",
+            "url": headerimage+pdfurl
+        }
+    ]
     })
+    
     .then(res => {
       console.log(res);
       console.log(res.data);
@@ -107,7 +122,7 @@ export default function UploadBooks() {
 }
 
 const fetchCategory = () => {
-
+handlebookimageflag()
   const categoryEndPoint = 'http://localhost:8050/api/v1/category'
   axios.get(categoryEndPoint)
       .then(response => response.data)
@@ -133,16 +148,62 @@ const fetchSubCategory = (label) => {
 
 }
 
+const postCategory=()=>{
+  const uploadCatEndPoint = 'http://localhost:8050/api/v1/newCatAndSubcat/add/'
+    axios.post(uploadCatEndPoint,{
+      
+      "category": newcat,
+      "subCategory": []
+    })
+    
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      console.log(subcat)
+    })
+    fetchCategory()
+
+}
+
+const postnewsubcat=()=>{
+  const postsubcaturl = 'http://localhost:8050/api/v1/oldCatAndNewsubCat/add/'
+    axios.put(postsubcaturl,{
+      
+      "category": bookcat[0],
+      "subCategory": newsubcat
+      
+    })
+    
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      console.log(subcat)
+      console.log("subcat posted")
+    })
+    fetchSubCategory(bookcat[0])
+    console.log(bookcat)
+    console.log(newsubcat)
+}
 
 
 
 
-  const handleClickOpen = () => {
-    setOpen(true);
+
+
+  const handleClickOpenCategory = () => {
+    setOpenCategory(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseCategory = () => {
+    setOpenCategory(false);
+  };
+
+  const handleClickOpenSubCategory = () => {
+    setOpenSubCat(true);
+  };
+
+  const handleCloseSubCategory = () => {
+    setOpenSubCat(false);
   };
 
 
@@ -185,8 +246,11 @@ const handleBookauthor=(e)=>{
 }
 
 const handleCat=(label)=>{
+  getbookcat.push(label)
+  
 console.log(label)
-setbookcat(label)
+
+setbookcat(getbookcat)
 fetchSubCategory(label)}
 
 const handlesubCat=(label)=>{
@@ -198,21 +262,34 @@ console.log(subcat)
 // console.log(booksubcat)
 }
 
-const handlepdfurl=(e)=>{
-  console.log(e.target.value)
-  setpdfurl(e.target.value)
-}
+// const handlepdfurl=(e)=>{
+//   console.log(e.target.value)
+//   setpdfurl(e.target.value)
+// }
 
-const handleaudiourl=(e)=>{
-  console.log(e.target.value)
-  setaudiourl(e.target.value)
-}
+// const handleaudiourl=(e)=>{
+//   console.log(e.target.value)
+//   setaudiourl(e.target.value)
+// }
 
 const handleSubmit=()=>{
 fetchData()
 }
-  
+ 
+const handlenewcat=(e)=>{
+  console.log(e.target.value)
+  setnewcat(e.target.value)
+}
 
+const handlenewsubcat=(e)=>{
+  console.log(e.target.value)
+  subcat.push(e.target.value)
+  setnewsubcat(subcat)
+}
+
+const handlebookimageflag=()=>{
+  setflag(false)
+}
  
 
   return (
@@ -249,7 +326,7 @@ fetchData()
               onAuthFailed={data => console.log('on auth failed:', data)}
               multiselect={true}
               navHidden={true}
-              authImmediate={true}
+              authImmediate={flag}
               viewId={'DOCS'}
               mimeTypes={['application/pdf']}
               createPicker={ (google, oauthToken) => {
@@ -271,12 +348,16 @@ fetchData()
                           var fileId = data.docs[0].id;
                         //   alert('The user selected: ' + fileId);
                           console.log(fileId)
+                          //  headerimage+= fileId
+                          setbookimage(data.docs[0].id)
+                          console.log("bookimage")
+                          console.log(bookimage)
                         //   picker();
                       }
                     });
                 picker.build().setVisible(true);
             }}>
-            <Button variant="contained" color="secondary">UPLOAD AUDIO</Button>
+            <Button variant="contained" color="secondary" >UPLOAD BOOK IMAGE</Button>
             <div className="google"></div>
         </GooglePicker>
             </Grid>
@@ -313,10 +394,10 @@ fetchData()
             <Grid>
             <FormControl component="fieldset">
             <Typography component="h3" variant="h6">CATEGORY
-            <IconButton aria-label="add" onClick={handleClickOpen}>
+            <IconButton aria-label="add" onClick={handleClickOpenCategory}>
         <AddCircleRoundedIcon />
       </IconButton>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={openCategory} onClose={handleCloseCategory} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">ADD CATEGORY</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -330,12 +411,13 @@ fetchData()
             label="Book Category"
             name="bookCategory"
             color="secondary"
+            onChange={handlenewcat}
           /></DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleCloseCategory} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={postCategory} color="primary">
               ADD
             </Button>
           </DialogActions>
@@ -366,10 +448,10 @@ fetchData()
             </Grid>
             <FormControl component="fieldset">
       <Typography component="h3" variant="h6">SUBCATEGORY
-      <IconButton aria-label="add category"onClick={handleClickOpen}>
+      <IconButton aria-label="add category"onClick={handleClickOpenSubCategory}>
         <AddCircleRoundedIcon />
       </IconButton>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={openSubCat} onClose={handleCloseSubCategory} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">ADD SUBCATEGORY</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -383,12 +465,13 @@ fetchData()
             label="Book Subcategory"
             name="bookSubcategory"
             color="secondary"
+            onChange={handlenewsubcat}
           /></DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleCloseSubCategory} color="primary">
               Cancel
             </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={postnewsubcat} color="primary">
               ADD
             </Button>
           </DialogActions>
@@ -489,8 +572,9 @@ fetchData()
                           var fileId = data.docs[0].id;
                         //   alert('The user selected: ' + fileId);
                           console.log(fileId)
-                          setbookimage("https://drive.google.com/uc?export=view&id="+fileId)
-                          console.log(bookimage)
+                          setpdfurl(data.docs[0].id)
+                          console.log("pdfurl")
+                          console.log(pdfurl)
                         //   picker();
                       }
                     });
@@ -549,6 +633,9 @@ fetchData()
                           var fileId = data.docs[0].id;
                         //   alert('The user selected: ' + fileId);
                           console.log(fileId)
+                          setaudiourl(data.docs[0].id)
+                          console.log("audio url")
+                          console.log(audiourl)
                         //   picker();
                       }
                     });
@@ -593,4 +680,4 @@ fetchData()
       </Box>
     </Container>
   );
-          }
+}

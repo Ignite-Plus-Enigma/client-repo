@@ -33,7 +33,7 @@ code {
   font-family: monospace;
 }
 .progress-bar{
-  width: 90vw;
+  width: 85vw;
   margin: 0 5%;
   height: 0.75em;
   display: flex;
@@ -193,37 +193,53 @@ code {
 }
 .carousel-image{
   height: 20em;
-  width:85em;
+  width:84em;
   filter: blur(2px);
   -webkit-filter: blur(2px);
   position: relative;
   text-align: center;
   color: white;
 }
-.centered1 {
+.centered1-second {
   position: absolute;
-  top: 60%;
-  left: 50%;
+  top: 30%;
+  left: 46%;
   color:white;
   font-size:1.8em;
-  transform: translate(-50%, -50%);
+  transform: translate(85%, -101%);
 }
-.centered2 {
+.centered2-second {
   position: absolute;
-  top: 70%;
-  left: 50%;
+  top: 31%;
+  left: 41%;
   color:white;
   font-size:1.8em;
-  transform: translate(-50%, -50%);
+  transform: translate(153%, -41%);
+}
+.centered1-first {
+  /* position: absolute;
+  top: 60%;
+  left: 50%; */
+  color:white;
+  font-size:1.8em;
+  transform: translate(-71%, -393%);
+}
+.centered2-first {
+  /* position: absolute;
+  top: 70%;
+  left: 50%; */
+  color:white;
+  font-size:1.8em;
+  transform: translate(-67%, -405%);
 }
 .btn {
 
   margin-top:1em;
   position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+  top: 33%;
+  left: 62%;
+  /* transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); */
   background-color:crimson;
   color: white;
   font-size: 16px;
@@ -231,6 +247,19 @@ code {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.btn-other{
+  background-color:crimson;
+  color: white;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  position:absolute;
+  top:31%;
+  right:61%;
 }
 
 .icon{
@@ -273,4 +302,49 @@ code {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-left: 7em;
+}
+.dropbtn {
+  background-color: white;
+  color: crimson;
+  /* padding: 16px; */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: crimson;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: white;
 }
