@@ -275,13 +275,13 @@ export default class AudioFile extends Component{
                     <hr className ="audio-page-hr"/>
                 </div>
                 {/* <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6> */}
-                <div className="recommendation-div">
+                {/* <div className="recommendation-div">
                 <Row name="You may also like:" forapicall="Textbooks"/>
                 {console.log("here is the genre")}
                 {console.log(this.state.genre[0])}
                 
 
-                </div>
+                </div> */}
             </div>
         );
     }

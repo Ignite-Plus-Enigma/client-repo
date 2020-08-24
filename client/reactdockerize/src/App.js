@@ -31,10 +31,10 @@ import {userContext} from "./UserContext"
 import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 import SearchGrid from "./Components/SearchResultPage/SearchGrid"
 
-
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
 import UploadBooks from './Components/UploadPage/UploadBooks';
+import EditBooks from './Components/EditPage/EditBooks'
 
 const useStyles = makeStyles({
   root: {
@@ -160,7 +160,13 @@ function App() {
                     <li><NavLink exact activeClassName="current" to='/' aria-label="Home">Home</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/PDFBooks/" aria-label="PDF Books" >Books</NavLink></li>
                     <li><NavLink exact activeClassName="current" to="/AudioBooks/" aria-label="AudioBooks">Audio Books </NavLink></li>
-                    {role == "Admin" ?<li><NavLink exact activeClassName="current" to="/Upload" aria-label="Admin Rights">Admin Rights </NavLink></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
+                    {role == "Admin" ?<li><div class="dropdown">
+  <button class="dropbtn">Admin Rights</button>
+  <div class="dropdown-content">
+  <NavLink  to="/Upload" aria-label="Saved Books">Upload Books </NavLink>
+  <NavLink  to="/Edit" aria-label="Saved Books">Edit Books </NavLink>
+  </div>
+</div></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
                    {console.log("Role is")}
                    {console.log(role)}
                     <li><Search/></li>
@@ -214,6 +220,7 @@ function App() {
           <Route path="/PDF" component={PdfFile}/>
           <Route path="/Search" component={SearchGrid}/>
           <Route path="/Upload" component={UploadBooks}/>
+          <Route path="/Edit" component={EditBooks}/>
           </userContext.Provider>
         </Switch>
       </div>

@@ -107,6 +107,7 @@ export default function AudioSubcategoryTrial(props){
 
     return(
       <div>
+      <p className = "search-book-heading">You searched for {props.location.pathname.split("/")[2]}</p>
         {books.length === 0 ? <div className="not-found-div">
         <img src="https://www.shaadibaraati.com/assets/img/no-result.png" className = "not-found-img"/>
         </div> : null}
