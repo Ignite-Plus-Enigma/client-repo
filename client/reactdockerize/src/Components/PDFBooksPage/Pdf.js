@@ -46,13 +46,13 @@ function Pdf(props){
                 {description}
             </p>
         </div>
-        <div>
+        {/* <div>
             <hr className ="audio-page-hr"/>
         </div>
         <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6>
         <div className="recommendation-div">
 
-        </div>
+        </div> */}
     
     </div>
 );
