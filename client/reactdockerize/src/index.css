@@ -296,6 +296,7 @@ code {
 .hello-user{
   right:7em;
 }
+<<<<<<< HEAD
 .search-book-heading{
   color: crimson;
   font-size: 1.5em;
@@ -303,6 +304,8 @@ code {
   margin-bottom: 0.5em;
   margin-left: 7em;
 }
+=======
+>>>>>>> edit
 .dropbtn {
   background-color: white;
   color: crimson;
@@ -347,4 +350,8 @@ code {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: white;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> edit
