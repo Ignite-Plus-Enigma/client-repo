@@ -163,8 +163,8 @@ function App() {
                     {role == "Admin" ?<li><div class="dropdown">
   <button class="dropbtn">Admin Rights</button>
   <div class="dropdown-content">
-  <NavLink exact activeClassName="current" to="/Upload" aria-label="Saved Books">Upload Books </NavLink>
-  <NavLink exact activeClassName="current" to="/Edit" aria-label="Saved Books">Edit Books </NavLink>
+  <NavLink exact activeClassName="current" to="/Upload" aria-label="Upload Book">Upload Books </NavLink>
+  <NavLink exact activeClassName="current" to="/Edit" aria-label="Edit Book">Edit Books </NavLink>
   </div>
 </div></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
                    {console.log("Role is")}
