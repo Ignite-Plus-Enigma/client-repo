@@ -191,55 +191,43 @@ code {
   height:20em;
   margin-bottom:0.5em;
 }
+.carousel{
+  height:20em;
+  margin-bottom:0.5em;
+}
 .carousel-image{
   height: 20em;
-  width:84em;
+  width:85em;
   filter: blur(2px);
   -webkit-filter: blur(2px);
   position: relative;
   text-align: center;
   color: white;
 }
-.centered1-second {
+.centered1 {
   position: absolute;
-  top: 30%;
-  left: 46%;
-  color:white;
-  font-size:1.8em;
-  transform: translate(85%, -101%);
-}
-.centered2-second {
-  position: absolute;
-  top: 31%;
-  left: 41%;
-  color:white;
-  font-size:1.8em;
-  transform: translate(153%, -41%);
-}
-.centered1-first {
-  /* position: absolute;
   top: 60%;
-  left: 50%; */
+  left: 50%;
   color:white;
   font-size:1.8em;
-  transform: translate(-71%, -393%);
+  transform: translate(-50%, -50%);
 }
-.centered2-first {
-  /* position: absolute;
+.centered2 {
+  position: absolute;
   top: 70%;
-  left: 50%; */
+  left: 50%;
   color:white;
   font-size:1.8em;
-  transform: translate(-67%, -405%);
+  transform: translate(-50%, -50%);
 }
 .btn {
 
   margin-top:1em;
   position: absolute;
-  top: 33%;
-  left: 62%;
-  /* transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%); */
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   background-color:crimson;
   color: white;
   font-size: 16px;
