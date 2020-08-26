@@ -43,21 +43,21 @@ class AutoRotatingCarousel extends React.Component {
             <div> 
               <img src={second} className="carousel-image"
                   aria-label="Welcome to Digital Library"/>
-                    <div class="centered1-second"><b>Let’s open the gates to accessibility…
+                    <div class="centered1"><b>Let’s open the gates to accessibility…
 </b></div>
-<div class="centered2-second"><b>Let’s build an inclusive society together</b></div>
+<div class="centered2"><b>Let’s build an inclusive society together</b></div>
 <a href="https://www.samarthanam.org/donate/" target="_blank">
 <button class="btn">Support Us</button></a>
             </div>
-            <div> 
+            {/* <div> 
               <img src={first} className="carousel-image"
                   aria-label="Welcome to Digital Library"/>
                     <div class="centered1-first"><b>Be the light of someone’s
 life…</b></div>
 <div class="centered2-first"><b>Be the smile spreader!</b></div>
-<a href="https://www.samarthanam.org/donate/">
+<a href="https://www.samarthanam.org/donate/" target="_blank">
 <button className="btn-other">Support Us</button></a>
-            </div> 
+            </div>  */}
           
          {/* <div >
               <img src={second} className="carousel-image"
