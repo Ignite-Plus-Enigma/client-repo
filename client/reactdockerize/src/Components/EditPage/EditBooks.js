@@ -31,8 +31,7 @@ import Dialog from '@material-ui/core/Dialog';
  import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+
 
 // const reason = [
 //     {
@@ -114,8 +113,6 @@ const[books, setBooks]=React.useState([])
   const[imageurl, setimageurl]=React.useState()
   const[pdf, setpdf]=React.useState()
   const[audio, setaudio]=React.useState()
-  const[opensnack, setopensnack]=React.useState(false)
-
 
 
 
@@ -220,8 +217,8 @@ const handlesubmit=()=>{
     "subCategory":subcat,
     "bookImage":"https://drive.google.com/uc?export=view&id="+imageurl,
     "format":[{
-      "type":"Audio","url":"https://drive.google.com/uc?export=view&id="+audio,
-      "type":"PDF", "url":"https://drive.google.com/uc?export=view&id="+pdf,
+      "type":"Audio","url":"https://drive.google.com/uc?export=view&id="+audio},
+      {"type":"PDF", "url":"https://drive.google.com/uc?export=view&id="+pdf,
     }]
 
 
@@ -287,17 +284,7 @@ const handlenewsubcat=(e)=>{
   
   
   const [fileObjects, setFileObjects] = React.useState([]);
-  const handleclicksnack=()=>{
-    setopensnack(true)
-  }
-  
-  const handleClosesnack = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-  
-    setopensnack(false);
-  };
+
   
 
   
@@ -751,19 +738,10 @@ const handlenewsubcat=(e)=>{
             variant="contained"
             color="secondary"
             className={classes.submit}
-            onClick={handlesubmit, handleclicksnack}
+            onClick={handlesubmit}
           >
             SAVE CHANGES
           </Button>
-          <Snackbar 
-          
-          open={opensnack} 
-          autoHideDuration={6000} 
-          onClose={handleClosesnack}>
-        <Alert severity="success" onClose={handleClosesnack} varient="filled">
-          Book Edited Successfully!
-        </Alert>
-        </Snackbar>
           <Grid container justify="flex-end">
             <Grid item>
               

@@ -25,6 +25,7 @@ import FlagIcon from '@material-ui/icons/Flag';
 import LoginDialog from "../SignInPage/LoginDialog";
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -174,7 +175,7 @@ function SavedBooks(props){
         
           <img src="https://mednear.com/assets/web/images/icons/empty-product.png" className="not-found-img" style={{width:`29%`}}/> 
           <p>You do not have any currently saved books!</p>
-          <Button onClick={handleBrowse} className={classes.browse} >Browse</Button></div>:   <p className="savedbooks-heading">Saved Books</p>}
+          <Button onClick={handleBrowse} className={classes.browse}>Browse</Button></div>:   <p className="savedbooks-heading">Saved Books</p>}
           <div className={classes.root}>
       {console.log(books)}
          
@@ -241,7 +242,9 @@ function SavedBooks(props){
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null } */}
           {/* {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> } */}
-                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}
+                {savedBook.isFinished == "True" ?<div>  <Tooltip title="Mark Unfinished">
+                  <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> </Tooltip></div>
+                  : <div>  <Tooltip title="Mark Finished"><FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon></Tooltip></div>}
              
                 </div>
               </Grid>
@@ -249,8 +252,9 @@ function SavedBooks(props){
                <Grid item xs={1}>
                    <div>
                    {/* {console.log(user.savedBooks[j++].bookId)} */}
+                   <Tooltip title="Unsave">
                 <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
-                
+                </Tooltip>
                 {/* <Typography variant="subtitle2">Save</Typography> */}
                 </div>
               </Grid>
@@ -306,7 +310,7 @@ function SavedBooks(props){
               <Grid item xs container direction="column" spacing={1}>
                 <Grid item xs={2} sm>
       
-                 <Typography variant="subtitle2" >400 pages</Typography>
+                <Typography  gutterBottom variant="body1">{book.description}</Typography>
                </Grid>
               </Grid>
               </Grid>
@@ -334,15 +338,21 @@ function SavedBooks(props){
             <HeadsetIcon fontSize="large"/>
           </IconButton> : null } */}
           {/* {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> } */}
-                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}
-             
+                {savedBook.isFinished == "True" ?
+                <div>  <Tooltip title="Mark Unfinished">
+                   <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon></Tooltip></div>
+                    :                <div>  <Tooltip title="Mark Finished">
+                    <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon></Tooltip></div>}
+       
                 </div>
               </Grid>
               
                <Grid item xs={1}>
                    <div>
                    {/* {console.log(user.savedBooks[j++].bookId)} */}
+                     <Tooltip title="Unsave">
                 <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
+                </Tooltip>
                 
                 {/* <Typography variant="subtitle2">Save</Typography> */}
                 </div>
