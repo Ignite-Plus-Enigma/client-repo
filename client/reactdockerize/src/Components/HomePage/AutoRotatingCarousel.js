@@ -1,8 +1,5 @@
 import React, { Fragment } from "react";
-import first from './carousel-trial3.jpg'
-import second from './carousel-trial4.jpg'
-// import second from './second-carousel.JPG'
-import third from "./third-carousel.JPG"
+import second from './carousel-trial3.jpg'
  
 
 import ReactSimpleCarousel from "react-plain-carousel";

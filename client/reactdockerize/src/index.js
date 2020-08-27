@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Navbar from "./Components/NavbarComponent/Navbar"
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

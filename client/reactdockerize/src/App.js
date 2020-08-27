@@ -1,5 +1,4 @@
 import React, { Component,useState,useMemo, useEffect } from 'react';
-import Navbar from './Components/NavbarComponent/Navbar';
 import Footer from "./Components/FooterComponent/Footer"
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import Home from './Components/HomePage/Browse'
@@ -8,12 +7,10 @@ import AudioBooks from './Components/AudioBooksPage/AudioBooks'
 import PdfFile from './Components/PDFBooksPage/PdfFile'
 import SavedBooks from './Components/SavedBooksPage/SavedBooks'
 import SignIn from './Components/SignInPage/SignIn'
-import Donate from './Components/DonatePage/Donate'
 import './App.css'
 import '../src/Components/FooterComponent/Footer.css'
 import SubCategory from "./Components/PDFBooksPage/SubCategory"
 import Audio from "./Components/AudioBooksPage/Audio"
-import AudioSubCategory from './Components/AudioBooksPage/AudioSubCategory';
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -22,13 +19,12 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import GoogleLogin from "react-google-login";
 import {NavLink} from 'react-router-dom';
-import logo from './Components/NavbarComponent/logo.png'
+import logo from './logo.png';
 import Search from './Components/NavbarComponent/Search'
 import "./Components/NavbarComponent/Navbar.css"
 import AudioSubcategoryTrial from "./Components/AudioBooksPage/AudioSubcategoryTrial"
 import PdfSubcategoryTrial from "./Components/PDFBooksPage/PdfSubCategoryTrial"
 import {userContext} from "./UserContext"
-import PDFTrail from "./Components/PDFBooksPage/PDFTrial"
 import SearchGrid from "./Components/SearchResultPage/SearchGrid"
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -117,7 +113,7 @@ function App() {
 
   function responseGoogle(response){
 
-      console.log(response.profileObj)
+      
       setState("Sign Out")
       setName(response.profileObj.name)
       setOpen(false)
@@ -135,8 +131,7 @@ function App() {
       Axios.get(getRoleOfUser)
       .then(response => response.data)
       .then((data) => {
-        console.log("USER Role")
-          console.log(data)
+      
           setRole(data)
       })
   }
@@ -148,12 +143,9 @@ function App() {
  
     return (
       <div>
-      {/* <PDFTrail/> */}
       <BrowserRouter>
-     {/* {alert(id)} */}
       <div className="App">
-        {/* <Navbar/> */}
-        <nav className="app sticky">
+        <nav className="app">
                 
                 <ul>
                     <img src={logo} alt="logo" width="140" height="70"/>
@@ -167,12 +159,10 @@ function App() {
   <NavLink  to="/Edit" aria-label="Saved Books">Edit Books </NavLink>
   </div>
 </div></li> : <li><NavLink exact activeClassName="current" to="/Saved" aria-label="Saved Books">Saved </NavLink></li> }
-                   {console.log("Role is")}
-                   {console.log(role)}
+                   
                     <li><Search/></li>
-                    {/* <li> <a href ="https://www.samarthanam.org/donate/">Donate</a></li> */}
+                    
                     {id ?<li className ={classes.name}>Hello, {name}</li>: null}
-                    {/* <li><NavLink exact activeClassName="current" to="/SignIn/" aria-label="Signin Page" onClick ={handle}>Sign In</NavLink></li> */}
                     <li>{id === null ? <Button  color="secondary" onClick={handleClickOpen} className={classes.signinbutton}>
                       Sign In 
       </Button> : 
@@ -209,7 +199,6 @@ function App() {
           <Route path="/PDFBooks" component={Books}/>
           <Route path="/AudioBooks" component={AudioBooks}/>
           <Route path="/Saved" component={SavedBooks}/>
-          <Route path="/Donate" component={Donate}/>
           <Route path="/SignIn" component={SignIn}/>
           <Route path="/SubCategory" component={SubCategory}/>
           <Route path="/PdfSubCategory" component={PdfSubcategoryTrial}/>

@@ -1,13 +1,11 @@
 import React,{useState,useContext,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import GoogleLogin from "react-google-login";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,12 +14,10 @@ import HeadsetIcon from '@material-ui/icons/Headset';
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
 import {userContext} from "../../UserContext"
-import LoginDialog from "../SignInPage/LoginDialog";
 import axios from "axios"
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import ReactDOM from 'react-dom';
 
 
 const useStyles = makeStyles({
@@ -51,12 +47,9 @@ const useStyles = makeStyles({
   const[saved,setSaved] = useState(false)
   const [open, setOpen] = useState(false);
   const [role, setRole] = useState();
-  const [savedbook, setSavedBook] = useState(null)
 
   function responseGoogle(response){
 
-      console.log(response.profileObj)
-      //setName(response.profileObj.name)
       setOpen(false)
       const name = response.profileObj.name;
       
@@ -74,8 +67,6 @@ const useStyles = makeStyles({
       axios.get(getRoleOfUser)
       .then(response => response.data)
       .then((data) => {
-        console.log("USER Role")
-          console.log(data)
           setRole(data)
       })
 
@@ -89,11 +80,9 @@ const useStyles = makeStyles({
   }
 
   function handleAudio(){
-    console.log(book)
     history.push(`/Audio/${book.id}/`)
   }
   function handlePdf(){
-    console.log(book)
     history.push(`/PDF/${book.id}/`)
   }
   function handleUnsave(){
@@ -150,7 +139,6 @@ const handleCloseDialog = () => {
           </CardActionArea>
           <CardActions>
          
-          {console.log(book.format.pdf)}
           {book.format[1].url != null ? <IconButton aria-label="read pdf book" className="icon"   onClick={() => handlePdf({book})}>
           <PictureAsPdfIcon />
         </IconButton> : null }
