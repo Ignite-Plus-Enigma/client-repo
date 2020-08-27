@@ -516,7 +516,7 @@ const handlebookimageflag=()=>{
                 multiline
                 rows={7}
                 color="secondary"
-                onClick={handleBookdesc}
+                onChange={handleBookdesc}
               />
             </Grid>
             <Grid item xs={12}>

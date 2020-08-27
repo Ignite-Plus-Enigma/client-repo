@@ -284,13 +284,6 @@ code {
 .hello-user{
   right:7em;
 }
-.search-book-heading{
-  color: crimson;
-  font-size: 1.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: 7em;
-}
 .dropbtn {
   background-color: white;
   color: crimson;
