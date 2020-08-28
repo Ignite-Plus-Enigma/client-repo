@@ -561,9 +561,6 @@ const handlenewsubcat=(e)=>{
                 <Typography component="h3" variant="h6">CHOOSE FILE</Typography>
                 <hr></hr>
                 <div>
-  {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
-     PDF File
-  </Button> */}
 <div>
 <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
               developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
@@ -592,13 +589,7 @@ const handlenewsubcat=(e)=>{
                     .setCallback((data)=>{
                       if (data.action == google.picker.Action.PICKED) {
                           var fileId = data.docs[0].id;
-                        //   alert('The user selected: ' + fileId);
-                          console.log(fileId)
-                          //  headerimage+= fileId
                           setpdf(data.docs[0].id)
-                          console.log("pdf")
-                          console.log(pdf)
-                        //   picker();
                       }
                     });
                 picker.build().setVisible(true);
@@ -621,9 +612,6 @@ const handlenewsubcat=(e)=>{
             <Grid item xs={12} sm={6}>
                 
                 <div>
-  {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
-     Audio File
-  </Button> */}
 <div>
 <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
               developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
@@ -652,13 +640,6 @@ const handlenewsubcat=(e)=>{
                     .setCallback((data)=>{
                       if (data.action == google.picker.Action.PICKED) {
                           var fileId = data.docs[0].id;
-                        //   alert('The user selected: ' + fileId);
-                          console.log(fileId)
-                          //  headerimage+= fileId
-                          // setbookimage(data.docs[0].id)
-                          console.log("audio")
-                          // console.log(bookimage)
-                        //   picker();
                       }
                     });
                 picker.build().setVisible(true);
@@ -669,71 +650,12 @@ const handlenewsubcat=(e)=>{
 </div>
 </div>
             </Grid>
-            {/* <Grid item xs={12} sm={6}>
-            <Typography component="h3" variant="h6">DISABLE FORMAT</Typography>
-            <hr></hr>
-            <FormControlLabel
-          value="category"
-          control={<Checkbox color="secondary" />}
-          label="PDF"
-          labelPlacement="category"
-        />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                <Typography component="h3" variant="h6">REASON</Typography>
-                <hr></hr>
             
-                
-            <TextField
-          id="outlined-select-reason"
-          select
-          label="Select"
-          value={reason}
-          onChange={handleChange}
-          helperText="Select appropriate reason"
-          variant="outlined"
-        >
-          {reason.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <FormControlLabel
-          value="category"
-          control={<Checkbox color="secondary" />}
-          label="Audio"
-          labelPlacement="category"
-        />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                
-            
-                
-            <TextField
-          id="outlined-select-reason"
-          select
-          label="Select"
-          value={reason}
-          onChange={handleChange}
-          helperText="Select appropriate reason"
-          variant="outlined"
-        >
-          {reason.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-            </Grid> */}
            
             
 
             </Grid>
           <Button
-            // type="submit"
             fullWidth
             variant="contained"
             color="secondary"

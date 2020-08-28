@@ -1,5 +1,4 @@
 import React from 'react';
-import BooksCategoryAccordion from './BooksCategoryAccordion'
 import AllCategories from './AllCategories'
 import '../FooterComponent/Footer.css'
 
