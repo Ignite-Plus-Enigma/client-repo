@@ -1,6 +1,5 @@
 import React,{useContext} from 'react'
 import {Component} from 'react';
-import Navbar from "../NavbarComponent/Navbar"
 import axios from "axios"
 import {userContext} from "../../UserContext"
 import Row from '../HomePage/Row';
@@ -280,7 +279,6 @@ export default class AudioFile extends Component{
                 {console.log("here is the genre")}
                 {console.log(this.state.genre[0])}
                 
-
                 </div> */}
             </div>
         );

@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import {BrowserRouter,Route,Switch,NavLink} from 'react-router-dom';
-import Box from '@material-ui/core/Box';
+import {NavLink} from 'react-router-dom';
 
 
 
@@ -54,16 +52,9 @@ export default function AllCategoryTrial(props){
         axios.get(mainCategoriesApiEndPoint)
         .then(response => response.data)
         .then((data) => {
-          console.log("Check here for data")
-            // console.log(response.data)
-            console.log("The data is:")
-            console.log(data);
             setMainCategories(data)
-            console.log("set main categories")
-            console.log(mainCategories)
             var c = []
             for(var i = 0; i < Math.floor(data.length/4);i++){
-              // console.log(mainCategories[i].category)
               c.push(data[i]);
             }
             setCol1(c);
@@ -71,7 +62,6 @@ export default function AllCategoryTrial(props){
           
           for(var i = Math.floor(data.length/4); i < 2*(Math.floor)(data.length/4);i++){
               c.push(data[i]);
-              // console.log(mainCategories[i].category)
               console.log("Inside col2i:"+i)
           }
           setCol2(c);
@@ -80,14 +70,12 @@ export default function AllCategoryTrial(props){
           for(var i = 2*(Math.floor)(data.length/4);i < 3*(Math.floor)(data.length/4);i++){
             console.log("Col3 i"+i)
               c.push(data[i]);
-              // console.log(data[i].category)
           }
           setCol3(c);
           c = []
           
           for(var i = 3*(Math.floor)(data.length/4);i < data.length;i++){
               c.push(data[i]);
-              // console.log(data[i].category)
           }
           setCol4(c);
         })
@@ -100,8 +88,6 @@ export default function AllCategoryTrial(props){
         return(
           <div>
          <div>
-    {console.log("here is main category")}
-    {console.log(mainCategories)}
          <Grid container>
             <Grid item xs={3}>
             <div>
@@ -109,8 +95,6 @@ export default function AllCategoryTrial(props){
             {col1.map((singleMain) => (
                 
                 <div xs={3}>
-                {/* {console.log("HERE")}
-                {console.log(singleMain)} */}
                 <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}/`} >{singleSub}</NavLink></li>
@@ -123,8 +107,6 @@ export default function AllCategoryTrial(props){
             <Grid item xs={3}>
             {col2.map((singleMain) => (
                 <div xs={3}>
-                {console.log("col3 in render")}
-                {console.log(col3)}
                 <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
@@ -139,8 +121,6 @@ export default function AllCategoryTrial(props){
             
             {col3.map((singleMain) => (
                 <div xs={3}>
-                {console.log("col3 in render")}
-                {console.log(col3)}
                 <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubCategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>
@@ -154,8 +134,6 @@ export default function AllCategoryTrial(props){
             <Grid item xs={3}>
             {col4.map((singleMain) => (
                 <div xs={3}>
-                {console.log("col4 in render")}
-                {console.log(col4)}
                 <h5 id ="category-heading"><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleMain.subCategory[0]}/`} style={{color:'black'}}>{singleMain.category}</NavLink></h5>
                 {singleMain.subCategory.map((singleSub) => (
                         <li><NavLink exact activeClassName="current" to={`/AudioSubcategory/${singleMain.category}/${singleSub}`}>{singleSub}</NavLink></li>

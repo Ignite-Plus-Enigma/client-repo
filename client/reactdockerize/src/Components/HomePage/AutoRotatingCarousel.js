@@ -1,8 +1,5 @@
 import React, { Fragment } from "react";
-import first from './carousel-trial3.jpg'
-import second from './carousel-trial4.jpg'
-// import second from './second-carousel.JPG'
-import third from "./third-carousel.JPG"
+import second from './carousel-trial3.jpg'
  
 
 import ReactSimpleCarousel from "react-plain-carousel";
@@ -45,7 +42,10 @@ class AutoRotatingCarousel extends React.Component {
                   aria-label="Welcome to Digital Library"/>
                     <div class="centered1"><b>Let’s open the gates to accessibility…
 </b></div>
+
+
 <div class="centered2"><b>Let’s build an inclusive society together</b></div>
+{/* >>>>>>> origin/ankitha */}
 <a href="https://www.samarthanam.org/donate/" target="_blank">
 <button class="btn">Support Us</button></a>
             </div>
