@@ -1,14 +1,13 @@
 import GoogleLogin from "react-google-login";
 import {userContext} from "../../UserContext";
-import React,{useState,useEffect,useContext} from 'react';
+import React,{useContext} from 'react';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 export default function LoginDialog(){
     const [open, setOpen] = React.useState(true);
-    const {id,setId} = useContext(userContext);
-    // const id = props.id
+    const {id,setId} = useContext(userContext); 
     const handleClose = () => {
         setOpen(false);
     };

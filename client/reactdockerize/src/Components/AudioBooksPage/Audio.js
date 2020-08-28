@@ -1,8 +1,7 @@
 import React,{useContext} from 'react'
 import {Component} from 'react';
 import axios from "axios"
-import {userContext} from "../../UserContext"
-import Row from '../HomePage/Row';
+
 
 export default class AudioFile extends Component{
     
@@ -10,9 +9,7 @@ export default class AudioFile extends Component{
   
     constructor(props) {
         super(props);
-        // const apiendpoint = this.props.location.pathname;
-      
-        this.state = {
+           this.state = {
             toggleButton:"►",
             currentTime:0,
             duration: null,
@@ -28,12 +25,6 @@ export default class AudioFile extends Component{
         }
     }
     
-    // ImageURi: header for gogle drive https://drive.google.com/uc?export=view&id=
-    // AudioBookUri:header for book https://docs.google.com/uc?export=download&id=
-    //https://docs.google.com/uc?export=download&id=
-    //https://docs.google.com/uc?export=download&id=1qbxMkviO6ka-5es6wZIu9Y8wjbGF6eSY
-    //http://docs.google.com/uc?export=open&id=
-    //All of the stars: https://drive.google.com/file/d/1qbxMkviO6ka-5es6wZIu9Y8wjbGF6eSY/view?usp=sharing
     
     playAudio = () => {
         const audioEl = document.querySelector(".viewer");
@@ -93,8 +84,6 @@ export default class AudioFile extends Component{
         console.log(this.props.location.pathname)
         const path = this.props.location.pathname
         const uniqueId = path.split("/")[2]
-        // console.log(id)
-        // const uniqueId = this.props.id;
         console.log(this.props.id)
         
         let apiSearchEndpoint = 'http://localhost:8050/api/v1/books/';
@@ -166,18 +155,7 @@ export default class AudioFile extends Component{
         // });
         
     }
-    componentWillReceiveProps(){
-        // document.addEventListener('DOMContentLoaded',()=>{
-        //         const video = document.querySelector('.viewer');
-        //     video.addEventListener('timeupdate',this.progressUpdate);
-        //     /*Updates the current time every second*/
-        //     setInterval(() => this.setState({currentTime:this.getTime(video.currentTime)}),1000);
-        //     video.addEventListener('loadedmetadata', (e) => {
-        //         this.setState({duration:this.getTime(video.duration)});
-        //       });
-        //     document.addEventListener("keydown", this.handleKeyDown);
-        //     });
-    }
+    
 
     componentWillUnmount(){
         const path = this.props.location.pathname
@@ -216,12 +194,11 @@ export default class AudioFile extends Component{
         
            
             <div>
-            {/* {console.log(this.state.bookUri)} */}
-           
+                      
                 <h2 className = "book-name">{this.state.bookName}</h2>
                 <h3 className = "author-name">{this.state.author}</h3>
                 <h6 className = "audio-book-genre">{this.state.genre[0]}</h6>
-                {/* {window.location.origin + '/Audio/The Vamps-Wake Up.mp3'}  */}
+               
                 <div className = "player">
                     <audio className = "audio-player viewer" src = {this.state.bookUri} ></audio>
                     <img src={this.state.imageUri} alt= "Book image"/>
@@ -273,13 +250,7 @@ export default class AudioFile extends Component{
                 <div>
                     <hr className ="audio-page-hr"/>
                 </div>
-                {/* <h6 className="book-recommendation-heading">YOU MAY ALSO LIKE:</h6> */}
-                {/* <div className="recommendation-div">
-                <Row name="You may also like:" forapicall="Textbooks"/>
-                {console.log("here is the genre")}
-                {console.log(this.state.genre[0])}
-                
-                </div> */}
+               
             </div>
         );
     }

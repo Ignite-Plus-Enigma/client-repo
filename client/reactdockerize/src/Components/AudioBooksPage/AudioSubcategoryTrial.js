@@ -51,12 +51,10 @@ export default function AudioSubcategoryTrial(props){
     const[saved,setSaved] = useState(false)
     const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
     function handleAudio(book){
-      // eslint-disable-next-line no-restricted-globals
       history.push(`/Audio/${book.book.id}/`)
     }
     function handlePdf(book){
-      // eslint-disable-next-line no-restricted-globals
-      history.push(`/PDF/${book.book.id}/`)
+        history.push(`/PDF/${book.book.id}/`)
     }
     function handleSave(book){
       if(id!=null){

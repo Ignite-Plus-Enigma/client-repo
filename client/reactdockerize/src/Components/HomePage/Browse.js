@@ -2,7 +2,6 @@ import React,{useContext} from "react";
 import Row from "./Row.js";
 import './styles.css';
 import AutoRotatingCarousel from './AutoRotatingCarousel'
-// import FooterComponent from '../FooterComponent/Footer'
 import '../FooterComponent/Footer.css'
 import {userContext} from "../../UserContext"
 

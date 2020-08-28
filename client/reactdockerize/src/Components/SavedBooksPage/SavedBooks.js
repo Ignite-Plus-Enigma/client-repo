@@ -1,12 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react';
 import axios from 'axios'
 import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import GoogleLogin from "react-google-login";
 import '../FooterComponent/Footer.css'
 import {userContext} from "../../UserContext"
 import { makeStyles } from '@material-ui/core/styles';
@@ -65,10 +59,6 @@ function SavedBooks(props){
     console.log("HERE IS THE ID")
     console.log(id)
     const [user,setUser] = useState(null)
-      // const {id,setId} = useContext(userContext);
-      // alert("Google id "+msg);
-      // const msg = JSON.stringify(id);
-      // alert(id)
     const classes = useStyles();
     const [books,setBooks] = useState([])
     const [finishedBooks, setFinishedBooks] = useState([])
@@ -120,8 +110,7 @@ function SavedBooks(props){
       const markFinishedEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/savedbook/'+book.book.id+'/markfinished'
       // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
       axios.put(markFinishedEndPoint);
-      fetchData();
-      // window.location.reload(); 
+      fetchData(); 
       console.log("MARKED FINISHED")
       
   }
@@ -134,17 +123,14 @@ function SavedBooks(props){
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
     axios.put(markUnfinished);
 
-    // window.location.reload(); 
     fetchData();
     console.log("MARKED UNFINISHED")
   }
 
   function handleUnsave(book){
-    // alert("Are you sure you want to unsave the book?")
     const unsaveBookEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/unsavebook/'+book.book.id
     // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
-    axios.put(unsaveBookEndPoint);
-    // window.location.reload(); 
+    axios.put(unsaveBookEndPoint);   
     console.log("book unsaved")
     
     fetchData();
@@ -236,21 +222,13 @@ function SavedBooks(props){
                
                <Grid item xs={1}>
                    <div>
-                   {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
-            <HeadsetIcon fontSize="large"/>
-          </IconButton> : null } */}
-          {/* {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> } */}
-                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}
-             
+                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}             
                 </div>
               </Grid>
               
                <Grid item xs={1}>
-                   <div>
-                   {/* {console.log(user.savedBooks[j++].bookId)} */}
-                <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
-                
-                {/* <Typography variant="subtitle2">Save</Typography> */}
+                   <div>                 
+                <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>              
                 </div>
               </Grid>
             </Grid>
@@ -328,22 +306,14 @@ function SavedBooks(props){
                </Grid>
                
                <Grid item xs={1}>
-                   <div>
-                   {/* {book.format.audio != null ? <IconButton aria-label="listen to audio book"   onClick={() => handleAudio({book})}>
-            <HeadsetIcon fontSize="large"/>
-          </IconButton> : null } */}
-          {/* {user.savedBooks[i++].isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon> } */}
-                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}
-             
+                   <div>        
+                {savedBook.isFinished == "True" ? <CheckCircleIcon  style={{ color: green[500] }} fontSize="large"  onClick={() => handleUnfinished({book})}></CheckCircleIcon> : <FlagIcon fontSize="large" style={{ color: red[500] }}  onClick={() => handleFinished({book})} ></FlagIcon>}             
                 </div>
               </Grid>
               
                <Grid item xs={1}>
-                   <div>
-                   {/* {console.log(user.savedBooks[j++].bookId)} */}
-                <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>
-                
-                {/* <Typography variant="subtitle2">Save</Typography> */}
+                   <div>                  
+                <BookmarkIcon fontSize="large"  onClick={() => handleUnsave({book})}></BookmarkIcon>                            
                 </div>
               </Grid>
             </Grid>

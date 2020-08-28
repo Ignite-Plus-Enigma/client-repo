@@ -5,20 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-// import Rating from '@material-ui/lab/Rating';
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
-import { withRouter } from 'react-router';
-import Tabs from '../PDFBooksPage/Tabs'
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
 import {userContext} from "../../UserContext"
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
-// import history from "history"
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,15 +53,13 @@ export default function AudioSubcategoryTrial(props){
     const history = useHistory();
     const {id,setId} = useContext(userContext);
     const[saved,setSaved] = useState(false)
-    //const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
+   
     function handleAudio(book){
-      console.log(book.book.id)
-      // eslint-disable-next-line no-restricted-globals
+      console.log(book.book.id)    
       history.push(`/Audio/${book.book.id}/`)
     }
     function handlePdf(book){
-      console.log(book.book.id)
-      // eslint-disable-next-line no-restricted-globals
+      console.log(book.book.id)      
       history.push(`/PDF/${book.book.id}/`)
     }
     function handleSave(book){
@@ -89,7 +81,7 @@ export default function AudioSubcategoryTrial(props){
         
         const searchKey= props.location.pathname.split("/")[2]
         console.log("The search key is:"+searchKey);
-        // setMainCategoryProps(v)
+  
         
         
         const searchKeyApiEndPoint = `http://localhost:8050/api/v1/books/search=${searchKey}/`
@@ -145,8 +137,6 @@ export default function AudioSubcategoryTrial(props){
 
             <Grid item xs={4}>
                 <div>
-                    {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
-                    <Typography variant="subtitle2">Read</Typography> */}
                     {book.format[1].url != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
           <PictureAsPdfIcon fontSize="large"/>
         </IconButton> : null }
@@ -167,11 +157,6 @@ export default function AudioSubcategoryTrial(props){
               </IconButton>
              </div>
             </Grid>
-            <Grid item xs={2} sm >
-             <div>
-             {/* <Rating name="size-large" defaultValue={book.rating} size="large" readOnly /> */}
-            </div>
-          </Grid>
             </Grid>
             </Grid>
         </Grid>

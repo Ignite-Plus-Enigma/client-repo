@@ -6,9 +6,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {BrowserRouter,Route,Switch} from 'react-router-dom';
-import Home from "../HomePage/Browse"
-import history from "history"
 import "./signin.css"
 import { useHistory } from "react-router-dom";
 import { userContext } from '../../UserContext';
