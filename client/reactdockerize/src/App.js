@@ -9,13 +9,10 @@ import SavedBooks from './Components/SavedBooksPage/SavedBooks'
 import SignIn from './Components/SignInPage/SignIn'
 import './App.css'
 import '../src/Components/FooterComponent/Footer.css'
-import SubCategory from "./Components/PDFBooksPage/SubCategory"
 import Audio from "./Components/AudioBooksPage/Audio"
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import GoogleLogin from "react-google-login";
 import {NavLink} from 'react-router-dom';
@@ -34,9 +31,6 @@ import EditBooks from './Components/EditPage/EditBooks'
 
 const useStyles = makeStyles({
   root: {
-    // maxWidth: 280,
-    // height :350,
-    // alignContent:"left"
   },
   signinbutton: {
     padding: 0,
@@ -200,11 +194,9 @@ function App() {
           <Route path="/AudioBooks" component={AudioBooks}/>
           <Route path="/Saved" component={SavedBooks}/>
           <Route path="/SignIn" component={SignIn}/>
-          <Route path="/SubCategory" component={SubCategory}/>
+    
           <Route path="/PdfSubCategory" component={PdfSubcategoryTrial}/>
           <Route path="/AudioSubCategory" component={AudioSubcategoryTrial}/>
-          {/* <Route path="/Audio" component={Audio}/> */}
-          {/* <Route path="/AudioSubCategory" component={AudioSubCategory}/> */}
           <Route path="/Audio" render={(props) => <Audio googleId={id} {...props}/>}/>
           <Route path="/PDF" component={PdfFile}/>
           <Route path="/Search" component={SearchGrid}/>

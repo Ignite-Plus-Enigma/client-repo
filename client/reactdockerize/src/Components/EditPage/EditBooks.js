@@ -1,6 +1,5 @@
 import React, {useState, useEffect}from 'react';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -9,44 +8,11 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-// import Search from './EditSearch'
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-// import { DropzoneDialog } from 'material-ui-dropzone';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import { green } from '@material-ui/core/colors';
-import Icon from '@material-ui/core/Icon';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
-import IconButton from '@material-ui/core/IconButton';
-import Alert from '@material-ui/lab/Alert'
-import { AttachFile, Description, PictureAsPdf, Theaters } from '@material-ui/icons';
-import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import GooglePicker from 'react-google-picker';
 import axios from 'axios'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Dialog from '@material-ui/core/Dialog';
- import DialogActions from '@material-ui/core/DialogActions';
- import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
-
-// const reason = [
-//     {
-//       value: '1',
-//       label: 'Copyright issues',
-//     },
-//     {
-//       value: '2',
-//       label: 'Book not found',
-//     },
-    
-//   ];
-
-
-
 
 
 
@@ -136,11 +102,7 @@ const handleChange = (event) => {
   const fetchData = () => {
 
     const editsearchapi = 'http://localhost:8050/api/v1/books'
-    // const userEndPoint = "http://localhost:8050/api/v1/user/"+id
-    // const finishedBooksEndPoint = 'http://localhost:8050/api/v1/user/'+id+'/finishedbooks'
-
-    // const userSavedBooksApiEndPoint = "static/recentlyAddedHome.json"
-    axios.get(editsearchapi)
+        axios.get(editsearchapi)
     .then(response => response.data)
     .then((data) => {
         console.log(data);
@@ -263,8 +225,6 @@ console.log(label)
 subcat.push(label)
 setbooksubcat(subcat)
 console.log(subcat)
-// setbooksubcat(booksubcat.push(label))
-// console.log(booksubcat)
 }
 
 const handlebookimageflag=()=>{
@@ -293,11 +253,8 @@ const handlenewsubcat=(e)=>{
 
   return (
     <Container component="main" maxWidth="xs">
-      {/* <CssBaseline /> */}
       <div className={classes.paper}>
-      
-        {/* <Search/> */}
-        <Autocomplete
+      <Autocomplete
       id="combo-box-demo"
       options={books}
       getOptionLabel={(option) => option.name }
@@ -341,11 +298,8 @@ const handlenewsubcat=(e)=>{
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
-            {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
-     Image File
-  </Button> */}
-<div>
-<GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
+            <div>
+             <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
               developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
               scope={['https://www.googleapis.com/auth/drive']}
               onChange={data => console.log('on change:', data)}
@@ -406,48 +360,16 @@ const handlenewsubcat=(e)=>{
             </Grid>
             
             
-            <hr></hr>
-            <Grid item xs={5}>
+          
+            <Grid item xs={12}>
                 
             </Grid>
             <Grid>
             <FormControl component="fieldset">
             <Typography component="h3" variant="h6">CATEGORY
-            {/* <IconButton aria-label="add">
-        <AddCircleRoundedIcon />
-      </IconButton> */}
-      {/* <Dialog open={openCategory} onClose={handleCloseCategory} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">ADD CATEGORY</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-           Add the new category for the book 
-           </DialogContentText>
-           <TextField
-            variant="outlined"
-            required
-            fullWidth
-            id="bookCategory"
-            label="Book Category"
-            name="bookCategory"
-            color="secondary"
-            onChange={handlenewcat}
-          /></DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseCategory} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={postCategory} color="primary">
-              ADD
-            </Button>
-          </DialogActions>
-        </Dialog> */}
-      
             </Typography>
-            
-
             <hr></hr>
-            
-            <FormGroup aria-label="position" row>
+        <FormGroup aria-label="position" row>
        { allcategory.map((singlecategory)=>(
          <div>
          <FormControlLabel 
@@ -467,34 +389,6 @@ const handlenewsubcat=(e)=>{
             </Grid>
             <FormControl component="fieldset">
       <Typography component="h3" variant="h6">SUBCATEGORY
-      {/* <IconButton aria-label="add category"onClick={handleClickOpenSubCategory}>
-        <AddCircleRoundedIcon />
-      </IconButton>
-      <Dialog open={openSubCat} onClose={handleCloseSubCategory} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">ADD SUBCATEGORY</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-           Add the new  sub category for the book 
-           </DialogContentText>
-           <TextField
-            variant="outlined"
-            required
-            fullWidth
-            id="bookSubcategory"
-            label="Book Subcategory"
-            name="bookSubcategory"
-            color="secondary"
-            onChange={handlenewsubcat}
-          /></DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseSubCategory} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={postnewsubcat} color="primary">
-              ADD
-            </Button>
-          </DialogActions>
-        </Dialog> */}
       </Typography>
       <hr></hr>
       <FormGroup aria-label="position" row>
@@ -508,10 +402,7 @@ const handlenewsubcat=(e)=>{
 
           </FormControlLabel>
         </div>)}
-      
-        
-        
-        
+                        
       </FormGroup>
     </FormControl>
           
@@ -561,9 +452,7 @@ const handlenewsubcat=(e)=>{
                 <Typography component="h3" variant="h6">CHOOSE FILE</Typography>
                 <hr></hr>
                 <div>
-  {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
-     PDF File
-  </Button> */}
+  
 <div>
 <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
               developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
@@ -621,9 +510,7 @@ const handlenewsubcat=(e)=>{
             <Grid item xs={12} sm={6}>
                 
                 <div>
-  {/* <Button variant="contained" color="secondary" onClick={() => setOpen(true)}>
-     Audio File
-  </Button> */}
+ 
 <div>
 <GooglePicker clientId='893697397832-rmd2ealbrornn8699moclc58fdd55pup.apps.googleusercontent.com'
               developerKey='AIzaSyBlN1rHsjcxi2gz5ZPfDg8zLa-B96IEYuY'
@@ -669,66 +556,6 @@ const handlenewsubcat=(e)=>{
 </div>
 </div>
             </Grid>
-            {/* <Grid item xs={12} sm={6}>
-            <Typography component="h3" variant="h6">DISABLE FORMAT</Typography>
-            <hr></hr>
-            <FormControlLabel
-          value="category"
-          control={<Checkbox color="secondary" />}
-          label="PDF"
-          labelPlacement="category"
-        />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                <Typography component="h3" variant="h6">REASON</Typography>
-                <hr></hr>
-            
-                
-            <TextField
-          id="outlined-select-reason"
-          select
-          label="Select"
-          value={reason}
-          onChange={handleChange}
-          helperText="Select appropriate reason"
-          variant="outlined"
-        >
-          {reason.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <FormControlLabel
-          value="category"
-          control={<Checkbox color="secondary" />}
-          label="Audio"
-          labelPlacement="category"
-        />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                
-            
-                
-            <TextField
-          id="outlined-select-reason"
-          select
-          label="Select"
-          value={reason}
-          onChange={handleChange}
-          helperText="Select appropriate reason"
-          variant="outlined"
-        >
-          {reason.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-            </Grid> */}
-           
             
 
             </Grid>

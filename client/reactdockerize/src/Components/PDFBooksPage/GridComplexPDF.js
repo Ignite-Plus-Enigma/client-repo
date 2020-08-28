@@ -6,19 +6,13 @@ import GoogleLogin from "react-google-login";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-// import Rating from '@material-ui/lab/Rating';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from '@material-ui/core/IconButton';
 import { useHistory } from "react-router-dom";
-import { withRouter } from 'react-router';
-import Tabs from '../PDFBooksPage/Tabs'
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
 import {userContext} from "../../UserContext"
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import BookmarkOutlinedIcon from '@material-ui/icons/BookmarkOutlined';
@@ -61,20 +55,16 @@ export default function GridComplexPDF(props){
   const [open, setOpen] = useState(false);
   const [mainCategoryProps, setMainCategoryProps] = useState("Textbooks")
   function handleAudio(book){
-    console.log(book.book.id)
-    // eslint-disable-next-line no-restricted-globals
     history.push(`/Audio/${book.book.id}/`)
   }
   function handlePdf(book){
-    console.log(book.book.id)
-    // eslint-disable-next-line no-restricted-globals
     history.push(`/PDF/${book.book.id}/`)
   }
   function handleSave(book){
     if(id!=null){
       const saveBookEndPoint = 'http://localhost:8050/api/v1/user/' + id+ '/savebook'
        axios.post(saveBookEndPoint,{"bookId" : book.book.id, "progress":[{"format":"Audio","percentage":0},{"format":"PDF","percentage":0}],"isFinished":"False"})
-      // fetchData();
+      
       setSaved(true)
       setOpen(false)
    
@@ -90,8 +80,7 @@ export default function GridComplexPDF(props){
     }
     function responseGoogle(response){
 
-      console.log(response.profileObj)
-      //setName(response.profileObj.name)
+
       setOpen(false)
       const x = response.profileObj.googleId;
       setId(x)
@@ -146,8 +135,6 @@ export default function GridComplexPDF(props){
 
     <Grid item xs={4}>
         <div>
-            {/* <PictureAsPdfIcon fontSize="large"></PictureAsPdfIcon>
-            <Typography variant="subtitle2">Read</Typography> */}
             {book.format[1].url != null ? <IconButton  aria-label="read pdf book"   onClick={() => handlePdf({book})}>
    <PictureAsPdfIcon fontSize="large"/>
  </IconButton> : null }
@@ -187,15 +174,9 @@ export default function GridComplexPDF(props){
       </Dialog>
      </div>
      </Grid>
-     <Grid item xs={2} sm >
-      <div>
-      {/* <Rating name="size-large" defaultValue={book.rating} size="large" readOnly /> */}
-     </div>
-   </Grid>
      </Grid>
      </Grid>
  </Grid>
-
  </Paper> 
 </div>
     )

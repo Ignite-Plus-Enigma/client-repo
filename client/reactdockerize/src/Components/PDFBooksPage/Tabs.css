@@ -1,53 +1,46 @@
-/* .App {
-    text-align: center;
-  } */
-  
-  
-  
-  .App-title {
-    font-size: 1.5em;
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .App-intro {
-    font-size: large;
+  to {
+    transform: rotate(360deg);
   }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-  }
-  
-  .menu-item {
-    padding: 0 40px;
-    margin: 5px 10px;
-    user-select: none;
-    cursor: pointer;
-    border: #DC143C;
-  }
-  .menu-item-wrapper.active {
-    border: 1px #DC143C;
-  }
-  .menu-item.active {
-    border: 1px #DC143C;
-  }
-  
-  .scroll-menu-arrow {
-    padding: 20px;
-    cursor: pointer;
-  }
-  
-  .scroll-menu-arrow--disabled {
-    visibility: hidden;
-  }
-  
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: #DC143C;
+}
+.menu-item-wrapper.active {
+  border: 1px #DC143C;
+}
+.menu-item.active {
+  border: 1px #DC143C;
+}
+
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.scroll-menu-arrow--disabled {
+  visibility: hidden;
+}
