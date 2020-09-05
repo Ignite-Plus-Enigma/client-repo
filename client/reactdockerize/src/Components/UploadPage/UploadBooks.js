@@ -27,8 +27,6 @@ import { AttachFile, Description, PictureAsPdf, Theaters } from '@material-ui/ic
 import AudiotrackIcon from '@material-ui/icons/Audiotrack';
 import Alert from '@material-ui/lab/Alert'
 import GooglePicker from 'react-google-picker';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
 // import FormDialog from './Check'
 import axios from 'axios'
@@ -63,8 +61,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function UploadBooks() {
   var headerimage="https://drive.google.com/uc?export=view&id="
   const classes = useStyles();
@@ -89,13 +85,12 @@ export default function UploadBooks() {
   const[newsubcat, setnewsubcat]=React.useState([])
   const[openSubCat, setOpenSubCat]=React.useState(false)
   const[flag, setflag]=React.useState(true)
-  const[opensnack, setopensnack]=React.useState(false)
 
   const fetchData = () => {
 
     const uploadBookEndPoint = 'http://localhost:8050/api/v1/book/add'
     axios.post(uploadBookEndPoint,{
-      "id":50,
+      
       "name":bookname,
       "isbn":bookisbn,
       "author":bookauthor,
@@ -106,7 +101,16 @@ export default function UploadBooks() {
       "category":bookcat,
       "subCategory":booksubcat,
       "rating":4,
-      "format":[{type:"Audio",url:audiourl},{type:"PDF", url:pdfurl}]
+      "format": [
+        {
+            "type": "Audio",
+            "url": headerimage+audiourl
+        },
+        {
+            "type": "PDF",
+            "url": headerimage+pdfurl
+        }
+    ]
     })
     
     .then(res => {
@@ -180,17 +184,6 @@ const postnewsubcat=()=>{
     console.log(bookcat)
     console.log(newsubcat)
 }
-const handleclicksnack=()=>{
-  setopensnack(true)
-}
-
-const handleClosesnack = (event, reason) => {
-  if (reason === 'clickaway') {
-    return;
-  }
-
-  setopensnack(false);
-};
 
 
 
@@ -280,10 +273,7 @@ console.log(subcat)
 // }
 
 const handleSubmit=()=>{
-fetchData();
-
-
-       
+fetchData()
 }
  
 const handlenewcat=(e)=>{
@@ -336,7 +326,7 @@ const handlebookimageflag=()=>{
               onAuthFailed={data => console.log('on auth failed:', data)}
               multiselect={true}
               navHidden={true}
-              authImmediate={true}
+              authImmediate={flag}
               viewId={'DOCS'}
               mimeTypes={['application/pdf']}
               createPicker={ (google, oauthToken) => {
@@ -358,12 +348,16 @@ const handlebookimageflag=()=>{
                           var fileId = data.docs[0].id;
                         //   alert('The user selected: ' + fileId);
                           console.log(fileId)
+                          //  headerimage+= fileId
+                          setbookimage(data.docs[0].id)
+                          console.log("bookimage")
+                          console.log(bookimage)
                         //   picker();
                       }
                     });
                 picker.build().setVisible(true);
             }}>
-            <Button variant="contained" color="secondary">UPLOAD AUDIO</Button>
+            <Button variant="contained" color="secondary" >UPLOAD BOOK IMAGE</Button>
             <div className="google"></div>
         </GooglePicker>
             </Grid>
@@ -578,8 +572,9 @@ const handlebookimageflag=()=>{
                           var fileId = data.docs[0].id;
                         //   alert('The user selected: ' + fileId);
                           console.log(fileId)
-                          setbookimage("https://drive.google.com/uc?export=view&id="+fileId)
-                          console.log(bookimage)
+                          setpdfurl(data.docs[0].id)
+                          console.log("pdfurl")
+                          console.log(pdfurl)
                         //   picker();
                       }
                     });
@@ -618,7 +613,7 @@ const handlebookimageflag=()=>{
               navHidden={true}
               authImmediate={false}
               viewId={'DOCS'}
-              mimeTypes={['application/pdf']}
+              mimeTypes={['application/mp3']}
               createPicker={ (google, oauthToken) => {
                 const googleViewId = google.picker.ViewId.DOCS;
                 const uploadView = new google.picker.DocsUploadView()
@@ -638,6 +633,9 @@ const handlebookimageflag=()=>{
                           var fileId = data.docs[0].id;
                         //   alert('The user selected: ' + fileId);
                           console.log(fileId)
+                          setaudiourl(data.docs[0].id)
+                          console.log("audio url")
+                          console.log(audiourl)
                         //   picker();
                       }
                     });
@@ -660,24 +658,15 @@ const handlebookimageflag=()=>{
 </div>
   
           <Button
-            // type="submit"
+            type="submit"
             fullWidth
             variant="contained"
             color="secondary"
             className={classes.submit}
-            onClick={handleSubmit,handleclicksnack}
+            onClick={handleSubmit}
           >
             UPLOAD
           </Button>
-          <Snackbar 
-          
-          open={opensnack} 
-          autoHideDuration={6000} 
-          onClose={handleClosesnack}>
-        <Alert severity="success" onClose={handleClosesnack} varient="filled">
-          Book Uploaded Successfully!
-        </Alert>
-        </Snackbar>
           <Grid container justify="flex-end">
             <Grid item>
               
@@ -691,4 +680,4 @@ const handlebookimageflag=()=>{
       </Box>
     </Container>
   );
-          }
+}
