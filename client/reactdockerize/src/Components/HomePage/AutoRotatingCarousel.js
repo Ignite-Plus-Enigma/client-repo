@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import first from './carousel-trial3.jpg'
-import second from './carousel-trial4.jpg'
-// import second from './second-carousel.JPG'
-import third from "./third-carousel.JPG"
+
+
  
 
 import ReactSimpleCarousel from "react-plain-carousel";
@@ -41,7 +40,7 @@ class AutoRotatingCarousel extends React.Component {
         <Fragment>
           <ReactSimpleCarousel isInfinity autoplay className="carousel">
             <div> 
-              <img src={second} className="carousel-image"
+              <img src={first} className="carousel-image"
                   aria-label="Welcome to Digital Library"/>
                     <div class="centered1"><b>Let’s open the gates to accessibility…
 </b></div>
