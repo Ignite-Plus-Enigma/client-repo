@@ -328,7 +328,7 @@ const handlebookimageflag=()=>{
               navHidden={true}
               authImmediate={false}
               viewId={'DOCS'}
-              mimeTypes={['application/pdf']}
+              mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
               createPicker={ (google, oauthToken) => {
                 const googleViewId = google.picker.ViewId.DOCS;
                 const uploadView = new google.picker.DocsUploadView()
@@ -552,7 +552,7 @@ const handlebookimageflag=()=>{
               navHidden={true}
               authImmediate={false}
               viewId={'DOCS'}
-              mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
+              mimeTypes={'application/PDF'}
               createPicker={ (google, oauthToken) => {
                 const googleViewId = google.picker.ViewId.DOCS;
                 const uploadView = new google.picker.DocsUploadView()
