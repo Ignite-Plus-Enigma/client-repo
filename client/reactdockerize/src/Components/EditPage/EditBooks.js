@@ -652,13 +652,10 @@ const handlenewsubcat=(e)=>{
                     .setCallback((data)=>{
                       if (data.action == google.picker.Action.PICKED) {
                           var fileId = data.docs[0].id;
-                        //   alert('The user selected: ' + fileId);
-                          console.log(fileId)
-                          //  headerimage+= fileId
-                          // setbookimage(data.docs[0].id)
-                          console.log("audio")
-                          // console.log(bookimage)
-                        //   picker();
+                          setaudio(data.docs[0].id)
+                     
+
+                         
                       }
                     });
                 picker.build().setVisible(true);

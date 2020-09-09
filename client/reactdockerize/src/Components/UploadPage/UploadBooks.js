@@ -326,7 +326,7 @@ const handlebookimageflag=()=>{
               onAuthFailed={data => console.log('on auth failed:', data)}
               multiselect={true}
               navHidden={true}
-              authImmediate={flag}
+              authImmediate={false}
               viewId={'DOCS'}
               mimeTypes={['application/pdf']}
               createPicker={ (google, oauthToken) => {
